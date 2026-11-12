@@ -38,7 +38,7 @@ export function parseGoogleClientIds(env: Env): IntegrationSettings['google'] {
 
 export function loadIntegrationSettings(env: Env): IntegrationSettings {
   const isProd = env.NODE_ENV === 'production';
-  const appName = clean(env.APP_NAME) || 'Placement OS';
+  const appName = clean(env.APP_NAME) || 'UpGrid';
   const host = clean(env.SMTP_HOST);
   const port = Number(clean(env.SMTP_PORT) || 587);
   const secureEnv = clean(env.SMTP_SECURE);

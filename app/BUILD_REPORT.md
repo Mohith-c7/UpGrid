@@ -208,7 +208,7 @@ Scope: new role group `app/(recruiter)/**`, `app/(auth)/recruiter-invite.tsx`, `
 
 Screens
 - Tabs: Drives, Candidates, Messages, Profile. Candidates and Messages show the drive picked in a `Select` (kept in memory in `selection.ts`); drive detail sets it.
-- Onboarding: `(auth)/recruiter-invite` accepts a bare token or the shared link (`placementos://recruiter-invite?token=...`), calls `/auth/recruiter-invite/lookup`, shows company/role/email/expiry, then the register form (name, 10-digit mobile, password, terms; same validators as student register). Maps `INVITE_INVALID`, `INVITE_EXPIRED`, `PHONE_TAKEN`, `EMAIL_TAKEN`. Welcome has "I have a recruiter invite". Login is the normal login.
+- Onboarding: `(auth)/recruiter-invite` accepts a bare token or the shared link (`upgrid://recruiter-invite?token=...`), calls `/auth/recruiter-invite/lookup`, shows company/role/email/expiry, then the register form (name, 10-digit mobile, password, terms; same validators as student register). Maps `INVITE_INVALID`, `INVITE_EXPIRED`, `PHONE_TAKEN`, `EMAIL_TAKEN`. Welcome has "I have a recruiter invite". Login is the normal login.
 - Drives list and drive detail (funnel tiles, decisions, status counts, per-round counts, links to the sub-screens).
 - Candidates: debounced search, decision chips, Filters sheet (status, round, status in round, sort), multi-select with bulk shortlist/reject behind a confirm sheet (reject needs a reason; max 100; per-row failures listed), pagination, pull to refresh.
 - Candidate detail (tabs Profile / Evaluate / Notes / Progress): ONLY the apply-time snapshot (`fields` + `fieldKeys` + verification badge) and the answers; resume opens through `.../resume` with a fresh signed URL on every tap; working decision; notes (team/private, delete own); blind scorecard (round picker, rubric-driven 1-5 ratings, recommendation, confirm, edit own, "N hidden until you submit", others revealed from the server response); propose select/reject outcome; offer status + propose offer; rounds and status history.
@@ -457,7 +457,7 @@ Static review at 360dp / 1.3x font scale (no device or live server was available
 - Server should also withhold avgScore and scoreSummary.avg when blindScorecards is on (client only hides them).
 - Shared Select is single-line and has no disabled prop (shared UI, not edited).
 - iOS has no leave action in the runner (swipe-back off by design); iOS inactive events count as "left".
-- Abandoned attempts leave placementos-attempt-<id>.json on disk.
+- Abandoned attempts leave upgrid-attempt-<id>.json on disk.
 - Message thread polls every 30s in the background.
 - No screenshot blocking, hard-coded colours or banned animations found in scope.
 - Nothing was run on a device or live server.

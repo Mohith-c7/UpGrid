@@ -74,7 +74,7 @@ def mock2(d,kind,x,y,w):
         t={"n60":"Closing in 1 hour","n30":"Closing in 30 minutes","n15":"Last call: 15 minutes left"}[kind]
         rr(d,(x,y,x+w,y+152),24,fill=SF,outline=BD,width=3)
         logo(d,x+26,y+42,68)
-        d.text((x+120,y+22),"Placement OS  |  now",font=F("Regular",24),fill=MU)
+        d.text((x+120,y+22),"UpGrid  |  now",font=F("Regular",24),fill=MU)
         d.text((x+120,y+54),t,font=fb,fill=INK)
         d.text((x+120,y+96),"Sample drive closes 5:00 PM",font=F("Regular",24),fill=MU)
         return y+152

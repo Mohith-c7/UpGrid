@@ -9,8 +9,8 @@ the server keeps the secrets (see `server/docs/integrations-api.md`, `server/INT
 | Variable | Required | What it is | Where to get it |
 |---|---|---|---|
 | `EXPO_PUBLIC_API_URL` | yes | API base URL with `/api/v1` | your Render service URL |
-| `EXPO_PUBLIC_GOOGLE_ANDROID_CLIENT_ID` | for Google on Android | OAuth client of type **Android** | Google Cloud Console > APIs & Services > Credentials > Create credentials > OAuth client ID > Android. Package name `com.placementos.app`, SHA-1 of the signing key (EAS: `eas credentials`, Play App Signing: Play Console > App integrity) |
-| `EXPO_PUBLIC_GOOGLE_IOS_CLIENT_ID` | for Google on iOS | OAuth client of type **iOS** | same page, bundle id `com.placementos.app` |
+| `EXPO_PUBLIC_GOOGLE_ANDROID_CLIENT_ID` | for Google on Android | OAuth client of type **Android** | Google Cloud Console > APIs & Services > Credentials > Create credentials > OAuth client ID > Android. Package name `com.upgrid.app`, SHA-1 of the signing key (EAS: `eas credentials`, Play App Signing: Play Console > App integrity) |
+| `EXPO_PUBLIC_GOOGLE_IOS_CLIENT_ID` | for Google on iOS | OAuth client of type **iOS** | same page, bundle id `com.upgrid.app` |
 | `EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID` | no (the server wants it in `GOOGLE_CLIENT_IDS`) | OAuth client of type **Web** | same page |
 | `EXPO_PUBLIC_TURNSTILE_BASE_URL` | only if Turnstile is on and the API host is not on the widget's hostname list | https origin the Turnstile WebView loads under | any hostname you added to the widget |
 

@@ -2,7 +2,7 @@ import sys,os,subprocess;sys.path.insert(0,os.path.dirname(__file__))
 from brand import *
 import qa
 W,H=1080,1920;FPS=30;DUR=30;N=FPS*DUR
-M="/mnt/user-data/outputs/placement-os/marketing/"
+M="/mnt/user-data/outputs/upgrid/marketing/"
 scenes=[ # bg, kicker, headline, sub, chips
 (PD,"PLACEMENT SEASON","Same form.\nAgain.\nAnd again.","CGPA. 10th. 12th. Backlogs. Links.",[]),
 (P,"STEP 1","Build your\nprofile once.","Then stop re-typing it.",["Academics","Links","Resumes"]),
@@ -10,7 +10,7 @@ scenes=[ # bg, kicker, headline, sub, chips
 (P,"STEP 3","Review.\nOpt in.\nDone.","Prefilled from your profile.",[]),
 (PD,"NEVER MISS IT","Reminders at\n60, 30, 15\nminutes.","Before every deadline.",["60 min","30 min","15 min"]),
 (P,"FOR PLACEMENT CELLS","Drive wizard.\nEligible counts.\nApplicant pipeline.","Plus announcements.",[]),
-(PD,"","Placement OS","Launching soon  |  Campus pilot",[]),
+(PD,"","UpGrid","Launching soon  |  Campus pilot",[]),
 ]
 SL=N//len(scenes);CHECK=False
 def ease(t): t=max(0,min(1,t));return 1-(1-t)**3
@@ -28,7 +28,7 @@ def draw_scene(d,img,si,lt):  # lt: local seconds
     last=si==len(scenes)-1
     if last:
         s=200;logo(o,(W-s)//2,560+dy,s,bg=(255,255,255,al),fg=col(P),dot=col(CO))
-        o.text((W//2,860+dy),"Placement OS",font=F("ExtraBold",110,True),fill=col(SF),anchor="mm")
+        o.text((W//2,860+dy),"UpGrid",font=F("ExtraBold",110,True),fill=col(SF),anchor="mm")
         w=o.textlength(sub,font=F("Bold",42))+80
         rr(o,((W-w)/2,960+dy,(W+w)/2,1050+dy),45,fill=col(AM));o.text((W//2,1005+dy),sub,font=F("Bold",42),fill=col(INK),anchor="mm")
         o.text((W//2,1130+dy),"Waitlist: link in bio",font=F("Medium",40),fill=col("#CFE3E0"),anchor="mm")
@@ -52,7 +52,7 @@ def frame(n):
     if si>0 and lt<0.3: c=mix(scenes[si-1][0],bg,lt/0.3)
     else: c=mix(bg,bg,0)
     img=Image.new("RGB",(W,H),c);d=ImageDraw.Draw(img)
-    logo(d,80,170,72,bg=SF,fg=P);d.text((172,184),"Placement OS",font=F("Bold",38),fill=SF)
+    logo(d,80,170,72,bg=SF,fg=P);d.text((172,184),"UpGrid",font=F("Bold",38),fill=SF)
     draw_scene(d,img,si,lt);return img
 if __name__=="__main__":
     CHECK=True
@@ -65,7 +65,7 @@ if __name__=="__main__":
     p.stdin.close();p.wait()
     # cover
     img=Image.new("RGB",(W,H),PD);d=ImageDraw.Draw(img)
-    logo(d,80,170,96,bg=SF,fg=P);d.text((200,194),"Placement OS",font=F("Bold",48),fill=SF)
+    logo(d,80,170,96,bg=SF,fg=P);d.text((200,194),"UpGrid",font=F("Bold",48),fill=SF)
     y=640
     for l in ["Apply by","reviewing,","not typing."]:
         d.text((80,y),l,font=F("ExtraBold",138,True),fill=SF);y+=160

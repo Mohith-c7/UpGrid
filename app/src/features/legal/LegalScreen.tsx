@@ -12,9 +12,9 @@ interface Section { title: string; body: string[] }
 
 const TERMS: Section[] = [
   {
-    title: 'Using Placement OS',
+    title: 'Using UpGrid',
     body: [
-      'Placement OS is run by your institution\'s placement cell to publish campus drives, collect your applications and share updates.',
+      'UpGrid is run by your institution\'s placement cell to publish campus drives, collect your applications and share updates.',
       'You must give accurate details. Marks, backlogs and links you enter may be checked against college records. Wrong or misleading details can lead to your application being rejected.',
     ],
   },

@@ -65,7 +65,7 @@ export default function ResumesScreen() {
         tone="info"
         message={uploadsOn
           ? `Upload a PDF or Word file, or save a view-only https link (test it while logged out). You can save ${MAX} in total; the default is sent when you apply unless you pick another.`
-          : `File upload is off on this server, so Placement OS stores links only. Use a view-only https link (for example from your cloud drive) and test it while logged out. You can save ${MAX}; the default is sent when you apply unless you pick another.`}
+          : `File upload is off on this server, so UpGrid stores links only. Use a view-only https link (for example from your cloud drive) and test it while logged out. You can save ${MAX}; the default is sent when you apply unless you pick another.`}
       />
       <View style={{ gap: sp.md }}>
         <SectionHeader title={`Saved (${list.length}/${MAX})`} />

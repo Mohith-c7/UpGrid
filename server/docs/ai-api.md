@@ -1,4 +1,4 @@
-# Placement OS — AI API (module `ai`, migrations 030–039)
+# UpGrid — AI API (module `ai`, migrations 030–039)
 
 Base path `/api/v1/ai`, JSON, `Authorization: Bearer <accessJWT>` on every route. Errors use the standard shape
 `{ "error": { "code", "message", "fields"? } }`. Lists return `{ items, nextCursor }` (`?cursor=&limit=` 1–50, default 20).
@@ -38,7 +38,7 @@ Never 503 — use it to render the screen. `consent.required` is true for studen
 ### GET /ai/consent  (student) → 200 `{ granted, grantedAt, revokedAt, version }`
 ### PUT /ai/consent  (student)
 Body `{ "granted": true|false, "deleteData"?: bool }`. Granting stores a timestamp; revoking stops all personal-data use immediately, deletes cached AI outputs, and with `deleteData:true` also deletes conversations and mock interviews. → 200 same shape as GET.
-Consent text the app must show: *"Let Placement OS AI use my profile summary (department, batch, CGPA, skills), my resume text and my application/drive details to personalise answers, and let placement officers and recruiters use AI tools (draft interview questions, factual summaries) on the details I share when I apply. Contact details are never sent to the AI, AI output is only a draft reviewed by a person, and it never decides eligibility or selection. I can turn this off any time."*
+Consent text the app must show: *"Let UpGrid AI use my profile summary (department, batch, CGPA, skills), my resume text and my application/drive details to personalise answers, and let placement officers and recruiters use AI tools (draft interview questions, factual summaries) on the details I share when I apply. Contact details are never sent to the AI, AI output is only a draft reviewed by a person, and it never decides eligibility or selection. I can turn this off any time."*
 
 ### DELETE /ai/data  (student) → 200 `{ deleted: { conversations, mockInterviews, cache } }`
 

@@ -7,7 +7,7 @@ from mocks_app import mock3 as mock2
 import qa
 QA_CTX=['']
 FADE=0.3
-M="/mnt/user-data/outputs/placement-os/marketing/"
+M="/mnt/user-data/outputs/upgrid/marketing/"
 FPS=30
 def ease(t): t=max(0.0,min(1.0,t));return 1-(1-t)**3
 def rgb(c): return tuple(int(c[i:i+2],16) for i in (1,3,5))
@@ -57,7 +57,7 @@ def base_frame(cfg,bgc):
     W,H=cfg["W"],cfg["H"];img=Image.new("RGB",(W,H),bgc);d=ImageDraw.Draw(img)
     ls=cfg["logo"];x=cfg["mx"];y=cfg["ty"]
     assert y>=(160 if W<H else 48) and x>=48
-    logo(d,x,y,ls,bg=SF,fg=P);d.text((x+ls+22,y+ls//2),"Placement OS",font=F("Bold",int(ls*.52)),fill=SF,anchor="lm")
+    logo(d,x,y,ls,bg=SF,fg=P);d.text((x+ls+22,y+ls//2),"UpGrid",font=F("Bold",int(ls*.52)),fill=SF,anchor="lm")
     ft="Launching soon  |  Campus pilot";f=F("Medium",cfg["tagfs"])
     d.text((W-cfg["mx"],y+ls//2),ft,font=f,fill="#CFE3E0",anchor="rm")
     return np.asarray(img)

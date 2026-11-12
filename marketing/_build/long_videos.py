@@ -22,7 +22,7 @@ def title_items(sub,tagtxt):
     def title(img,d):
         W,H=c["W"],c["H"];s=150
         logo(d,(W-s)//2,230,s,bg=SF,fg=P)
-        d.text((W//2,470),"Placement OS",font=F("ExtraBold",130,True),fill=SF,anchor="mm")
+        d.text((W//2,470),"UpGrid",font=F("ExtraBold",130,True),fill=SF,anchor="mm")
         d.text((W//2,590),sub,font=F("Medium",50),fill="#CFE3E0",anchor="mm")
     def tag(img,d):
         W=c["W"];f=F("Bold",44);w=d.textlength(tagtxt,font=f)+80
@@ -54,7 +54,7 @@ def launch_spec():
         [(0.4,6.0,"I am an independent founder. There is no company behind this yet, no customer list, no big numbers to show."),(6.4,12.5,"Just a product, and a campus pilot we are preparing."),(13.0,19.0,"I would rather tell you that than make something up.")])
     add(35,P,[(0.2,text_item(c,"STEP 1","Build your\nprofile once.","Academics, links, skills, preferences and resume links.")),
         *seq([(0.8,12.3,["prof_top"],"Profile"),(12.8,22.8,["resumes"],"Resumes"),(23.3,None,["verify2"],"Field status")])],
-        [(0.4,6.0,"Placement OS is a student-first app. You build your profile once."),(6.2,12.3,"A completion meter tells you what is missing and what to do next."),(13.0,22.5,"Academics, links, skills, preferences, and up to five resume links."),(23.4,33.8,"Each academic field shows whether it is unverified, self-reported, or verified by your placement officer.")])
+        [(0.4,6.0,"UpGrid is a student-first app. You build your profile once."),(6.2,12.3,"A completion meter tells you what is missing and what to do next."),(13.0,22.5,"Academics, links, skills, preferences, and up to five resume links."),(23.4,33.8,"Each academic field shows whether it is unverified, self-reported, or verified by your placement officer.")])
     add(35,PD,[(0.2,text_item(c,"STEP 2","See why you're\neligible.","Required versus yours, for every criterion.")),
         *seq([(0.8,12.0,["opps"],"Opportunities"),(12.5,24.0,["drive_elig"],"Drive eligibility"),(24.5,None,["states2"],"Three clear states")])],
         [(0.4,6.2,"Then you see drives. Each one is checked against your profile."),(6.4,11.8,"The app shows the reason, not just a result."),(12.6,18.6,"Criterion by criterion: required versus yours."),(18.8,23.8,"No guessing, no silent rejection."),(24.6,34.0,"Eligible, not eligible, or pending (Check profile) when something is missing.")])
@@ -68,7 +68,7 @@ def launch_spec():
         *seq([(0.8,5.3,["wiz_steps"],"Drive wizard"),(5.5,10.0,["whocan"],"Before you publish"),(10.2,14.7,["applicants"],"Applicant pipeline"),(14.9,None,["announce"],"Announcements")])],
         [(0.4,5.3,"For placement cells: a drive wizard with autosaved drafts and a check before publishing."),(5.5,9.9,"An eligible-student count, with reasons."),(10.2,14.7,"An applicant pipeline from submitted to joined."),(14.9,19.2,"And announcements.")])
     add(15,PD,[(0.3,end_item(c,"A student-first campus placement app","Waitlist and pilot: link in the description","Independent founder. Pre-launch.",cy=400))],
-        [(0.5,5.5,"Placement OS is launching soon, starting with a campus pilot."),(5.8,10.5,"Students: join the waitlist. Placement cells: message me about a pilot."),(10.8,14.2,"Link in the description. Thanks for watching.")])
+        [(0.5,5.5,"UpGrid is launching soon, starting with a campus pilot."),(5.8,10.5,"Students: join the waitlist. Placement cells: message me about a pilot."),(10.8,14.2,"Link in the description. Thanks for watching.")])
     return S,caps
 
 # ------------------------------------------------------------------ DEMO (360 s = 6:00)
@@ -78,7 +78,7 @@ def demo_spec():
         nonlocal t
         S.append(dict(dur=dur,bg=bg,items=items));caps.extend(offset(t,cp));t+=dur
     add(8,PD,title_items("Product demo: student apply flow and officer drive wizard","Demo build  |  Fictional data"),
-        [(0.4,7.4,"This is Placement OS, a demo build with fictional data.")])
+        [(0.4,7.4,"This is UpGrid, a demo build with fictional data.")])
     add(12,P,[(0.2,text_item(c,"PART A","The student.","Sign in, build a profile, find a drive, apply.")),*seq([(0.8,None,["login"],"Log in")])],
         [(0.4,5.5,"I will walk through what a student does,"),(5.7,11.2,"then what a placement officer does.")])
     add(35,PD,[(0.2,text_item(c,"STUDENT | PROFILE","Profile and\ncompletion.","Academics, contact, links, skills and preferences.")),*seq([(0.8,17.5,["prof_top"],"Profile"),(18.0,None,["verify2"],"Verification")])],
@@ -115,7 +115,7 @@ def phone(d,x,y,pw,ph,kind,scale_w=480,label=True):
     if label: d.text((x+pw/2,y+ph-30),"Illustrative screen",font=F("Regular",18),fill=MU,anchor="mm")
 def thumb_launch():
     W,H=1280,720;img=Image.new("RGB",(W,H),PD);d=ImageDraw.Draw(img)
-    logo(d,64,56,72,bg=SF,fg=P);d.text((152,92),"Placement OS",font=F("Bold",38),fill=SF,anchor="lm")
+    logo(d,64,56,72,bg=SF,fg=P);d.text((152,92),"UpGrid",font=F("Bold",38),fill=SF,anchor="lm")
     y=186
     for l in ["Apply by","reviewing,","not typing."]: d.text((64,y),l,font=F("ExtraBold",108,True),fill=SF);y+=122
     pill(d,64,y+26,"Launching soon",INK,AM,F("Bold",40),34,16)
@@ -124,7 +124,7 @@ def thumb_launch():
     img.save(YT+"launch-video-thumbnail-1280x720.png")
 def thumb_demo():
     W,H=1280,720;img=Image.new("RGB",(W,H),PD);d=ImageDraw.Draw(img)
-    logo(d,64,48,60,bg=SF,fg=P);d.text((140,78),"Placement OS",font=F("Bold",32),fill=SF,anchor="lm")
+    logo(d,64,48,60,bg=SF,fg=P);d.text((140,78),"UpGrid",font=F("Bold",32),fill=SF,anchor="lm")
     pill(d,W-64-330,52,"Launching soon",INK,AM,F("Bold",30),26,10)
     d.text((64,120),"Full walkthrough",font=F("ExtraBold",96,True),fill=SF);d.rectangle((64,240,64+220,250),fill=CO)
     phone(d,150,262,400,364,"drive_elig",scale_w=600,label=False);phone(d,730,262,400,364,"wiz_elig",label=False)

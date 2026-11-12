@@ -103,11 +103,11 @@ function fold(line: string): string {
   return parts.join('\r\n ');
 }
 export function buildIcs(events: CalEvent[], now: Date = new Date()): string {
-  const lines = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Placement OS//Calendar//EN', 'CALSCALE:GREGORIAN', 'METHOD:PUBLISH', 'X-WR-CALNAME:Placement OS'];
+  const lines = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//UpGrid//Calendar//EN', 'CALSCALE:GREGORIAN', 'METHOD:PUBLISH', 'X-WR-CALNAME:UpGrid'];
   for (const e of events) {
     const start = new Date(e.startsAt);
     const end = e.endsAt ? new Date(e.endsAt) : new Date(start.getTime() + (e.kind === 'deadline' || e.kind === 'drive_closing' || e.kind === 'offer_expiry' ? 15 : 60) * 60000);
-    lines.push('BEGIN:VEVENT', `UID:${e.id}@placement-os`, `DTSTAMP:${stamp(now.toISOString())}`, `DTSTART:${stamp(start.toISOString())}`, `DTEND:${stamp(end.toISOString())}`,
+    lines.push('BEGIN:VEVENT', `UID:${e.id}@upgrid`, `DTSTAMP:${stamp(now.toISOString())}`, `DTSTART:${stamp(start.toISOString())}`, `DTEND:${stamp(end.toISOString())}`,
       `SUMMARY:${esc(e.title)}`, `DESCRIPTION:${esc(e.detail)}`, `CATEGORIES:${e.kind.toUpperCase()}`, 'END:VEVENT');
   }
   lines.push('END:VCALENDAR');

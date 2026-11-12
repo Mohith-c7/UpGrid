@@ -1,9 +1,9 @@
-# Placement OS: Brand and Positioning
+# UpGrid: Brand and Positioning
 
 Status: pre-launch. Android-first app, preparing a campus pilot. Founder is an individual; there is no registered company and there are no customers, testimonials, statistics or university partners to cite. Demo data in the product is fictional.
 
 ## 1. One-line positioning
-Placement OS is a student-first campus placement app: build your profile once, see which drives you are eligible for and why, opt in within seconds with prefilled data, and never miss a deadline.
+UpGrid is a student-first campus placement app: build your profile once, see which drives you are eligible for and why, opt in within seconds with prefilled data, and never miss a deadline.
 
 ## 2. Audiences
 
@@ -70,12 +70,12 @@ Pre-launch tag line for every asset: **Launching soon | Campus pilot**
 ## 9. Visual identity
 - Colours: primary teal #126B63, dark teal #0D4F4A, coral #F26B4F (accent), amber #F5B544 (highlight pills), ink #172B3A, muted #64748B, canvas #F6F8F9, border #E4E9EC; success #16845B, warning #B7791F, error #C2413A, info #2563A6.
 - Type: Inter or system font; bold headlines, regular body; tabular numbers for numbers.
-- Logo: rounded-square mark with a check and coral dot, plus wordmark "Placement OS" (see `app-store-assets/icon-512.png`).
+- Logo: rounded-square mark with a check and coral dot, plus wordmark "UpGrid" (see `app-store-assets/icon-512.png`).
 - Motion: fade and slide only. No bounce, wobble or shake. Respect Reduce Motion.
 - Social template: dark teal cover and CTA, canvas content slides, coral underline accent, footer "Launching soon | Campus pilot".
 
 ## 10. Hashtags
-Core: #PlacementOS #CampusPlacements #PlacementSeason #CampusDrives
+Core: #UpGrid #CampusPlacements #PlacementSeason #CampusDrives
 Student: #PlacementPrep #FinalYearStudents #StudentLife #EngineeringStudents #FreshersJobs #CareerStart
 Officers: #PlacementCell #TPO #HigherEducationIndia
 Build: #BuildInPublic #IndieFounder #StartupIndia

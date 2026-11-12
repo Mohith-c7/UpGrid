@@ -84,7 +84,7 @@ describe('email verification (OTP)', () => {
     expect(res.body.user).toMatchObject({ emailVerified: false, authProvider: 'password', hasPassword: true });
     expect(JSON.stringify(res.body)).not.toMatch(/\b\d{6}\b/);
     await vi.waitFor(() => expect(mailer.sent).toHaveLength(1));
-    expect(mailer.sent[0].subject).toBe('Your Placement OS verification code');
+    expect(mailer.sent[0].subject).toBe('Your UpGrid verification code');
     expect(mailer.lastCode('ria.sen@example.com')).toMatch(/^\d{6}$/);
     const row = (await rowsFor('ria.sen@example.com'))[0];
     expect(row.code_hash).toMatch(/^[0-9a-f]{64}$/);
@@ -319,7 +319,7 @@ describe('forgot and reset password', () => {
     expect(JSON.stringify(known.body)).not.toMatch(/\b\d{6}\b/);
     await vi.waitFor(() => expect(mailer.to(s.email)).toHaveLength(2));
     expect(mailer.to('nobody.here@example.com')).toHaveLength(0);
-    expect(mailer.to(s.email)[1].subject).toBe('Your Placement OS password reset code');
+    expect(mailer.to(s.email)[1].subject).toBe('Your UpGrid password reset code');
     // the cooldown / rate limit are silent too
     const again = await forgot(s.email);
     expect(again.status).toBe(200);
@@ -768,7 +768,7 @@ describe('mail templates and sendMail()', () => {
     buildIntegrations({ env: { NODE_ENV: 'test' }, mailer, log: () => undefined });
     expect(await sendMail('a@b.co', 'generic_notification', samples.generic_notification)).toBe(true);
     expect(mailer.sent[0]).toMatchObject({ to: 'a@b.co', subject: 'Hello' });
-    expect(mailer.sent[0].from).toBe('Placement OS <no-reply@localhost>');
+    expect(mailer.sent[0].from).toBe('UpGrid <no-reply@localhost>');
     mailer.fail = true;
     expect(await sendMail('a@b.co', 'generic_notification', samples.generic_notification)).toBe(false);
     buildIntegrations({ env: { NODE_ENV: 'test' }, log: () => undefined }); // console transport, not "enabled"

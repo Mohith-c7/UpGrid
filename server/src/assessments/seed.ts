@@ -56,7 +56,7 @@ export async function seedAssessmentDemo(pool: Pool, now = new Date()) {
       [['1 2\n', '3\n', 'sample', 1], ['10 -4\n', '6\n', 'hidden', 2], ['1000000000 1000000000\n', '2000000000\n', 'hidden', 2], ['0 0\n', '0\n', 'hidden', 1]],
       { python3: 'a, b = map(int, input().split())\n# print the sum\n', cpp: '#include <iostream>\nint main() {\n  // read a and b, print a + b\n}\n' }, { language: 'python3', code: SUM_PY }, ['basics', 'math']));
     const revQ = await add(codingQ('Reverse a string', 'Read one line and print it reversed.', 'easy',
-      [['hello\n', 'olleh\n', 'sample', 1], ['a\n', 'a\n', 'hidden', 1], ['placement os\n', 'so tnemecalp\n', 'hidden', 2], ['racecar\n', 'racecar\n', 'hidden', 1]],
+      [['hello\n', 'olleh\n', 'sample', 1], ['a\n', 'a\n', 'hidden', 1], ['upgrid\n', 'dirgpu\n', 'hidden', 2], ['racecar\n', 'racecar\n', 'hidden', 1]],
       { python3: 's = input()\n', cpp: '#include <iostream>\n#include <string>\nint main() {\n  std::string s;\n  std::getline(std::cin, s);\n}\n' }, { language: 'python3', code: REV_PY }, ['strings']));
     const maxQ = await add(codingQ('Maximum element', 'The first line has n, the second has n integers. Print the largest.', 'medium',
       [['5\n3 9 2 7 1\n', '9\n', 'sample', 1], ['1\n-5\n', '-5\n', 'hidden', 1], ['4\n-1 -2 -3 -4\n', '-1\n', 'hidden', 2], ['6\n10 10 10 10 10 10\n', '10\n', 'hidden', 1]],

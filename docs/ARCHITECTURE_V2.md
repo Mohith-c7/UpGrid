@@ -1,4 +1,4 @@
-# Placement OS v2 — one app for the whole placement lifecycle
+# UpGrid v2 — one app for the whole placement lifecycle
 
 Owner decisions (founder is away; the lead engineer owns everything). ONE Expo app, three roles: student, officer (placement cell), recruiter. No separate web portals.
 

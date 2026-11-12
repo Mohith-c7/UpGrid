@@ -166,7 +166,7 @@ Root Gate (`app/_layout.tsx`) decides the group from the session. Signed out: on
 ```
 
 Notes
-- Route URLs repeat across role groups (`/`, `/drive/[id]`, `/profile`, `/support`, `/legal/*`, `/drive/[id]/rounds|slots|offers|round/[roundId]`). That is safe only because every navigation in the code uses group-qualified paths (`/(student)/...`, `/(officer)/...`, `/(recruiter)/...`); the audit found no unqualified link except `/` and `/verify-email` (both unique). Keep it that way. External deep links to an unqualified shared URL (for example `placementos://drive/123`) are ambiguous and are not used anywhere; push notifications open qualified paths.
+- Route URLs repeat across role groups (`/`, `/drive/[id]`, `/profile`, `/support`, `/legal/*`, `/drive/[id]/rounds|slots|offers|round/[roundId]`). That is safe only because every navigation in the code uses group-qualified paths (`/(student)/...`, `/(officer)/...`, `/(recruiter)/...`); the audit found no unqualified link except `/` and `/verify-email` (both unique). Keep it that way. External deep links to an unqualified shared URL (for example `upgrid://drive/123`) are ambiguous and are not used anywhere; push notifications open qualified paths.
 - Sub-folders without `_layout.tsx` (for example `drive/[id]/`, `ai/`) are flattened into the parent stack by expo-router; that is intended.
 - Own stacks: `(student)/tests/_layout`, `(officer)/assessments/_layout` (flag gate), `(officer)/ops/_layout`, `(recruiter)/_layout` (role + flag gate).
 
@@ -290,7 +290,7 @@ Officer
 22. Assessments: question bank, builder, publish, results, export. Ops hub: policy, restrictions, cohorts, announcements, calendar link Copy, audit.
 
 Recruiter
-23. Accept an invite (`placementos://recruiter-invite?token=...`), register, drives, candidates, scorecard, propose slot, offer with policy check, messages.
+23. Accept an invite (`upgrid://recruiter-invite?token=...`), register, drives, candidates, scorecard, propose slot, offer with policy check, messages.
 
 Hardware and layout
 24. Screenshot and screen recording work everywhere (must not be blocked).

@@ -1,11 +1,11 @@
 import sys,os;sys.path.insert(0,os.path.dirname(__file__))
 from brand import *
-OUT="/mnt/user-data/outputs/placement-os/marketing/instagram/carousels/"
+OUT="/mnt/user-data/outputs/upgrid/marketing/instagram/carousels/"
 W,H=1080,1350
 # mock kinds: eligible, reminders, review, wizard, pipeline, checklist, none
 C=[
 ("01-build-profile-once","Build your profile once","Stop re-typing the same details for every drive.",
- "Every drive form asks for the same things: CGPA, 10th, 12th, backlogs, links. In Placement OS you fill your profile once, and your details come prefilled when you opt in. Illustrative, pre-launch: we're running a campus pilot soon. #PlacementOS #CampusPlacements #PlacementPrep",
+ "Every drive form asks for the same things: CGPA, 10th, 12th, backlogs, links. In UpGrid you fill your profile once, and your details come prefilled when you opt in. Illustrative, pre-launch: we're running a campus pilot soon. #UpGrid #CampusPlacements #PlacementPrep",
  [("cover","Build your profile once.","Then stop re-typing it for every drive.",None),
   ("body","The same form, again and again.","CGPA. 10th %. 12th %. Backlogs. LinkedIn. Resume link. Every drive asks again.",None),
   ("body","One profile. Filled once.","Academics, links, skills, role and location preferences, and up to 5 resume links, all in one place.","profile"),
@@ -13,7 +13,7 @@ C=[
   ("body","Your data stays labelled.","Each academic field shows whether it is unverified, student-confirmed or verified by your placement officer.","verify"),
   ("cta","Launching soon.","Campus pilot in progress. Join the waitlist via the link in bio.",None)]),
 ("02-why-eligible","Eligible or not? See the reason.","Clear reasons beat a silent rejection.",
- "Eligibility should not be a mystery. Placement OS compares your profile with each drive's rules and shows the reason for every criterion. Illustrative screens; launching soon with a campus pilot. #PlacementOS #CampusDrives #StudentLife",
+ "Eligibility should not be a mystery. UpGrid compares your profile with each drive's rules and shows the reason for every criterion. Illustrative screens; launching soon with a campus pilot. #UpGrid #CampusDrives #StudentLife",
  [("cover","Eligible or not?\nSee the reason.","Every drive, criterion by criterion.",None),
   ("body","Drive rules are specific.","Minimum CGPA, 10th and 12th %, active backlogs, gap years, allowed departments and batches.",None),
   ("body","Your profile is checked against them.","A deterministic check, same inputs, same answer. No guesswork.","eligible"),
@@ -21,7 +21,7 @@ C=[
   ("body","Pending? Fill the gap.","If a detail is missing, the app tells you which one, so you can complete it and re-check.",None),
   ("cta","Know where you stand.","Launching soon. Campus pilot. Link in bio for the waitlist.",None)]),
 ("03-never-miss-deadline","Never miss a deadline","60, 30 and 15 minutes before it closes.",
- "A drive closing at 5 PM should not surprise you at 4:58. Placement OS sends reminders 60, 30 and 15 minutes before a deadline, with quiet hours you control. Launching soon, campus pilot. #PlacementOS #DeadlineReminder #CampusPlacements",
+ "A drive closing at 5 PM should not surprise you at 4:58. UpGrid sends reminders 60, 30 and 15 minutes before a deadline, with quiet hours you control. Launching soon, campus pilot. #UpGrid #DeadlineReminder #CampusPlacements",
  [("cover","Never miss\na deadline.","Reminders at 60, 30 and 15 minutes.",None),
   ("body","Closing times sneak up on you.","Between classes, labs and exams, a deadline is easy to lose.",None),
   ("body","Three nudges, by default.","60 minutes, 30 minutes, 15 minutes before the drive closes. Switch any of them off.","reminders"),
@@ -30,7 +30,7 @@ C=[
   ("body","Applied? Reminders stop.","Once you have applied, you will not be nagged about that drive.",None),
   ("cta","Launching soon.","Campus pilot. Join the waitlist, link in bio.",None)]),
 ("04-apply-in-seconds","Review and opt in, in seconds","Prefilled data. You stay in control.",
- "Applying should mean checking, not typing. Placement OS prefills a drive's form from your profile; you review, answer any extra questions, choose a resume and opt in. Illustrative screens, launching soon with a campus pilot. #PlacementOS #ApplyFaster #CampusPlacements",
+ "Applying should mean checking, not typing. UpGrid prefills a drive's form from your profile; you review, answer any extra questions, choose a resume and opt in. Illustrative screens, launching soon with a campus pilot. #UpGrid #ApplyFaster #CampusPlacements",
  [("cover","Apply by\nreviewing, not typing.","Prefilled from your profile.",None),
   ("body","Step 1: See the preview.","Before you apply, you see exactly which details will be shared and where they came from.","review"),
   ("body","Step 2: Fix conflicts.","If something in your profile does not match, the preview flags it first.",None),
@@ -39,7 +39,7 @@ C=[
   ("body","Step 5: Get a receipt.","A reference number, and a timeline to track your application. Tapped twice by mistake? No duplicate.",None),
   ("cta","Launching soon.","Campus pilot. Waitlist link in bio.",None)]),
 ("05-for-placement-officers","For placement officers","A drive wizard, eligibility counts, a pipeline.",
- "A note for placement officers and TPOs: Placement OS gives you a step-by-step drive wizard, an eligible-student count before you publish, an applicant pipeline and announcements. We are starting with a campus pilot. DM to talk. #PlacementOS #PlacementCell #TPO",
+ "A note for placement officers and TPOs: UpGrid gives you a step-by-step drive wizard, an eligible-student count before you publish, an applicant pipeline and announcements. We are starting with a campus pilot. DM to talk. #UpGrid #PlacementCell #TPO",
  [("cover","For placement\nofficers.","Run a drive without the spreadsheet shuffle.",None),
   ("body","Create a drive with a wizard.","Step by step, autosaved as a draft. A completeness check before you publish.","wizard"),
   ("body","See the count before you publish.","How many students are eligible, and the reasons behind those who are not.",None),
@@ -48,7 +48,7 @@ C=[
   ("body","Verify what matters.","Mark academic fields as verified, so the drive sees trusted data.",None),
   ("cta","Interested in a pilot?","Message us. We are launching soon with a campus pilot.",None)]),
 ("06-pre-drive-checklist","Pre-drive checklist","Six things to sort before the next drive opens.",
- "Get ready before the notification hits. Save this checklist for the week before a placement season. Placement OS is launching soon with a campus pilot. #PlacementPrep #CampusPlacements #StudentTips #PlacementOS",
+ "Get ready before the notification hits. Save this checklist for the week before a placement season. UpGrid is launching soon with a campus pilot. #PlacementPrep #CampusPlacements #StudentTips #UpGrid",
  [("cover","Six things to sort\nbefore a drive opens.","Save this for placement season.",None),
   ("body","1. Know your numbers.","CGPA, 10th %, 12th %, active backlogs and gap years. Keep them handy and accurate.",None),
   ("body","2. Keep one resume link ready.","A link that opens without a login. Check it on your phone.",None),
@@ -56,10 +56,10 @@ C=[
   ("body","4. Know your preferences.","Roles, locations, work mode, relocation. Decide before you are rushed.",None),
   ("body","5. Turn on notifications.","Deadlines move fast. Give yourself a nudge before closing time.",None),
   ("body","6. Read the eligibility rules.","Check them early, so there are no surprises on the last day.","checklist"),
-  ("cta","Make it easier.","Placement OS is launching soon. Campus pilot. Waitlist in bio.",None)]),
-("07-launching-soon","Placement OS: launching soon","What we are building, and where we are.",
- "Placement OS is a student-first campus placement app, built by an independent founder. No customers to show off yet, just a product we are piloting on campus soon. Follow along. #PlacementOS #BuildInPublic #CampusPlacements",
- [("cover","Placement OS\nis launching soon.","A student-first campus placement app.",None),
+  ("cta","Make it easier.","UpGrid is launching soon. Campus pilot. Waitlist in bio.",None)]),
+("07-launching-soon","UpGrid: launching soon","What we are building, and where we are.",
+ "UpGrid is a student-first campus placement app, built by an independent founder. No customers to show off yet, just a product we are piloting on campus soon. Follow along. #UpGrid #BuildInPublic #CampusPlacements",
+ [("cover","UpGrid\nis launching soon.","A student-first campus placement app.",None),
   ("body","Why we are building it.","Placement season is stressful, repetitive and full of last-minute deadlines.",None),
   ("body","For students.","One profile, clear eligibility reasons, quick opt-in, 60/30/15-minute reminders.",None),
   ("body","For placement cells.","Drive wizard, eligibility counts, applicant pipeline, announcements.",None),
@@ -87,7 +87,7 @@ def slide(c,i,n,s):
     d=qa.QA(ImageDraw.Draw(d_img),W,H);dark=kind in("cover","cta")
     fg=SF if dark else INK;sub="#CFE3E0" if dark else MU
     logo(d,72,64,64,bg=SF if dark else P,fg=P if dark else SF)
-    d.text((152,78),"Placement OS",font=F("Bold",34),fill=fg)
+    d.text((152,78),"UpGrid",font=F("Bold",34),fill=fg)
     pg=f"{i+1}/{n}";d.text((W-72-d.textlength(pg,font=F("SemiBold",30)),80),pg,font=F("SemiBold",30),fill=sub)
     if kind=="cover":
         y=text_block(d,(72,300),h,F("ExtraBold",92,True),SF,W-144,1.08)

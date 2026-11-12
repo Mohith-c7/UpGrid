@@ -1,10 +1,10 @@
 import sys,os;sys.path.insert(0,os.path.dirname(__file__))
 from brand import *
-O="/mnt/user-data/outputs/placement-os/marketing/app-store-assets/"
+O="/mnt/user-data/outputs/upgrid/marketing/app-store-assets/"
 im=Image.new("RGB",(512,512),P);d=ImageDraw.Draw(im)
 logo(d,96,96,320,bg=SF,fg=P);im.save(O+"icon-512.png")
 im=Image.new("RGB",(1024,500),PD);d=ImageDraw.Draw(im)
-logo(d,64,60,72,bg=SF,fg=P);d.text((152,74),"Placement OS",font=F("Bold",34),fill=SF)
+logo(d,64,60,72,bg=SF,fg=P);d.text((152,74),"UpGrid",font=F("Bold",34),fill=SF)
 y=text_block(d,(64,170),"Apply by reviewing,\nnot typing.",F("ExtraBold",64,True),SF,640,1.1)
 d.text((64,y+14),"Eligibility reasons. 60/30/15-minute reminders.",font=F("Regular",26),fill="#CFE3E0")
 pill(d,64,y+70,"Launching soon  |  Campus pilot",INK,AM,F("Bold",24),24,10)

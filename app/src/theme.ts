@@ -1,5 +1,5 @@
 /**
- * Placement OS design tokens.  See app/DESIGN.md for usage.
+ * UpGrid design tokens.  See app/DESIGN.md for usage.
  * All text/background pairs below were checked against WCAG 2.1 AA (>= 4.5:1 for text, >= 3:1 for UI borders/icons).
  * Legacy keys (primary, muted, error, ...) are kept so existing screens keep compiling; they now point at the new palette.
  */

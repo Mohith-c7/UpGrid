@@ -1,4 +1,4 @@
-# Placement OS design system
+# UpGrid design system
 
 Flat, calm, teal. White cards on a light canvas, hairline borders, one very light card shadow, Inter type. No bubbly/bouncy motion: no slide/scale/pop animation anywhere; fades are 150ms max. No decorative circles or blobs. Touch targets are 48dp minimum; all text is font-scale safe (wrap, never clip).
 

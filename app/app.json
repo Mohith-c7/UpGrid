@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "Placement OS",
-    "slug": "placement-os",
-    "scheme": "placementos",
+    "name": "UpGrid",
+    "slug": "upgrid",
+    "scheme": "upgrid",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -10,13 +10,13 @@
     "newArchEnabled": true,
     "ios": {
       "supportsTablet": false,
-      "bundleIdentifier": "com.placementos.app",
+      "bundleIdentifier": "com.upgrid.app",
       "infoPlist": {
         "ITSAppUsesNonExemptEncryption": false
       }
     },
     "android": {
-      "package": "com.placementos.app",
+      "package": "com.upgrid.app",
       "adaptiveIcon": {
         "backgroundColor": "#126B63",
         "foregroundImage": "./assets/android-icon-foreground.png",
@@ -61,14 +61,14 @@
       [
         "expo-camera",
         {
-          "cameraPermission": "Placement OS uses the camera only to scan the attendance QR shown at your round. Pictures are never saved or uploaded.",
+          "cameraPermission": "UpGrid uses the camera only to scan the attendance QR shown at your round. Pictures are never saved or uploaded.",
           "recordAudioAndroid": false
         }
       ],
       [
         "expo-calendar",
         {
-          "calendarPermission": "Placement OS adds your interview and assessment times to your calendar when you tap Add to calendar."
+          "calendarPermission": "UpGrid adds your interview and assessment times to your calendar when you tap Add to calendar."
         }
       ]
     ],

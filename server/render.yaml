@@ -4,15 +4,15 @@
 # (workers are idempotent, but one is plenty); to move them out later set DISABLE_SCHEDULER=1 here and add a background worker.
 # Secrets are declared with sync: false (key only, no value): Render asks for them when the Blueprint is created.
 databases:
-  - name: placement-os-db
+  - name: upgrid-db
     region: singapore
     plan: basic-256mb
-    databaseName: placement_os
-    user: placement_os
+    databaseName: upgrid
+    user: upgrid
 
 services:
   - type: web
-    name: placement-os-api
+    name: upgrid-api
     runtime: node
     region: singapore
     plan: starter
@@ -30,7 +30,7 @@ services:
         value: production
       - key: DATABASE_URL
         fromDatabase:
-          name: placement-os-db
+          name: upgrid-db
           property: connectionString
       - key: JWT_SECRET
         generateValue: true
@@ -41,7 +41,7 @@ services:
       # ---- Integrations. Paste the values in the Render dashboard (sync: false = never stored in git).
       # Every group is optional: leave it empty and that feature switches itself off. See INTEGRATIONS.md.
       - key: APP_NAME
-        value: Placement OS
+        value: UpGrid
       # Email (SMTP)
       - key: SMTP_HOST
         sync: false

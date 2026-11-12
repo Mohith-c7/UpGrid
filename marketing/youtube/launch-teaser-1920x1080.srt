@@ -56,7 +56,7 @@ See the eligible count, then move applicants through a pipeline.
 
 15
 00:00:55,500 --> 00:00:58,500
-Placement OS is launching soon, starting with a campus pilot.
+UpGrid is launching soon, starting with a campus pilot.
 
 16
 00:00:58,700 --> 00:01:02,600

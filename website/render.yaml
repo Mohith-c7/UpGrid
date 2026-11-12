@@ -2,7 +2,7 @@
 services:
   - type: web
     runtime: static
-    name: placement-os-website
+    name: upgrid-website
     staticPublishPath: .
     headers:
       - { path: /*, name: X-Content-Type-Options, value: nosniff }

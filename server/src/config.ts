@@ -30,7 +30,7 @@ export function loadConfig(): Config {
   return {
     env: process.env.NODE_ENV || 'development',
     port: Number(process.env.PORT || 4000),
-    databaseUrl: process.env.DATABASE_URL || 'postgres://localhost:5432/placement_os',
+    databaseUrl: process.env.DATABASE_URL || 'postgres://localhost:5432/upgrid',
     jwtSecret,
     officerInviteCode,
     corsOrigins: (process.env.CORS_ORIGINS || '*').split(',').map((s) => s.trim()).filter(Boolean),

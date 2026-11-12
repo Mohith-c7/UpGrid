@@ -16,7 +16,7 @@ import { integrationSummary, loadIntegrationSettings } from './integrations';
   const push = createExpoPushSender(fetch, cfg.expoPushUrl);
   const app = createApp({ pool, cfg, push });
   for (const line of integrationSummary(loadIntegrationSettings(process.env))) console.log(`[integrations] ${line}`);
-  const server = app.listen(cfg.port, () => console.log(`Placement OS API listening on :${cfg.port}`));
+  const server = app.listen(cfg.port, () => console.log(`UpGrid API listening on :${cfg.port}`));
   const stopReminders = process.env.DISABLE_SCHEDULER === '1' ? async () => undefined : startReminderWorker(pool, push, cfg.schedulerIntervalMs);
   const stopAnnouncements = process.env.DISABLE_SCHEDULER === '1' ? async () => undefined : startAnnouncementWorker(pool, push, cfg.schedulerIntervalMs);
   const stopWorker = async () => { await Promise.all([stopReminders(), stopAnnouncements()]); };

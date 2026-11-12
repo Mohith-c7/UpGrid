@@ -1,4 +1,4 @@
-# Placement OS: Competitor Gap Analysis
+# UpGrid: Competitor Gap Analysis
 
 Research date: 2026-11-07. Method: public web pages, vendor sites, review aggregators, news and forum threads, read via search and fetch. Nothing here comes from private demos or logged-in product use.
 
@@ -31,9 +31,9 @@ Baseline for "already has / in scope" (from the brief): profile-once, opt-in, el
 ## 1. Comparison matrix
 
 Columns: **SS** Superset, **UN** Unstop (employer campus hiring), **HE** HackerEarth, **ME** Mettl, **HS** Handshake, **ER** Erekrut Campus Suite, **ISH** Internshala campus drive (2018 page).
-Placement OS column shows planned status per the brief.
+UpGrid column shows planned status per the brief.
 
-| Feature | Placement OS | SS | UN | HE | ME | HS | ER | ISH |
+| Feature | UpGrid | SS | UN | HE | ME | HS | ER | ISH |
 |---|---|---|---|---|---|---|---|---|
 | Eligibility rules (CGPA, backlogs) | Has | Y [1] | not found | n/a | n/a | ? | ? | n/a |
 | Reminders to eligible non-applicants | Has (60-30-15) | Y [1] | ? | ? | ? | ? | ? | ? |
@@ -78,7 +78,7 @@ Placement OS column shows planned status per the brief.
 12. TCS Assessment as a Service (generic, not campus-specific): https://tcs.com/what-we-do/industries/education/solution/digital-assessment-platform-delivering-boundaryless-experiences. It lists self, machine and dual proctoring, on-centre and remote delivery, and results within 24 hours. I did not verify iON campus-hiring features.
 
 **Observations from the matrix**
-- Superset is the only product I verified that covers the college side end to end (eligibility, verification, drives, D-day, CRM, internships, mock interviews). That is the feature set Placement OS is directly measured against.
+- Superset is the only product I verified that covers the college side end to end (eligibility, verification, drives, D-day, CRM, internships, mock interviews). That is the feature set UpGrid is directly measured against.
 - Unstop and the assessment vendors (HackerEarth, Mettl) are employer-side and strongest on integrity tooling. Treat them as the benchmark for the proctoring layer, not for TPO workflow.
 - Handshake's AI copilot is, per its own announcement, a limited pilot that answers career questions and shows career centres what students ask. It is not a hiring agent.
 - I found no competitor page describing a rules engine for placement policy (one-offer rule, dream/normal tiers, offer penalties). That could be a real gap, or it may live behind login. Marked "not found", not "absent".
@@ -151,7 +151,7 @@ Lower priority, not listed above: hackathon/contest hosting, courses and trainin
 
 ## 4. Ten strongest honest differentiators
 
-"Honest" = true of Placement OS by design, and not contradicted by anything I verified. Where a rival might also do it behind a login, the wording says so.
+"Honest" = true of UpGrid by design, and not contradicted by anything I verified. Where a rival might also do it behind a login, the wording says so.
 
 1. **One Expo app for student, TPO and recruiter.** Superset's student app exists on Android and iOS, but I found no evidence of a TPO or recruiter mobile app. Unstop's page does not mention a mobile app. (Verify against a demo before claiming it publicly.)
 2. **Profile once, opt-in per drive.** Students enter data once and choose what each company can see. Reviewers complained about heavy sign-up data and non-editable profiles; opt-in per drive addresses the privacy half of that.
@@ -177,8 +177,8 @@ Do not claim: "first", "only" or "best", and do not claim AI proctoring parity w
 - 2026-11-13: consent-manager registration provisions start. This is six days from today.
 - 2027-05-13: substantive obligations start (notice and consent, fiduciary duties, children's data, rights, penalties).
 
-**What this means for Placement OS**
-- **Roles.** The college is likely the data fiduciary for student data it collects, and Placement OS (the vendor) likely a data processor. Recruiters receiving profiles become fiduciaries for what they hold. Contracts should say who is who. Confirm with counsel.
+**What this means for UpGrid**
+- **Roles.** The college is likely the data fiduciary for student data it collects, and UpGrid (the vendor) likely a data processor. Recruiters receiving profiles become fiduciaries for what they hold. Contracts should say who is who. Confirm with counsel.
 - **Notice and consent.** Notices must be clear, in plain language, state the data and purpose, give contact details, and explain how to withdraw and complain (SCC Online). Your opt-in per drive maps well to purpose-specific consent. Record who consented, to what, when, and any withdrawal.
 - **Sharing with recruiters.** Share only the fields a student opted into for that drive. Log every disclosure. Treat resume links with view tracking as a disclosure you must disclose.
 - **Minors.** Verifiable parental consent applies to anyone under 18 (SCC Online, LiveLaw). Most placement students are adults, but first- and second-year internship and skills features may include 17-year-olds. Either gate by date of birth or get advice. Exemptions exist for some educational institutions in narrow welfare contexts (AZB). Whether they cover placement is a legal question.

@@ -1,13 +1,13 @@
-# Placement OS — shared build contract (all agents must follow exactly)
+# UpGrid — shared build contract (all agents must follow exactly)
 
-Monorepo root: /mnt/user-data/outputs/placement-os
+Monorepo root: /mnt/user-data/outputs/upgrid
 - `server/`  Express + TypeScript + PostgreSQL (pg, zod, jsonwebtoken, bcryptjs, helmet, cors, express-rate-limit). Deploy target: Render (Singapore).
 - `app/`     Expo SDK 54-ish (use latest `npx create-expo-app`-compatible versions), TypeScript, Expo Router, TanStack Query, react-hook-form + zod, expo-notifications, expo-secure-store, @expo/vector-icons. ONE app, role-aware: student mode and officer mode.
 - `marketing/` marketing kit.
 Same stack as the Tensor school app: Expo Android-first app + Express API on Render. NO bouncing/wobbling/shaking/spring-overshoot animations anywhere (use short timing fades/slides only, and respect Reduce Motion). Never block screenshots/screen recording.
 
 ## Brand (original — do not copy Superset/Blinkit/Zomato)
-Name "Placement OS". Tokens: primary #126B63, primaryDark #0D4F4A, coral #F26B4F, amber #F5B544, ink #172B3A, muted #64748B, canvas #F6F8F9, surface #FFFFFF, border #E4E9EC, success #16845B, warning #B7791F, error #C2413A, info #2563A6. Radius card 16, button 12. Spacing 4/8/12/16/20/24/32. Min touch target 48. Font: system (Roboto/SF) with tabular-nums for CGPA/CTC/dates. Indian formats: ₹ and lakh (LPA), dates en-IN, IST display.
+Name "UpGrid". Tokens: primary #126B63, primaryDark #0D4F4A, coral #F26B4F, amber #F5B544, ink #172B3A, muted #64748B, canvas #F6F8F9, surface #FFFFFF, border #E4E9EC, success #16845B, warning #B7791F, error #C2413A, info #2563A6. Radius card 16, button 12. Spacing 4/8/12/16/20/24/32. Min touch target 48. Font: system (Roboto/SF) with tabular-nums for CGPA/CTC/dates. Indian formats: ₹ and lakh (LPA), dates en-IN, IST display.
 
 ## Validation rules (identical in server zod and app zod — put in `server/src/validation.ts` and mirror in `app/src/lib/validation.ts`)
 - email: trim, lowercase, max 254, regex `^[a-z0-9._%+-]+@[a-z0-9-]+(\.[a-z0-9-]+)*\.[a-z]{2,}$`, no `..`, no leading/trailing dot in local part. If domain is gmail.com or googlemail.com: local part (before any +tag) must be 6–30 chars of a-z 0-9 and dots, no leading/trailing/consecutive dots, must not start with a digit-only... (digits allowed but not purely dots); treat common typos `gmial.com, gmai.com, gamil.com, gmail.co, gmail.con, gmal.com, gmil.com, hotmial.com, yahooo.com` as errors with message "Did you mean gmail.com?". Normalize googlemail.com→gmail.com for uniqueness; for uniqueness also strip dots and +tag for gmail.

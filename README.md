@@ -1,4 +1,4 @@
-# UpGrid (formerly Placement OS)
+# UpGrid
 
 > Unified Campus Placement Ecosystem connecting Students, Placement Officers, and Recruiters in one cohesive platform.
 
@@ -11,7 +11,7 @@
 
 ## 📌 Overview
 
-**UpGrid** (originally developed under the working title **Placement OS**) replaces fractured placement spreadsheets, fragmented WhatsApp groups, and disconnected job boards with an enterprise-grade platform. Designed specifically for university placement cells, candidate students, and hiring partners.
+**UpGrid** replaces fractured placement spreadsheets, fragmented WhatsApp groups, and disconnected job boards with an enterprise-grade platform. Designed specifically for university placement cells, candidate students, and hiring partners.
 
 ---
 

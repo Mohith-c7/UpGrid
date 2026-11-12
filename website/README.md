@@ -1,4 +1,4 @@
-# Placement OS marketing website
+# UpGrid marketing website
 
 Static site, no build step, no frameworks, no external CDN. Pages: `index`, `students`, `placement-cells`, `recruiters`, `assessments`, `ai`, `security`, `waitlist`, `contact`, `privacy` (DRAFT), `terms` (DRAFT), `404`.
 URLs are extensionless (`/students`); Cloudflare Pages and Netlify serve `students.html` that way automatically.
@@ -6,9 +6,9 @@ URLs are extensionless (`/students`); Cloudflare Pages and Netlify serve `studen
 ## Placeholders to fill (all in `config.js`)
 | Key | What to put |
 |---|---|
-| `SITE_NAME` | Display name (default "Placement OS") |
-| `SITE_URL` | Final https origin, no trailing slash (currently `https://placementos.example`) |
-| `CONTACT_EMAIL` | Real inbox (currently `hello@placementos.example`); used for contact links and the waitlist mailto fallback |
+| `SITE_NAME` | Display name (default "UpGrid") |
+| `SITE_URL` | Final https origin, no trailing slash (currently `https://upgrid.example`) |
+| `CONTACT_EMAIL` | Real inbox (currently `hello@upgrid.example`); used for contact links and the waitlist mailto fallback |
 | `WAITLIST_ENDPOINT` | Full URL of `POST /api/v1/waitlist` on the deployed server. Empty = form opens a pre-filled email instead |
 | `PLAY_STORE_URL` | Play listing; empty keeps the button hidden |
 | `SOCIAL_LINKEDIN`, `SOCIAL_INSTAGRAM`, `SOCIAL_X`, `SOCIAL_YOUTUBE` | Profile URLs; empty hides the link |

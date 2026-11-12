@@ -44,7 +44,7 @@ function LinksForm({ p }: { p: ProfileFull }) {
       keyboard
       footer={<Button label="Save links" full loading={busy} disabled={!formState.isDirty} onPress={handleSubmit(submit, () => toast.show('Fix the highlighted fields', 'error'))} />}
     >
-      <Banner tone="info" message="Links must start with https://. Leave a field empty to remove it. Placement OS does not open or check these links." />
+      <Banner tone="info" message="Links must start with https://. Leave a field empty to remove it. UpGrid does not open or check these links." />
       <Card>
         <View style={{ gap: sp.lg }}>
           <RHFText control={control} name="linkedin" label="LinkedIn" keyboardType="url" maxLength={300} helper="https://www.linkedin.com/in/your-name" serverError={serverErr.linkedin} />

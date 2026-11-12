@@ -39,7 +39,7 @@ export function TokenPanel({ token, emailSent, email }: { token: string; emailSe
       <Text variant="caption" color={colors.muted}>They enter this code when registering as a recruiter. It expires in 7 days. If you lose it, use Resend to issue a new one.</Text>
       <Button label="Copy invite code" icon="content-copy" variant="secondary" full onPress={() => copy(token, 'Invite code')} />
       <Button label="Share invite code" icon="share" variant="secondary" full
-        onPress={async () => { try { await Share.share({ message: `Placement OS recruiter invite for ${email}\nInvite code: ${token}` }); } catch { toast.show('Could not open the share sheet', 'error'); } }} />
+        onPress={async () => { try { await Share.share({ message: `UpGrid recruiter invite for ${email}\nInvite code: ${token}` }); } catch { toast.show('Could not open the share sheet', 'error'); } }} />
     </View>
   );
 }

@@ -9,7 +9,7 @@ def get(k):
     m = re.search(k + r'\s*:\s*"([^"]*)"', cfg); return m.group(1).strip() if m else ""
 url, mail = get("SITE_URL").rstrip("/"), get("CONTACT_EMAIL")
 state = os.path.join(ROOT, "tools", ".stamped")
-prev_url, prev_mail = "https://placementos.example", "hello@placementos.example"
+prev_url, prev_mail = "https://upgrid.example", "hello@upgrid.example"
 if os.path.exists(state):
     a = open(state).read().split("\n"); prev_url, prev_mail = a[0], a[1]
 if not url.startswith("https://"): sys.exit("SITE_URL must start with https://")

@@ -1,6 +1,6 @@
 {
-  "name": "Placement OS",
-  "short_name": "Placement OS",
+  "name": "UpGrid",
+  "short_name": "UpGrid",
   "description": "One app for the campus placement lifecycle. Launching soon, campus pilot.",
   "start_url": "/",
   "display": "browser",

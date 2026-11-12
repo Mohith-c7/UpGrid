@@ -1,4 +1,4 @@
-# Placement OS marketing pack (pre-launch)
+# UpGrid marketing pack (pre-launch)
 
 Visual style (flat and professional): solid brand-colour backgrounds, no decorative circles or blobs, 10px card corners, 6px badge/button corners, no shadows or glows. Motion: plain cross-fades of 0.3 s or less only (no slide, zoom, pop, bounce). Safe margins: 48px from every frame edge; on 9:16 at least 160px from the top and 250px from the bottom for platform UI.
 

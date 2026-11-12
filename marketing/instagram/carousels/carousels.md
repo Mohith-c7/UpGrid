@@ -33,7 +33,7 @@ Visual: illustrative mock panel (verify)
 Headline: Launching soon.  
 Body: Campus pilot in progress. Join the waitlist via the link in bio.  
 
-**Caption:** Every drive form asks for the same things: CGPA, 10th, 12th, backlogs, links. In Placement OS you fill your profile once, and your details come prefilled when you opt in. Illustrative, pre-launch: we're running a campus pilot soon. #PlacementOS #CampusPlacements #PlacementPrep
+**Caption:** Every drive form asks for the same things: CGPA, 10th, 12th, backlogs, links. In UpGrid you fill your profile once, and your details come prefilled when you opt in. Illustrative, pre-launch: we're running a campus pilot soon. #UpGrid #CampusPlacements #PlacementPrep
 
 ---
 
@@ -67,7 +67,7 @@ Body: If a detail is missing, the app tells you which one, so you can complete i
 Headline: Know where you stand.  
 Body: Launching soon. Campus pilot. Link in bio for the waitlist.  
 
-**Caption:** Eligibility should not be a mystery. Placement OS compares your profile with each drive's rules and shows the reason for every criterion. Illustrative screens; launching soon with a campus pilot. #PlacementOS #CampusDrives #StudentLife
+**Caption:** Eligibility should not be a mystery. UpGrid compares your profile with each drive's rules and shows the reason for every criterion. Illustrative screens; launching soon with a campus pilot. #UpGrid #CampusDrives #StudentLife
 
 ---
 
@@ -104,7 +104,7 @@ Body: Once you have applied, you will not be nagged about that drive.
 Headline: Launching soon.  
 Body: Campus pilot. Join the waitlist, link in bio.  
 
-**Caption:** A drive closing at 5 PM should not surprise you at 4:58. Placement OS sends reminders 60, 30 and 15 minutes before a deadline, with quiet hours you control. Launching soon, campus pilot. #PlacementOS #DeadlineReminder #CampusPlacements
+**Caption:** A drive closing at 5 PM should not surprise you at 4:58. UpGrid sends reminders 60, 30 and 15 minutes before a deadline, with quiet hours you control. Launching soon, campus pilot. #UpGrid #DeadlineReminder #CampusPlacements
 
 ---
 
@@ -141,7 +141,7 @@ Body: A reference number, and a timeline to track your application. Tapped twice
 Headline: Launching soon.  
 Body: Campus pilot. Waitlist link in bio.  
 
-**Caption:** Applying should mean checking, not typing. Placement OS prefills a drive's form from your profile; you review, answer any extra questions, choose a resume and opt in. Illustrative screens, launching soon with a campus pilot. #PlacementOS #ApplyFaster #CampusPlacements
+**Caption:** Applying should mean checking, not typing. UpGrid prefills a drive's form from your profile; you review, answer any extra questions, choose a resume and opt in. Illustrative screens, launching soon with a campus pilot. #UpGrid #ApplyFaster #CampusPlacements
 
 ---
 
@@ -179,7 +179,7 @@ Body: Mark academic fields as verified, so the drive sees trusted data.
 Headline: Interested in a pilot?  
 Body: Message us. We are launching soon with a campus pilot.  
 
-**Caption:** A note for placement officers and TPOs: Placement OS gives you a step-by-step drive wizard, an eligible-student count before you publish, an applicant pipeline and announcements. We are starting with a campus pilot. DM to talk. #PlacementOS #PlacementCell #TPO
+**Caption:** A note for placement officers and TPOs: UpGrid gives you a step-by-step drive wizard, an eligible-student count before you publish, an applicant pipeline and announcements. We are starting with a campus pilot. DM to talk. #UpGrid #PlacementCell #TPO
 
 ---
 
@@ -218,18 +218,18 @@ Visual: illustrative mock panel (checklist)
 
 **Slide 8 (cta)**  
 Headline: Make it easier.  
-Body: Placement OS is launching soon. Campus pilot. Waitlist in bio.  
+Body: UpGrid is launching soon. Campus pilot. Waitlist in bio.  
 
-**Caption:** Get ready before the notification hits. Save this checklist for the week before a placement season. Placement OS is launching soon with a campus pilot. #PlacementPrep #CampusPlacements #StudentTips #PlacementOS
+**Caption:** Get ready before the notification hits. Save this checklist for the week before a placement season. UpGrid is launching soon with a campus pilot. #PlacementPrep #CampusPlacements #StudentTips #UpGrid
 
 ---
 
-## 07-launching-soon: Placement OS: launching soon
+## 07-launching-soon: UpGrid: launching soon
 
 Goal: What we are building, and where we are.
 
 **Slide 1 (cover)**  
-Headline: Placement OS is launching soon.  
+Headline: UpGrid is launching soon.  
 Body: A student-first campus placement app.  
 
 **Slide 2 (body)**  
@@ -252,6 +252,6 @@ Body: Pre-launch. Android-first. Preparing a campus pilot. No fake numbers here.
 Headline: Follow along.  
 Body: Waitlist and pilot enquiries: link in bio.  
 
-**Caption:** Placement OS is a student-first campus placement app, built by an independent founder. No customers to show off yet, just a product we are piloting on campus soon. Follow along. #PlacementOS #BuildInPublic #CampusPlacements
+**Caption:** UpGrid is a student-first campus placement app, built by an independent founder. No customers to show off yet, just a product we are piloting on campus soon. Follow along. #UpGrid #BuildInPublic #CampusPlacements
 
 ---

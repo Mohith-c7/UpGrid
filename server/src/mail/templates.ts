@@ -49,7 +49,7 @@ const rows = (items: [string, string][]) =>
     .join('')}</table>`;
 const hello = (name?: string) => (name ? `Hi ${oneLine(name)},` : 'Hello,');
 
-export function renderTemplate<T extends TemplateName>(template: T, data: TemplateData[T], appName = 'Placement OS'): Rendered {
+export function renderTemplate<T extends TemplateName>(template: T, data: TemplateData[T], appName = 'UpGrid'): Rendered {
   const d: any = data;
   switch (template) {
     case 'verification_code':

@@ -79,6 +79,6 @@ export function bindModuleHooks(deps: Deps): void {
   setInviteMailer((m) => sendMail(m.to, 'generic_notification', {
     name: m.name ?? undefined,
     title: `${m.invitedBy} invited you to review candidates for ${m.companyName}`,
-    body: `You have been invited to the ${m.driveRole} drive for ${m.companyName} on Placement OS.\n\nOpen the app, choose "Recruiter sign up" and enter this invite code:\n\n${m.inviteToken}\n\nThe invite expires on ${m.expiresAt.toUTCString()}.`,
+    body: `You have been invited to the ${m.driveRole} drive for ${m.companyName} on UpGrid.\n\nOpen the app, choose "Recruiter sign up" and enter this invite code:\n\n${m.inviteToken}\n\nThe invite expires on ${m.expiresAt.toUTCString()}.`,
   }));
 }

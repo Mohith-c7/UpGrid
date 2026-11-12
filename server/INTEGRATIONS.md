@@ -26,7 +26,7 @@ The server also prints one `[integrations] ...` line per integration at start-up
 
 You need **one Google Cloud project** and up to three OAuth clients. Menu names below are from the Google Cloud Console and may move slightly.
 
-1. <https://console.cloud.google.com> -> create a project (e.g. "Placement OS").
+1. <https://console.cloud.google.com> -> create a project (e.g. "UpGrid").
 2. **APIs & Services -> OAuth consent screen** (also called "Google Auth platform -> Branding"): user type **External**, app name, support email, developer email. Scopes: only `openid`, `email`, `profile` (non-sensitive, no verification review needed). Under **Audience**, click **Publish app** (status "In production"); while it is "Testing" only listed test users can sign in.
 3. **APIs & Services -> Credentials -> Create credentials -> OAuth client ID**, three times:
    - **Web application** (required; the Expo app asks Google for an ID token with this client ID on every platform). No redirect URI is needed for the ID-token flow; add the ones your auth library asks for (for `expo-auth-session` the Expo proxy URI or your scheme).
@@ -51,15 +51,15 @@ Set `SMTP_HOST`, `SMTP_PORT`, `SMTP_SECURE`, `SMTP_USER`, `SMTP_PASS`, `MAIL_FRO
 **Brevo (recommended for free volume, 300 mails/day on the free plan)**
 1. Sign up at brevo.com -> **Senders, domains & dedicated IPs** -> add and verify your sender address (better: authenticate your domain by adding the DKIM + SPF/DMARC DNS records Brevo shows).
 2. **SMTP & API -> SMTP** -> generate an SMTP key.
-3. `SMTP_HOST=smtp-relay.brevo.com`, `SMTP_PORT=587`, `SMTP_SECURE=false`, `SMTP_USER=<the login email shown on that page>`, `SMTP_PASS=<SMTP key>`, `MAIL_FROM=Placement OS <no-reply@yourdomain.com>`.
+3. `SMTP_HOST=smtp-relay.brevo.com`, `SMTP_PORT=587`, `SMTP_SECURE=false`, `SMTP_USER=<the login email shown on that page>`, `SMTP_PASS=<SMTP key>`, `MAIL_FROM=UpGrid <no-reply@yourdomain.com>`.
 
 **Gmail with an app password (fine for pilots, ~500 mails/day)**
 1. Google Account -> Security -> turn on 2-Step Verification -> **App passwords** -> create one (16 characters, no spaces).
-2. `SMTP_HOST=smtp.gmail.com`, `SMTP_PORT=587`, `SMTP_SECURE=false` (or 465 + `true`), `SMTP_USER=you@gmail.com`, `SMTP_PASS=<app password>`, `MAIL_FROM=Placement OS <you@gmail.com>` (Gmail rewrites other From addresses).
+2. `SMTP_HOST=smtp.gmail.com`, `SMTP_PORT=587`, `SMTP_SECURE=false` (or 465 + `true`), `SMTP_USER=you@gmail.com`, `SMTP_PASS=<app password>`, `MAIL_FROM=UpGrid <you@gmail.com>` (Gmail rewrites other From addresses).
 
 **Zoho Mail**
 1. Zoho Mail -> My Account -> Security -> **App passwords** -> generate one (needed when 2FA is on).
-2. India data centre: `SMTP_HOST=smtp.zoho.in`; others: `smtp.zoho.com` / `smtp.zoho.eu`. `SMTP_PORT=465`, `SMTP_SECURE=true` (or 587 + `false`), `SMTP_USER=<full mailbox address>`, `SMTP_PASS=<app password>`, `MAIL_FROM=Placement OS <that same mailbox>`.
+2. India data centre: `SMTP_HOST=smtp.zoho.in`; others: `smtp.zoho.com` / `smtp.zoho.eu`. `SMTP_PORT=465`, `SMTP_SECURE=true` (or 587 + `false`), `SMTP_USER=<full mailbox address>`, `SMTP_PASS=<app password>`, `MAIL_FROM=UpGrid <that same mailbox>`.
 
 Test: register a new account in the app; the 6-digit code should arrive within seconds. In local development leave `SMTP_HOST` empty and set `EMAIL_DEV_ECHO=1`: the code is printed in the server console (never in API responses, never when `NODE_ENV=production`).
 
@@ -67,7 +67,7 @@ Test: register a new account in the app; the 6-digit code should arrive within s
 
 ## 3. Cloudflare R2 (file uploads)
 
-1. Cloudflare dashboard -> **R2 Object Storage** -> **Create bucket** (e.g. `placement-os-files`, location hint: Asia-Pacific). Keep it **private** (do not enable public access on the bucket itself).
+1. Cloudflare dashboard -> **R2 Object Storage** -> **Create bucket** (e.g. `upgrid-files`, location hint: Asia-Pacific). Keep it **private** (do not enable public access on the bucket itself).
 2. Note your **Account ID** (R2 overview page, right side) -> `R2_ACCOUNT_ID`; bucket name -> `R2_BUCKET`.
 3. **R2 -> Manage API tokens -> Create API token** -> permission **Object Read & Write**, restrict to this bucket -> copy the **Access Key ID** and **Secret Access Key** (shown once) -> `R2_ACCESS_KEY_ID`, `R2_SECRET_ACCESS_KEY`. (The "Account API token" and the S3-compatible endpoint `https://<account>.r2.cloudflarestorage.com` are what the server uses; region is `auto`.)
 4. **CORS** (needed only for browser/web clients uploading with the presigned `PUT`; native apps do not need it). Bucket -> Settings -> CORS policy:

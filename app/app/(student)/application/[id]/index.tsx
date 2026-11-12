@@ -175,7 +175,7 @@ export default function ApplicationDetail() {
                 label="Share receipt" variant="secondary" icon="share" full
                 onPress={async () => {
                   try {
-                    await Share.share({ message: `Placement OS application receipt\n${a.drive.company.name} - ${a.drive.role}\nReference: ${a.reference}\nSubmitted: ${formatIST(a.submittedAt)}` });
+                    await Share.share({ message: `UpGrid application receipt\n${a.drive.company.name} - ${a.drive.role}\nReference: ${a.reference}\nSubmitted: ${formatIST(a.submittedAt)}` });
                   } catch { toast.show('Could not open the share sheet', 'error'); }
                 }}
               />

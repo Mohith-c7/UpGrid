@@ -1,9 +1,9 @@
-/* Placement OS site script: applies config.js values, accessible tabs. No animation. */
+/* UpGrid site script: applies config.js values, accessible tabs. No animation. */
 (function () {
   "use strict";
-  var C = window.PLACEMENT_OS_CONFIG || {};
-  var STAMPED_ORIGIN = "https://placementos.example";
-  var STAMPED_EMAIL = "hello@placementos.example";
+  var C = window.UPGRID_CONFIG || {};
+  var STAMPED_ORIGIN = "https://upgrid.example";
+  var STAMPED_EMAIL = "hello@upgrid.example";
   var $ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
 
   // site name

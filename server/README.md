@@ -1,4 +1,4 @@
-# Placement OS API
+# UpGrid API
 
 Express + TypeScript + PostgreSQL API for a campus placement app (student, officer and recruiter roles, single-university MVP, every table tenant-scoped).
 

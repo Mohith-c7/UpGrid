@@ -10,24 +10,24 @@
 
 Note: the rendered videos use captions plus a quiet generated ambient bed. The founder voiceover and camera segments in the scripts are not recorded yet; see ../README.md.
 
-Channel description (draft): "Placement OS is a student-first campus placement app, built by an independent founder. Launching soon with a campus pilot. Videos about placement prep, how the app works, and the build."
+Channel description (draft): "UpGrid is a student-first campus placement app, built by an independent founder. Launching soon with a campus pilot. Videos about placement prep, how the app works, and the build."
 
 ## 0. Teaser (1:03)
-**Title:** Placement OS: Apply by Reviewing, Not Typing (Teaser) | Launching Soon
+**Title:** UpGrid: Apply by Reviewing, Not Typing (Teaser) | Launching Soon
 **Thumbnail:** launch-teaser-thumbnail-1280x720.png
-**Chapters:** 0:00 Placement OS / 0:06 The problem / 0:14 Build your profile once / 0:22 Eligibility with reasons / 0:31 Review and opt in / 0:40 Deadline reminders / 0:47 For placement cells / 0:55 Launching soon
+**Chapters:** 0:00 UpGrid / 0:06 The problem / 0:14 Build your profile once / 0:22 Eligibility with reasons / 0:31 Review and opt in / 0:40 Deadline reminders / 0:47 For placement cells / 0:55 Launching soon
 
 ## 1. Launch video (3:35)
 **Thumbnail file:** launch-video-thumbnail-1280x720.png. **Captions:** launch-video-1920x1080.srt (upload as subtitles; they are also burned in).
 **Title options:** (pick one, keep under 70 chars)
-1. Introducing Placement OS: A Student-First Placement App
-2. Apply by Reviewing, Not Typing | Placement OS (Launching Soon)
+1. Introducing UpGrid: A Student-First Placement App
+2. Apply by Reviewing, Not Typing | UpGrid (Launching Soon)
 3. Why I'm Building a Campus Placement App
 
 **Thumbnail brief:** 1280x720. Dark teal (#0D4F4A) background, headline "Apply by reviewing, not typing." in white Inter ExtraBold, left aligned, max 5 words per line; amber pill "Launching soon"; app logo mark top-left; right side a simplified phone card with Eligible / 15 min chips (original, no real company logos). No faces required; if a face is used, it is the founder's own photo, neutral friendly expression.
 
 **Description:**
-Placement OS is a student-first campus placement app. Build your profile once, see which drives you are eligible for and why, review and opt in within seconds, and get reminders 60, 30 and 15 minutes before a deadline. Placement cells get a drive wizard, eligibility counts, an applicant pipeline and announcements.
+UpGrid is a student-first campus placement app. Build your profile once, see which drives you are eligible for and why, review and opt in within seconds, and get reminders 60, 30 and 15 minutes before a deadline. Placement cells get a drive wizard, eligibility counts, an applicant pipeline and announcements.
 
 Status: pre-launch. We are preparing a campus pilot. All screens in this video are from a demo build with fictional data.
 Join the waitlist: [WAITLIST LINK]
@@ -44,15 +44,15 @@ Chapters (video length 3:35):
 3:00 For placement cells
 3:20 Launching soon
 
-**Tags:** placement os, campus placements, placement app, college placements india, placement drive, campus recruitment, student placement app, placement cell, TPO, eligibility criteria, placement preparation, final year students
+**Tags:** upgrid, campus placements, placement app, college placements india, placement drive, campus recruitment, student placement app, placement cell, TPO, eligibility criteria, placement preparation, final year students
 
 ## 2. Product demo (6:00)
 **Thumbnail file:** product-demo-thumbnail-1280x720.png. **Captions:** product-demo-1920x1080.srt.
-**Titles:** 1. Placement OS Demo: Student Apply Flow and Officer Drive Wizard 2. How Placement OS Works (Full Walkthrough)
+**Titles:** 1. UpGrid Demo: Student Apply Flow and Officer Drive Wizard 2. How UpGrid Works (Full Walkthrough)
 **Thumbnail brief:** Split layout: left phone card "Student: Review and opt in", right phone card "Officer: Drive wizard"; teal gradient, white headline "Full walkthrough"; coral accent underline.
-**Description:** A walkthrough of the Placement OS demo build with fictional data: the student profile, eligibility reasons, the apply review flow, and the officer drive wizard, eligible counts and applicant pipeline. Launching soon with a campus pilot. [WAITLIST LINK]
+**Description:** A walkthrough of the UpGrid demo build with fictional data: the student profile, eligibility reasons, the apply review flow, and the officer drive wizard, eligible counts and applicant pipeline. Launching soon with a campus pilot. [WAITLIST LINK]
 Chapters (video length 6:00): 0:00 Intro / 0:20 Student profile / 0:55 Resume links / 1:15 Finding drives / 1:55 Drive detail and eligibility / 2:25 Apply review / 3:05 Receipt, timeline and reminders / 3:30 Officer dashboard / 3:50 Drive wizard / 4:50 Publish check and counts / 5:15 Applicant pipeline / 5:40 Announcements
-**Tags:** placement os demo, placement app walkthrough, drive wizard, applicant pipeline, campus drive management, eligibility checker, tpo tools
+**Tags:** upgrid demo, placement app walkthrough, drive wizard, applicant pipeline, campus drive management, eligibility checker, tpo tools
 
 ## 3. Shorts (titles, thumbnail text, description line, tags)
 Covers: shorts/short-0N-cover.png. Captions: shorts/short-0N.srt.

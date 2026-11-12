@@ -1,4 +1,4 @@
-# Placement OS app (Expo, Android first)
+# UpGrid app (Expo, Android first)
 
 One app, three roles. Students browse drives, check eligibility, apply and track applications; placement officers manage drives, rounds, applicants and verification; recruiters (invited by an officer) review candidates, rounds and offers for their drives. Talks to the API in `../server`.
 

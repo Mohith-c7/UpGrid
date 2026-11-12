@@ -1,7 +1,7 @@
 /* Waitlist + contact forms. Validation mirrors the server (src/validation.ts) so users get the same answers. */
 (function () {
   "use strict";
-  var C = window.PLACEMENT_OS_CONFIG || {};
+  var C = window.UPGRID_CONFIG || {};
   var TYPOS = { "gmial.com": "gmail.com", "gmai.com": "gmail.com", "gamil.com": "gmail.com", "gmail.co": "gmail.com", "gmail.con": "gmail.com", "gmal.com": "gmail.com", "gmil.com": "gmail.com", "hotmial.com": "hotmail.com", "yahooo.com": "yahoo.com" };
   var EMAIL_RE = /^[a-z0-9._%+-]+@[a-z0-9-]+(\.[a-z0-9-]+)*\.[a-z]{2,}$/;
   var PHONE_MSG = "Enter a valid 10-digit mobile number starting with 6–9";
@@ -45,7 +45,7 @@
     if (CTRL.test(s) || !/^[\p{L}\p{M}][\p{L}\p{M} .'’-]*$/u.test(s)) return { msg: "Name can only contain letters, spaces and . ' -" };
     return { value: s };
   }
-  window.PlacementOSValidate = { email: validateEmail, phone: validatePhone, name: validateName };
+  window.UpGridValidate = { email: validateEmail, phone: validatePhone, name: validateName };
 
   function $(id) { return document.getElementById(id); }
   function setErr(field, msg, suggest) {
@@ -89,8 +89,8 @@
       status.hidden = false; status.setAttribute("tabindex", "-1"); status.focus();
     }
     function mailtoHref(d) {
-      var body = "Please add me to the Placement OS waitlist.\n\nName: " + d.name + "\nRole: " + roleLabels[d.role] + "\nCollege: " + (d.college || "-") + "\nEmail: " + d.email + (d.phone ? "\nMobile: " + d.phone : "") + "\n\nI agree to be contacted about the campus pilot and launch.";
-      return "mailto:" + (C.CONTACT_EMAIL || "") + "?subject=" + encodeURIComponent("Placement OS waitlist") + "&body=" + encodeURIComponent(body);
+      var body = "Please add me to the UpGrid waitlist.\n\nName: " + d.name + "\nRole: " + roleLabels[d.role] + "\nCollege: " + (d.college || "-") + "\nEmail: " + d.email + (d.phone ? "\nMobile: " + d.phone : "") + "\n\nI agree to be contacted about the campus pilot and launch.";
+      return "mailto:" + (C.CONTACT_EMAIL || "") + "?subject=" + encodeURIComponent("UpGrid waitlist") + "&body=" + encodeURIComponent(body);
     }
     function mailLink(d, text) { var a = document.createElement("a"); a.href = mailtoHref(d); a.textContent = text; return a; }
 
@@ -166,7 +166,7 @@
       if (n.msg || e.msg || m.length < 10) { (n.msg ? $("c-name") : e.msg ? $("c-email") : $("c-msg")).focus(); return; }
       var topic = $("c-topic").value;
       var body = m + "\n\n--\n" + n.value + " <" + e.value + ">";
-      window.location.href = "mailto:" + (C.CONTACT_EMAIL || "") + "?subject=" + encodeURIComponent("[" + topic + "] Placement OS") + "&body=" + encodeURIComponent(body);
+      window.location.href = "mailto:" + (C.CONTACT_EMAIL || "") + "?subject=" + encodeURIComponent("[" + topic + "] UpGrid") + "&body=" + encodeURIComponent(body);
       var s = $("c-status"); s.hidden = false; s.textContent = "Your email app should open with the message ready to send. If nothing opens, write to us directly at the address shown above.";
     });
   }

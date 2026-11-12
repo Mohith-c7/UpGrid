@@ -19,7 +19,7 @@ export const AI_ROUTES = {
 } as const;
 
 export const CONSENT_TEXT =
-  'Let Placement OS AI use my profile summary (department, batch, CGPA, skills), my resume text and my application/drive details to personalise answers, and let placement officers and recruiters use AI tools (draft interview questions, factual summaries) on the details I share when I apply. Contact details are never sent to the AI, AI output is only a draft reviewed by a person, and it never decides eligibility or selection. I can turn this off any time.';
+  'Let UpGrid AI use my profile summary (department, batch, CGPA, skills), my resume text and my application/drive details to personalise answers, and let placement officers and recruiters use AI tools (draft interview questions, factual summaries) on the details I share when I apply. Contact details are never sent to the AI, AI output is only a draft reviewed by a person, and it never decides eligibility or selection. I can turn this off any time.';
 
 /** IST wall-clock for the daily reset (00:00 UTC). */
 export const RESET_LABEL = 'Resets daily at 5:30 AM IST';

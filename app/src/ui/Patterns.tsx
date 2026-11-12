@@ -16,7 +16,7 @@ export function BrandLogo({ size = 56, onDark }: { size?: number; onDark?: boole
   return (
     <View
       accessible
-      accessibilityLabel="Placement OS logo"
+      accessibilityLabel="UpGrid logo"
       style={{ width: size, height: size, borderRadius: radius.logo, backgroundColor: onDark ? colors.onPrimary : colors.primary, alignItems: 'center', justifyContent: 'center' }}
     >
       <Icon name="check" size={Math.round(size * 0.58)} color={onDark ? colors.primary : colors.onPrimary} />
@@ -44,7 +44,7 @@ export function ScreenHero({
   subtitle?: string;
   onBack?: () => void;
   right?: React.ReactNode;
-  /** show the Placement OS logo mark above the title */
+  /** show the UpGrid logo mark above the title */
   brand?: boolean;
   children?: React.ReactNode;
 }) {

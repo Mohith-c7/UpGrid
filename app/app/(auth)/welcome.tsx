@@ -15,7 +15,7 @@ export default function Welcome() {
   const router = useRouter();
   return (
     <Screen scroll edges={['bottom']}>
-      <ScreenHero brand title="Placement OS" subtitle="Campus drives, deadlines and applications in one place. For students and placement officers.">
+      <ScreenHero brand title="UpGrid" subtitle="Campus drives, deadlines and applications in one place. For students and placement officers.">
         <Card padding={20} style={{ gap: 20 }}>
           <View style={{ gap: 16 }}>
             {POINTS.map((p) => (

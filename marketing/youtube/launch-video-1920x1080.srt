@@ -36,7 +36,7 @@ I would rather tell you that than make something up.
 
 10
 00:00:55,400 --> 00:01:01,000
-Placement OS is a student-first app. You build your profile once.
+UpGrid is a student-first app. You build your profile once.
 
 11
 00:01:01,200 --> 00:01:07,300
@@ -128,7 +128,7 @@ And announcements.
 
 33
 00:03:20,500 --> 00:03:25,500
-Placement OS is launching soon, starting with a campus pilot.
+UpGrid is launching soon, starting with a campus pilot.
 
 34
 00:03:25,800 --> 00:03:30,500

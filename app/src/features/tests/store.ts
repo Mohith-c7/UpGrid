@@ -1,7 +1,7 @@
 /** Tiny best-effort JSON persistence in the app document directory (survives app kill). Never throws. */
 import { File, Paths } from 'expo-file-system';
 
-const file = (name: string) => new File(Paths.document, `placementos-${name}.json`);
+const file = (name: string) => new File(Paths.document, `upgrid-${name}.json`);
 
 export async function readJson<T>(name: string): Promise<T | null> {
   try {

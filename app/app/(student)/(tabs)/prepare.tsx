@@ -17,7 +17,7 @@ const SECTIONS: Section[] = [
     intro: 'Recruiters skim. Make the first half page count.',
     items: [
       'Keep it to one page unless you have strong, relevant experience',
-      'Put education first: degree, department, batch year and CGPA that match your Placement OS profile',
+      'Put education first: degree, department, batch year and CGPA that match your UpGrid profile',
       'Use the same name and contact details as your profile so there is nothing to explain',
       'List projects with what you built, the tools used and one measurable result',
       'Use plain headings and a standard font; avoid photos, tables and graphics',
@@ -60,7 +60,7 @@ const SECTIONS: Section[] = [
       'Eligible: every rule is met. Not eligible: at least one rule is not met. Pending: a rule cannot be checked because a profile value is missing',
       'Fill your academic details completely to move drives from pending to eligible or not eligible',
       'Editing a verified academic field resets it to unverified until the placement cell checks it again',
-      'Placement OS does not read data from any university system. Your details come from you, and the placement cell verifies them manually',
+      'UpGrid does not read data from any university system. Your details come from you, and the placement cell verifies them manually',
       'The placement cell makes the final call. If something looks wrong, contact them with your registration number',
     ],
   },

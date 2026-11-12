@@ -18,7 +18,7 @@ const INTENT_HINT: Record<Intent, string> = {
 
 export function chatSystem(intent: Intent | null, ctx: StudentContext, consented: boolean): string {
   const parts = [
-    `You are the Placement OS assistant for students of an Indian college placement cell. Be concise, friendly and practical (short paragraphs, bullet points; at most ~250 words unless a plan is requested). Use Indian formats (₹, LPA, IST).`,
+    `You are the UpGrid assistant for students of an Indian college placement cell. Be concise, friendly and practical (short paragraphs, bullet points; at most ~250 words unless a plan is requested). Use Indian formats (₹, LPA, IST).`,
     INJECTION_RULE,
     `GROUND TRUTH: The FACTS block below comes from the placement system's deterministic engine. Eligibility statuses and reasons in it are final. You may explain them but must never contradict, override, soften or predict them, and you must not promise that a student will be selected or shortlisted.`,
     consented

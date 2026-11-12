@@ -88,7 +88,7 @@ def end_item(cfg,l1,l2,l3,cy=None):
     def fn(img,d):
         s=190 if V else 170
         logo(d,(W-s)//2,cy-s-60,s,bg=SF,fg=P)
-        d.text((W//2,cy+40),"Placement OS",font=F("ExtraBold",110 if V else 120,True),fill=SF,anchor="mm")
+        d.text((W//2,cy+40),"UpGrid",font=F("ExtraBold",110 if V else 120,True),fill=SF,anchor="mm")
         d.text((W//2,cy+135),l1,font=F("Medium",44 if V else 46),fill="#CFE3E0",anchor="mm")
         f=F("Bold",42);w=d.textlength("Launching soon  |  Campus pilot",font=f)+80
         rr(d,((W-w)/2,cy+190,(W+w)/2,cy+280),45,fill=AM);d.text((W//2,cy+235),"Launching soon  |  Campus pilot",font=f,fill=INK,anchor="mm")
@@ -106,7 +106,7 @@ def teaser():
     def title(img,d):
         W,H=c["W"],c["H"];s=150
         logo(d,(W-s)//2,230,s,bg=SF,fg=P)
-        d.text((W//2,470),"Placement OS",font=F("ExtraBold",130,True),fill=SF,anchor="mm")
+        d.text((W//2,470),"UpGrid",font=F("ExtraBold",130,True),fill=SF,anchor="mm")
         d.text((W//2,590),"Apply by reviewing, not typing.",font=F("Medium",52),fill="#CFE3E0",anchor="mm")
     def tag(img,d):
         W=c["W"];f=F("Bold",44);t="Launching soon  |  Campus pilot";w=d.textlength(t,font=f)+80
@@ -138,7 +138,7 @@ def teaser():
       (43.2,46.7,"Quiet hours are yours. Once you apply, they stop.",1),
       (47.5,51.0,"For placement cells: a drive wizard with autosaved drafts.",1),
       (51.2,54.7,"See the eligible count, then move applicants through a pipeline.",1),
-      (55.5,58.5,"Placement OS is launching soon, starting with a campus pilot.",1),
+      (55.5,58.5,"UpGrid is launching soon, starting with a campus pilot.",1),
       (58.7,62.6,"Students: join the waitlist. Placement cells: message us about a pilot.",1)]
     caps=[x for x in caps if x[2]]
     return S,caps
@@ -202,7 +202,7 @@ SHORTS=[
 def short_cover(i,sp):
     c=CFGV;W,H=c["W"],c["H"];head,kind,title=sp["cover"]
     img=Image.new("RGB",(W,H),PD);d=qa.QA(ImageDraw.Draw(img),W,H,True)
-    logo(d,72,170,80,bg=SF,fg=P);d.text((176,210),"Placement OS",font=F("Bold",42),fill=SF,anchor="lm")
+    logo(d,72,170,80,bg=SF,fg=P);d.text((176,210),"UpGrid",font=F("Bold",42),fill=SF,anchor="lm")
     y=310
     for l in head.split("\n"): d.text((72,y),l,font=F("ExtraBold",136,True),fill=SF);y+=156
     d.rectangle((72,y+16,72+180,y+30),fill=CO)
@@ -216,7 +216,7 @@ def short_cover(i,sp):
     d.finish(f"short cover {i}");img.save(YT+f"shorts/short-{i:02d}-cover.png")
 def teaser_thumb():
     W,H=1280,720;img=Image.new("RGB",(W,H),PD);d=ImageDraw.Draw(img)
-    logo(d,64,56,72,bg=SF,fg=P);d.text((152,88),"Placement OS",font=F("Bold",38),fill=SF,anchor="lm")
+    logo(d,64,56,72,bg=SF,fg=P);d.text((152,88),"UpGrid",font=F("Bold",38),fill=SF,anchor="lm")
     y=190
     for l in ["Apply by","reviewing,","not typing."]: d.text((64,y),l,font=F("ExtraBold",104,True),fill=SF);y+=120
     pill(d,64,y+30,"Launching soon",INK,AM,F("Bold",40),34,16)
