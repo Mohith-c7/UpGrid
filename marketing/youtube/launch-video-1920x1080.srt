@@ -1,0 +1,140 @@
+1
+00:00:00,400 --> 00:00:05,600
+Placement season. Same details, different form, every single drive.
+
+2
+00:00:06,200 --> 00:00:11,400
+I think there is a better way, and I have been building it.
+
+3
+00:00:12,400 --> 00:00:16,200
+If you have been through campus placements, you know the pattern.
+
+4
+00:00:16,400 --> 00:00:22,800
+You type your CGPA, 10th and 12th percentages, backlogs and links.
+
+5
+00:00:23,000 --> 00:00:26,000
+Then you do it again.
+
+6
+00:00:26,800 --> 00:00:33,600
+And somewhere in between you wonder: am I even eligible for this?
+
+7
+00:00:35,400 --> 00:00:41,000
+I am an independent founder. There is no company behind this yet, no customer list, no big numbers to show.
+
+8
+00:00:41,400 --> 00:00:47,500
+Just a product, and a campus pilot we are preparing.
+
+9
+00:00:48,000 --> 00:00:54,000
+I would rather tell you that than make something up.
+
+10
+00:00:55,400 --> 00:01:01,000
+Placement OS is a student-first app. You build your profile once.
+
+11
+00:01:01,200 --> 00:01:07,300
+A completion meter tells you what is missing and what to do next.
+
+12
+00:01:08,000 --> 00:01:17,500
+Academics, links, skills, preferences, and up to five resume links.
+
+13
+00:01:18,400 --> 00:01:28,800
+Each academic field shows whether it is unverified, self-reported, or verified by your placement officer.
+
+14
+00:01:30,400 --> 00:01:36,200
+Then you see drives. Each one is checked against your profile.
+
+15
+00:01:36,400 --> 00:01:41,800
+The app shows the reason, not just a result.
+
+16
+00:01:42,600 --> 00:01:48,600
+Criterion by criterion: required versus yours.
+
+17
+00:01:48,800 --> 00:01:53,800
+No guessing, no silent rejection.
+
+18
+00:01:54,600 --> 00:02:04,000
+Eligible, not eligible, or pending (Check profile) when something is missing.
+
+19
+00:02:05,400 --> 00:02:10,500
+Applying is a review, not a typing session.
+
+20
+00:02:10,700 --> 00:02:15,400
+You see what will be shared and where each value came from.
+
+21
+00:02:15,900 --> 00:02:24,700
+You answer only the extra questions, and choose a resume.
+
+22
+00:02:25,200 --> 00:02:29,500
+Accept the declarations and opt in.
+
+23
+00:02:30,000 --> 00:02:35,000
+You get a reference number and a timeline.
+
+24
+00:02:35,300 --> 00:02:39,200
+Tap twice by accident and you will not apply twice.
+
+25
+00:02:40,400 --> 00:02:44,500
+And deadlines. Reminders arrive 60, 30 and 15 minutes before.
+
+26
+00:02:44,700 --> 00:02:48,300
+By push and in the app. Once you apply, they stop.
+
+27
+00:02:49,200 --> 00:02:54,200
+Switch any off. Choose push, in-app, or both.
+
+28
+00:02:55,000 --> 00:02:59,400
+Set quiet hours that suit you.
+
+29
+00:03:00,400 --> 00:03:05,300
+For placement cells: a drive wizard with autosaved drafts and a check before publishing.
+
+30
+00:03:05,500 --> 00:03:09,900
+An eligible-student count, with reasons.
+
+31
+00:03:10,200 --> 00:03:14,700
+An applicant pipeline from submitted to joined.
+
+32
+00:03:14,900 --> 00:03:19,200
+And announcements.
+
+33
+00:03:20,500 --> 00:03:25,500
+Placement OS is launching soon, starting with a campus pilot.
+
+34
+00:03:25,800 --> 00:03:30,500
+Students: join the waitlist. Placement cells: message me about a pilot.
+
+35
+00:03:30,800 --> 00:03:34,200
+Link in the description. Thanks for watching.
+

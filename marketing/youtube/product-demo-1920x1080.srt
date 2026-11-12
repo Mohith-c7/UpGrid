@@ -1,0 +1,180 @@
+1
+00:00:00,400 --> 00:00:07,400
+This is Placement OS, a demo build with fictional data.
+
+2
+00:00:08,400 --> 00:00:13,500
+I will walk through what a student does,
+
+3
+00:00:13,700 --> 00:00:19,200
+then what a placement officer does.
+
+4
+00:00:20,400 --> 00:00:26,000
+Here is the profile: academics, contact, links, skills and preferences.
+
+5
+00:00:26,200 --> 00:00:32,000
+The meter shows percentage done and the next step.
+
+6
+00:00:32,200 --> 00:00:37,300
+The checklist marks each item Done or To do.
+
+7
+00:00:38,200 --> 00:00:46,000
+Each academic field has a status: not verified yet, self-reported, or verified.
+
+8
+00:00:46,200 --> 00:00:54,000
+The placement cell checks these manually.
+
+9
+00:00:55,400 --> 00:01:04,000
+I can save up to five resume links, with labels,
+
+10
+00:01:04,200 --> 00:01:14,000
+and mark one as default.
+
+11
+00:01:15,400 --> 00:01:24,500
+The Opportunities tab lists drives. I can search by company or role.
+
+12
+00:01:24,700 --> 00:01:34,300
+Saved keeps drives for later. Packages show in lakh per annum.
+
+13
+00:01:35,200 --> 00:01:44,000
+I can filter by eligibility and by status, such as open or closing soon.
+
+14
+00:01:44,200 --> 00:01:53,300
+And sort by closing first, newest or highest pay.
+
+15
+00:01:55,400 --> 00:02:02,000
+Open a drive and you see the role, rounds, requirements and deadline.
+
+16
+00:02:02,200 --> 00:02:08,800
+Compensation shows in LPA, with a live countdown.
+
+17
+00:02:09,600 --> 00:02:17,000
+The eligibility card shows what is required and what my profile says.
+
+18
+00:02:17,200 --> 00:02:24,200
+If a detail is missing, it shows Check profile instead.
+
+19
+00:02:25,400 --> 00:02:31,500
+Tap Opt in. Before anything is sent, I see a review.
+
+20
+00:02:31,700 --> 00:02:38,300
+Each prefilled field shows its source and verification status.
+
+21
+00:02:39,200 --> 00:02:45,000
+I choose a resume. Only questions my profile cannot answer are asked.
+
+22
+00:02:45,200 --> 00:02:50,800
+Conflicts and missing details are flagged before I can submit.
+
+23
+00:02:51,800 --> 00:02:58,000
+I accept the declaration and submit.
+
+24
+00:02:58,200 --> 00:03:03,800
+Nothing is sent until I do.
+
+25
+00:03:05,400 --> 00:03:11,600
+I get a reference number.
+
+26
+00:03:12,200 --> 00:03:17,800
+The application has a timeline. Until screening starts, I can withdraw.
+
+27
+00:03:18,400 --> 00:03:23,700
+In Settings: reminders at 60, 30 and 15 minutes.
+
+28
+00:03:24,300 --> 00:03:29,300
+Quiet hours pause push. In-app still delivers.
+
+29
+00:03:30,400 --> 00:03:39,000
+Now the officer view. The dashboard shows open drives,
+
+30
+00:03:39,200 --> 00:03:49,300
+drives closing today, applications today and pending verifications.
+
+31
+00:03:50,400 --> 00:03:57,000
+To create a drive I use the wizard: company, role, description and compensation.
+
+32
+00:03:57,200 --> 00:04:04,300
+Nine steps. It autosaves as a draft.
+
+33
+00:04:05,200 --> 00:04:18,800
+Eligibility rules: minimum CGPA, backlogs, allowed departments and batches.
+
+34
+00:04:19,700 --> 00:04:33,800
+Then custom questions and the selection rounds.
+
+35
+00:04:34,700 --> 00:04:48,800
+And the timeline: deadline, contact and a policy note.
+
+36
+00:04:50,400 --> 00:05:01,800
+Before publishing, a completeness check lists anything missing.
+
+37
+00:05:02,900 --> 00:05:09,000
+Who can apply: the eligible count, with reasons.
+
+38
+00:05:09,200 --> 00:05:14,300
+Blocked students are counted per rule.
+
+39
+00:05:15,400 --> 00:05:21,500
+After publishing, applicants appear.
+
+40
+00:05:21,700 --> 00:05:27,000
+I filter by status and open any student.
+
+41
+00:05:27,900 --> 00:05:34,000
+Stages: screening, assessment, interview, selected, offer, joined.
+
+42
+00:05:34,300 --> 00:05:39,300
+Only allowed next steps are shown. Every change is recorded.
+
+43
+00:05:40,400 --> 00:05:46,500
+I can send an announcement to everyone
+
+44
+00:05:46,700 --> 00:05:51,400
+or to one drive's participants.
+
+45
+00:05:52,400 --> 00:05:59,400
+That is the walkthrough. Launching soon with a campus pilot. Link below.
+

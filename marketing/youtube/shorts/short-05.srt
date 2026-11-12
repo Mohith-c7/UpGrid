@@ -1,0 +1,20 @@
+1
+00:00:00,400 --> 00:00:03,200
+Running a drive? Count first, publish second.
+
+2
+00:00:04,200 --> 00:00:08,800
+Create a drive with a wizard.
+
+3
+00:00:09,900 --> 00:00:14,200
+See how many students are eligible.
+
+4
+00:00:15,400 --> 00:00:19,700
+Then move applicants through the pipeline.
+
+5
+00:00:20,800 --> 00:00:23,600
+TPOs, message us about a pilot.
+

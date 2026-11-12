@@ -1,0 +1,20 @@
+1
+00:00:00,400 --> 00:00:03,200
+Stop typing your CGPA for every drive.
+
+2
+00:00:04,200 --> 00:00:08,600
+Fill your academics, links and resume once.
+
+3
+00:00:09,700 --> 00:00:13,600
+A completion meter shows what is missing.
+
+4
+00:00:15,200 --> 00:00:19,600
+When you apply, the form is prefilled and you just review it.
+
+5
+00:00:21,000 --> 00:00:23,600
+Waitlist link in the description.
+

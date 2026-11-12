@@ -1,0 +1,8 @@
+# Cloudflare Pages / Netlify. Pages are served at extensionless URLs (/students) by both hosts.
+/index.html   /   301
+/home         /   301
+/pilot        /waitlist   301
+/cells        /placement-cells   301
+/for-students /students   301
+/for-placement-cells /placement-cells   301
+/for-recruiters /recruiters   301

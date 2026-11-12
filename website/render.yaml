@@ -1,0 +1,25 @@
+# Render static site blueprint (optional). Render has no automatic extensionless URLs, so rewrites are listed.
+services:
+  - type: web
+    runtime: static
+    name: placement-os-website
+    staticPublishPath: .
+    headers:
+      - { path: /*, name: X-Content-Type-Options, value: nosniff }
+      - { path: /*, name: X-Frame-Options, value: DENY }
+      - { path: /*, name: Referrer-Policy, value: strict-origin-when-cross-origin }
+      - { path: /*, name: Permissions-Policy, value: "camera=(), microphone=(), geolocation=(), payment=()" }
+      - { path: /*, name: Strict-Transport-Security, value: max-age=31536000 }
+      - { path: /*, name: Content-Security-Policy, value: "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self' https:; form-action 'self'; base-uri 'self'; frame-ancestors 'none'; object-src 'none'" }
+      - { path: /assets/fonts/*, name: Cache-Control, value: "public, max-age=31536000, immutable" }
+    routes:
+      - { type: rewrite, source: /students, destination: /students.html }
+      - { type: rewrite, source: /placement-cells, destination: /placement-cells.html }
+      - { type: rewrite, source: /recruiters, destination: /recruiters.html }
+      - { type: rewrite, source: /assessments, destination: /assessments.html }
+      - { type: rewrite, source: /ai, destination: /ai.html }
+      - { type: rewrite, source: /security, destination: /security.html }
+      - { type: rewrite, source: /waitlist, destination: /waitlist.html }
+      - { type: rewrite, source: /contact, destination: /contact.html }
+      - { type: rewrite, source: /privacy, destination: /privacy.html }
+      - { type: rewrite, source: /terms, destination: /terms.html }
