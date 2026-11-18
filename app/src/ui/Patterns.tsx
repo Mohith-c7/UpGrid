@@ -11,7 +11,7 @@ import { Icon, type IconName } from './Icon';
 import { Badge, Card, Chip, CompanyLogo } from './Surface';
 
 /* ======================= BrandLogo ======================= */
-/** Flat rounded-square product mark. onDark: white tile with teal check (for teal bands); otherwise teal tile. */
+/** Flat rounded-square product mark. onDark: white tile with indigo check (for indigo fills); otherwise indigo tile. */
 export function BrandLogo({ size = 56, onDark }: { size?: number; onDark?: boolean }) {
   return (
     <View
@@ -26,7 +26,7 @@ export function BrandLogo({ size = 56, onDark }: { size?: number; onDark?: boole
 
 /* ======================= ScreenHero ======================= */
 /**
- * Teal-800 header band (flat). Handles the status-bar inset itself: use inside <Screen padded={false} edges={['bottom']}>.
+ * White header band with a hairline bottom border. Handles the status-bar inset itself: use inside <Screen padded={false} edges={['bottom']}>.
  * `children` = optional summary card that overlaps the band's bottom edge by 24px. Put your own padded content after it.
  */
 export function ScreenHero({
@@ -52,10 +52,12 @@ export function ScreenHero({
   const focused = useIsFocused();
   return (
     <View>
-      {focused ? <StatusBar style="light" /> : null}
+      {focused ? <StatusBar style="dark" /> : null}
       <View
         style={{
-          backgroundColor: colors.primaryDark,
+          backgroundColor: colors.surface,
+          borderBottomWidth: 1,
+          borderBottomColor: colors.border,
           paddingTop: insets.top + 8,
           paddingHorizontal: SCREEN_PADDING,
           paddingBottom: children ? 48 : 24,
@@ -68,9 +70,9 @@ export function ScreenHero({
                 onPress={onBack}
                 accessibilityRole="button"
                 accessibilityLabel="Go back"
-                style={({ pressed }) => ({ width: MIN_TOUCH, height: MIN_TOUCH, borderRadius: radius.button, alignItems: 'center', justifyContent: 'center', backgroundColor: pressed ? 'rgba(255,255,255,0.14)' : 'transparent' })}
+                style={({ pressed }) => ({ width: MIN_TOUCH, height: MIN_TOUCH, borderRadius: radius.button, alignItems: 'center', justifyContent: 'center', backgroundColor: pressed ? colors.pressed : 'transparent' })}
               >
-                <Icon name="arrow-back" size={24} color={colors.onPrimary} />
+                <Icon name="arrow-back" size={24} color={colors.ink} />
               </Pressable>
             ) : (
               <View />
@@ -81,19 +83,19 @@ export function ScreenHero({
         <View style={{ gap: 4, paddingTop: onBack || right ? 4 : 8 }}>
           {brand ? (
             <View style={{ marginBottom: 12 }}>
-              <BrandLogo onDark />
+              <BrandLogo size={48} />
             </View>
           ) : null}
           {eyebrow ? (
-            <Text variant="caption" color={colors.onPrimaryMuted}>
+            <Text variant="caption" color={colors.muted} style={{ fontWeight: '500' }}>
               {eyebrow}
             </Text>
           ) : null}
-          <Text variant="display" color={colors.onPrimary}>
+          <Text variant="display" color={colors.ink}>
             {title}
           </Text>
           {subtitle ? (
-            <Text variant="body" color={colors.onPrimaryMuted}>
+            <Text variant="body" color={colors.muted}>
               {subtitle}
             </Text>
           ) : null}
@@ -292,7 +294,7 @@ export interface TimelineItem {
   time?: string;
   state?: 'done' | 'current' | 'upcoming' | 'error';
 }
-/** Vertical timeline with square markers (done = filled check, current = filled teal, upcoming = outline, error = red). */
+/** Vertical timeline with square markers (done = filled check, current = filled indigo, upcoming = outline, error = red). */
 export function TimelineList({ items }: { items: TimelineItem[] }) {
   return (
     <View>
@@ -421,9 +423,9 @@ export function SegmentedTabs({
               accessibilityRole="tab"
               accessibilityState={{ selected: sel }}
               accessibilityLabel={o.count !== undefined ? `${o.label}, ${o.count}` : o.label}
-              style={{ minHeight: MIN_TOUCH, minWidth: 64, paddingHorizontal: 14, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 6, borderBottomWidth: 3, borderBottomColor: sel ? colors.primary : 'transparent', marginBottom: -1 }}
+              style={{ minHeight: MIN_TOUCH, minWidth: 64, paddingHorizontal: 14, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 6, borderBottomWidth: 2, borderBottomColor: sel ? colors.primary : 'transparent', marginBottom: -1 }}
             >
-              <Text variant="subhead" color={sel ? colors.primary : colors.muted} numberOfLines={1}>
+              <Text variant="subhead" color={sel ? colors.ink : colors.muted} numberOfLines={1} style={{ fontWeight: sel ? '600' : '500' }}>
                 {o.label}
               </Text>
               {o.count !== undefined ? (

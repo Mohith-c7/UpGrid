@@ -128,7 +128,7 @@ export function OfflineBanner({ root = false }: { root?: boolean } = {}) {
 /** Flat 6px bar with rounded ends. Always pair with a number or label nearby; colour is a supplement. */
 export function ProgressBar({ value, label, tone }: { value: number; label?: string; tone?: 'brand' | 'success' | 'warning' | 'error' }) {
   const pct = Math.max(0, Math.min(100, value <= 1 ? value * 100 : value));
-  const fill = tone === 'success' ? colors.success : tone === 'warning' ? colors.warning : tone === 'error' ? colors.error : colors.primary;
+  const fill = tone === 'success' ? colors.successSolid : tone === 'warning' ? colors.warningSolid : tone === 'error' ? colors.errorSolid : colors.primary;
   return (
     <View
       accessible

@@ -35,7 +35,7 @@ export async function registerForPush(): Promise<string | null> {
         name: 'Drive reminders and updates',
         importance: Notifications.AndroidImportance.HIGH,
         vibrationPattern: [0, 200, 100, 200],
-        lightColor: '#126B63',
+        lightColor: '#4F46E5',
       });
     }
     const existing = await Notifications.getPermissionsAsync();

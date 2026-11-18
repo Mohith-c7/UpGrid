@@ -23,8 +23,8 @@ export function Checkbox({
         >
           <View
             style={{
-              width: 24, height: 24, borderRadius: radius.chip - 4, borderWidth: 2,
-              borderColor: error ? colors.error : checked ? colors.primary : colors.muted,
+              width: 24, height: 24, borderRadius: radius.bar + 1, borderWidth: 1.5,
+              borderColor: error ? colors.error : checked ? colors.primary : colors.borderStrong,
               backgroundColor: checked ? colors.primary : colors.surface, alignItems: 'center', justifyContent: 'center',
             }}
           >

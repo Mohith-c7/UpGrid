@@ -20,10 +20,10 @@ export interface ButtonProps {
 }
 
 const palette: Record<ButtonVariant, { bg: string; fg: string; border: string; pressed: string; pressedBorder: string }> = {
-  primary: { bg: colors.primary, fg: colors.onPrimary, border: colors.primary, pressed: colors.primaryDark, pressedBorder: colors.primaryDark },
-  secondary: { bg: colors.surface, fg: colors.primary, border: colors.primary, pressed: colors.primaryTint, pressedBorder: colors.primaryDark },
+  primary: { bg: colors.primary, fg: colors.onPrimary, border: colors.primary, pressed: colors.primaryHover, pressedBorder: colors.primaryHover },
+  secondary: { bg: colors.surface, fg: colors.ink, border: colors.borderStrong, pressed: colors.pressed, pressedBorder: colors.borderStrong },
   ghost: { bg: 'transparent', fg: colors.primary, border: 'transparent', pressed: colors.primaryTint, pressedBorder: 'transparent' },
-  danger: { bg: colors.error, fg: colors.onPrimary, border: colors.error, pressed: '#8E1B12', pressedBorder: '#8E1B12' },
+  danger: { bg: colors.errorSolid, fg: colors.onPrimary, border: colors.errorSolid, pressed: colors.errorSolidPressed, pressedBorder: colors.errorSolidPressed },
 };
 
 export function Button({ label, onPress, variant = 'primary', loading, disabled, icon, full, accessibilityLabel, size = 'md' }: ButtonProps) {
@@ -79,10 +79,10 @@ export function Button({ label, onPress, variant = 'primary', loading, disabled,
       style={({ pressed }) => ({
         minHeight: height,
         minWidth: MIN_TOUCH,
-        paddingHorizontal: variant === 'ghost' ? 12 : 20,
+        paddingHorizontal: variant === 'ghost' ? 12 : 16,
         paddingVertical: 8,
         borderRadius: radius.button,
-        borderWidth: 1.5,
+        borderWidth: 1,
         borderColor: disabled ? (variant === 'ghost' ? 'transparent' : colors.border) : pressed ? p.pressedBorder : p.border,
         backgroundColor: disabled ? (variant === 'ghost' ? 'transparent' : colors.neutralBg) : pressed ? p.pressed : p.bg,
         alignItems: 'center',

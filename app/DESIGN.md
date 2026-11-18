@@ -1,6 +1,6 @@
 # UpGrid design system
 
-Flat, calm, teal. White cards on a light canvas, hairline borders, one very light card shadow, Inter type. No bubbly/bouncy motion: no slide/scale/pop animation anywhere; fades are 150ms max. No decorative circles or blobs. Touch targets are 48dp minimum; all text is font-scale safe (wrap, never clip).
+Flat, calm, indigo. Premium enterprise SaaS: white cards on a light slate canvas (#F8FAFC), hairline borders (#E5E7EB) preferred over shadows, Inter type with restrained weights. Indigo is the brand accent for actions, focus and selection, never a background for everything. No gradients, neon or decorative shapes; no slide/scale/pop animation; fades are 150ms max. Touch targets are 48dp minimum; all text is font-scale safe (wrap, never clip).
 
 Import everything from `@/ui` and tokens from `@/theme`. Never hard-code hex values in screens.
 
@@ -8,9 +8,9 @@ Import everything from `@/ui` and tokens from `@/theme`. Never hard-code hex val
 
 | Group | Tokens |
 |---|---|
-| Brand | `colors.primary` teal-700 #126B63, `primaryDark` teal-800 #0D4F4A (hero bands, pressed), `primaryDeep` teal-900 #0A3F3A, `primarySoft` teal-600 #1A8279, `primaryTint2` teal-100 #D5EBE8, `primaryTint` teal-50 #EDF6F5. Raw scales: `teal`, `slate` (50-900), `coral`, `amber` |
-| Coral (urgency only) | `colors.coral` #F26B4F is a FILL colour (dots, bars, badges counts) and is 3.0:1 on white, so never use it as text or with white text. For coral text use `colors.coralText` / `urgentColors.fg` #B83A1E (5.73:1 on white, 4.97:1 on coral tint). Text on a coral fill: `colors.ink` (5.57:1). `urgentColors = {fg, bg, border, fill, fillStrong}` |
-| Neutrals | `ink` #0F1F2D (text), `textSecondary` slate-700, `muted` slate-600 (6.1:1 on canvas), `subtle` slate-500 (icons, placeholders), `canvas` #F4F6F7, `surface` #FFFFFF, `surfaceAlt`, `pressed`, `border` (hairline), `borderStrong` (input outline, 3.06:1) |
+| Brand | Official palette in `palette`. `colors.primary` indigo-600 #4F46E5 (6.3:1 on white), `primaryHover`/`primaryDark` #4338CA (pressed), `primaryDeep` #3730A3, `primarySoft` #6366F1, `primaryTint` #EEF2FF (selected/summary), `primaryTint2` #E0E7FF, `primaryBorder` #C7D2FE. Raw scales: `indigo` (`teal` is a deprecated alias), `slate`, `coral`, `amber` |
+| Status | Text-safe: `success` #15803D, `warning` #B45309, `error` #B91C1C, `info` #1D4ED8 (all >= 4.5:1 on white and on their tints). Solid fills for bars, dots, charts and filled buttons: `successSolid` #16A34A, `warningSolid` #D97706, `errorSolid` #DC2626, `infoSolid` #2563EB. Tints: `*Bg`; borders: `*Border`. Urgency (`coral*`, `urgentColors`) now maps to the Danger family. Charts use `chartColors` in order. Toast icons use `onInkSuccess/Error/Info` |
+| Neutrals | `ink`/`text` #111827, `textSecondary` #374151, `muted` #64748B (secondary text), `subtle` #6B7280 (icons, placeholders), `canvas` #F8FAFC, `surface` #FFFFFF, `surfaceAlt`, `pressed` #F1F5F9, `border` #E5E7EB (hairline), `borderStrong` #8492A6 (control outline, 3.2:1) |
 | Status pairs | `toneColors[tone] = {fg, bg, border}` for `success warning error info neutral`; each fg/bg is >= 5.7:1. `toneIcons[tone]` gives the matching icon. |
 | Spacing | `spacing` xs4 sm8 md12 lg16 xl20 xxl24 xxxl32; `SCREEN_PADDING` 16 |
 | Radii | `radius.card` 14, `button` 12, `input` 12, `chip` 8, `logo` 12, `sheet` 20 |
@@ -26,12 +26,12 @@ Icons: one family (`Icon`, Material, outline variants where available), 20px inl
 
 ```tsx
 // Buttons: 52dp, loading keeps width, async onPress auto-locks. size="sm" is 48dp.
-<Button label="Apply now" onPress={apply} full />              // solid teal
+<Button label="Apply now" onPress={apply} full />              // solid indigo
 <Button label="Save draft" variant="secondary" onPress={...} />// outline
 <Button label="Skip" variant="ghost" onPress={...} />          // text
 <Button label="Withdraw" variant="danger" icon="delete-outline" onPress={...} />
 
-// Fields: label above, 52dp, 2px teal focus ring, error = icon + text
+// Fields: label above, 52dp, 2px indigo focus ring, error = icon + text
 <TextField label="Full name" value={v} onChangeText={set} helper="As on your ID" error={err} />
 <EmailField value={e} onChangeText={setE} />  <PhoneField value={p} onChangeText={setP} /> {/* +91 block */}
 <PasswordField value={pw} onChangeText={setPw} showStrength />
@@ -47,7 +47,7 @@ Icons: one family (`Icon`, Material, outline variants where available), 20px inl
 <ListRow title="Notifications" subtitle="3 new" icon="notifications-none" onPress={...} last />
 <SectionHeader title="Closing soon" action={{ label: 'See all', onPress }} />
 <ProgressBar value={0.6} label="Profile 60% complete" />   // flat 6px
-<Countdown deadline={iso} serverOffsetMs={off} compact />  // coral-dark text + timer icon under 1h
+<Countdown deadline={iso} serverOffsetMs={off} compact />  // danger text + timer icon under 1h
 <Skeleton height={72} />   // static, no shimmer
 <EmptyState title="No drives yet" message=".." actionLabel="Refresh" onAction={..} icon="work-outline" />
 <ErrorState message={errMessage(e)} onRetry={refetch} />
@@ -56,9 +56,9 @@ const toast = useToast(); toast.show('Saved', 'success');
 
 // Navigation / layout
 <Screen scroll padded onRefresh={...} footer={<Button .../>} keyboard />
-<Header title=".." onBack={..} right={<HeaderAction icon="search" label="Search" onPress={..} />} variant="plain|bar|teal" />
+<Header title=".." onBack={..} right={<HeaderAction icon="search" label="Search" onPress={..} />} variant="plain|bar|teal" (teal = white large-title bar) />
 <ScreenHero eyebrow="Good morning" title="Asha" subtitle=".." right={..}>{summaryCard}</ScreenHero>
-const tabOptions = useTabScreenOptions(); <Tabs screenOptions={tabOptions}> // white bar, hairline, 24px icons, teal active
+const tabOptions = useTabScreenOptions(); <Tabs screenOptions={tabOptions}> // white bar, hairline, 24px icons, indigo active
 <SegmentedControl .../>  // pill switch for 2-3 short options (form choices)
 <SegmentedTabs value onChange options={[{value:'open',label:'Open',count:12}]} /> // underline tabs for views
 <SearchBar value={q} onChangeText={setQ} placeholder="Search roles or companies" />
@@ -80,13 +80,13 @@ New patterns:
 <BrandLogo size={56} onDark />
 ```
 
-DriveCard rules: role max 2 lines, company 1 line, locations show 2 then `+N`, package 1 line with tabular numbers, deadline coral-dark with timer icon when under 24h, "Closed" muted, badge = Applied / Eligible / Not eligible / Eligibility pending, bookmark is a 48dp button hidden when `onToggleSave` is omitted.
+DriveCard rules: role max 2 lines, company 1 line, locations show 2 then `+N`, package 1 line with tabular numbers, deadline in danger text with timer icon when under 24h, "Closed" muted, badge = Applied / Eligible / Not eligible / Eligibility pending, bookmark is a 48dp button hidden when `onToggleSave` is omitted.
 
 ## 3. Do / Don't
 
 Do: use `Card` + `SectionHeader` to group; keep one primary `Button` per screen/footers; pair every colour with text/icon; use `tabular` for numbers; use `Skeleton` for loading and `EmptyState`/`ErrorState` for empty/failed; use `Screen` for safe areas; let text wrap (`numberOfLines` only on titles you also truncate sensibly).
 
-Don't: use coral as text or behind white text; add `Animated` slide/scale/spring/pop; add decorative circles/blobs/gradients; nest cards in cards; put raw hex colours or `fontFamily` in screens; create touch targets under 48dp; block screenshots; show status by colour alone.
+Don't: use solid status colours (`*Solid`) as small text; use the text-safe status tokens instead; add `Animated` slide/scale/spring/pop; add decorative circles/blobs/gradients; nest cards in cards; put raw hex colours or `fontFamily` in screens; create touch targets under 48dp; block screenshots; show status by colour alone.
 
 ## 4. Layout recipes
 

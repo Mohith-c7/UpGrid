@@ -186,7 +186,7 @@ export function MoreFooter({ hasMore, loading, error, onMore, onRetry }: { hasMo
 /** Flat horizontal bar: label above, value text right, bar below. Never colour-only: value is written out. */
 export function FlatBar({ label, value, max, text, tone = 'brand' }: { label: string; value: number; max: number; text: string; tone?: 'brand' | 'warning' | 'error' | 'success' }) {
   const pct = max > 0 ? Math.max(0, Math.min(1, value / max)) : 0;
-  const fill = tone === 'brand' ? colors.primary : tone === 'warning' ? colors.amber : tone === 'error' ? colors.error : colors.success;
+  const fill = tone === 'brand' ? colors.primary : tone === 'warning' ? colors.warningSolid : tone === 'error' ? colors.errorSolid : colors.successSolid;
   return (
     <View style={{ gap: 4 }} accessible accessibilityLabel={`${label}: ${text}`}>
       <View style={{ flexDirection: 'row', justifyContent: 'space-between', gap: 8 }}>

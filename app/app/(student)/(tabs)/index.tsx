@@ -117,7 +117,6 @@ export default function HomeScreen() {
           <HeaderAction
             icon="notifications-none"
             label="Notifications"
-            onDark
             badge={unreadCount}
             onPress={() => go('/(student)/notifications')}
           />

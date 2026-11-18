@@ -272,7 +272,7 @@ export function EmailField({
 }
 
 /* ---------- Password ---------- */
-const STRENGTH_COLORS = [colors.border, colors.error, colors.warning, colors.info, colors.success];
+const STRENGTH_COLORS = [colors.border, colors.errorSolid, colors.warningSolid, colors.infoSolid, colors.successSolid];
 
 export function PasswordField({
   label = 'Password',
