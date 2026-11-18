@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View } from 'react-native';
 import { useLocalSearchParams } from 'expo-router';
-import { Badge, Banner, Button, Card, ListRow, SectionHeader, Sheet, Text, TextField, useToast } from '@/ui';
+import { Badge, Banner, Button, Card, ListRow, Sheet, Text, TextField, useToast, Panel } from '@/ui';
 import { colors } from '@/theme';
 import { errMessage } from '@/api/client';
 import { useClonePolicy, useCreateVersion, usePolicy, useRollbackPolicy } from '@/api/ops';
@@ -51,15 +51,14 @@ export default function PolicyDetailScreen() {
               <View style={{ flex: 1, minWidth: 150 }}><Button label="Clone policy" icon="content-copy" variant="secondary" full onPress={() => setCloneOpen(true)} /></View>
               <View style={{ flex: 1, minWidth: 150 }}><Button label="Roll back" icon="undo" variant="secondary" full disabled={versions.length < 2} onPress={() => { setRbPick(null); setRbErr(null); setRbOpen(true); }} /></View>
             </View>
-            <SectionHeader title="Versions" subtitle="Existing applications keep the policy version they were checked with." />
-            <Card padding={0} style={{ paddingHorizontal: 16 }}>
+            <Panel title="Versions" subtitle="Existing applications keep the policy version they were checked with."><View style={{ paddingHorizontal: 16 }}>
               {versions.map((v, i) => (
                 <ListRow key={v.id} title={`Version ${v.version}`}
                   subtitle={[v.note, v.activatedAt ? `Activated ${formatDateTimeIST(v.activatedAt)}` : `Created ${formatDateTimeIST(v.createdAt)}`, v.effectiveFrom && v.status === 'scheduled' ? `Effective ${formatDateTimeIST(v.effectiveFrom)}` : null].filter(Boolean).join(' · ')}
                   right={<Badge label={versionLabel(v.status)} tone={STATUS_TONE[v.status] ?? 'neutral'} />}
                   onPress={() => go(`/(officer)/ops/policy/version/${v.id}`)} last={i === versions.length - 1} />
               ))}
-            </Card>
+            </View></Panel>
           </>
         ) : null}
       </Async>

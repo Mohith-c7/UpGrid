@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { View } from 'react-native';
 import * as DocumentPicker from 'expo-document-picker';
-import { Badge, Banner, Button, Card, Header, Icon, MetricRow, OfflineBanner, Screen, SectionHeader, Sheet, Text, useIsOnline, useToast } from '@/ui';
+import { Badge, Banner, Button, Card, Header, Icon, MetricRow, OfflineBanner, Screen, SectionHeader, Sheet, Text, useIsOnline, useToast, Panel } from '@/ui';
 import { colors } from '@/theme';
 import { errMessage } from '@/api/client';
 import { useImportStudents } from '@/api/hooks';
@@ -135,19 +135,17 @@ export default function ImportStudents() {
             </Card>
             {result.unmatched.length > 0 ? (
               <>
-                <SectionHeader title={`Not found (${result.unmatched.length})`} subtitle="No student has registered with these numbers yet." />
-                <Card padding={0} style={{ paddingHorizontal: 16 }}>
+                <Panel title={`Not found (${result.unmatched.length})`} subtitle="No student has registered with these numbers yet."><View style={{ paddingHorizontal: 16 }}>
                   {result.unmatched.slice(0, 100).map((u, i) => <IssueRow key={`${u.row}-${i}`} tone="warning" title={`Row ${u.row}: ${u.registrationNumber}`} lines={[u.reason]} />)}
-                </Card>
+                </View></Panel>
                 {result.unmatched.length > 100 ? <Text variant="caption" color={colors.muted}>Showing the first 100.</Text> : null}
               </>
             ) : null}
             {result.invalid.length > 0 ? (
               <>
-                <SectionHeader title={`Rejected (${result.invalid.length})`} />
-                <Card padding={0} style={{ paddingHorizontal: 16 }}>
+                <Panel title={`Rejected (${result.invalid.length})`}><View style={{ paddingHorizontal: 16 }}>
                   {result.invalid.slice(0, 100).map((u, i) => <IssueRow key={`${u.row}-${i}`} tone="error" title={`Row ${u.row}: ${u.registrationNumber}`} lines={[fieldsText(u.fields)]} />)}
-                </Card>
+                </View></Panel>
                 {result.invalid.length > 100 ? <Text variant="caption" color={colors.muted}>Showing the first 100.</Text> : null}
               </>
             ) : null}
@@ -208,10 +206,9 @@ export default function ImportStudents() {
                 ) : null}
                 {parsed.errors.length > 0 ? (
                   <>
-                    <SectionHeader title={`Fix these rows (${parsed.errors.length})`} subtitle="Rows with errors are skipped. Fix them in your file and import again." />
-                    <Card padding={0} style={{ paddingHorizontal: 16 }}>
+                    <Panel title={`Fix these rows (${parsed.errors.length})`} subtitle="Rows with errors are skipped. Fix them in your file and import again."><View style={{ paddingHorizontal: 16 }}>
                       {errorsShown.map((e) => <IssueRow key={e.row} tone="error" title={`Row ${e.row}${e.registrationNumber ? `: ${e.registrationNumber}` : ''}`} lines={e.messages} />)}
-                    </Card>
+                    </View></Panel>
                     {parsed.errors.length > 10 ? <Button label={showAllErrors ? 'Show fewer' : `Show all ${parsed.errors.length}`} variant="ghost" onPress={() => setShowAllErrors((v) => !v)} /> : null}
                   </>
                 ) : null}

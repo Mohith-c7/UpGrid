@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View } from 'react-native';
-import { Badge, Banner, Button, Card, HeaderAction, ListRow, SectionHeader, Select, Sheet, Text, TextField, useToast } from '@/ui';
+import { Badge, Banner, Button, Card, HeaderAction, ListRow, SectionHeader, Select, Sheet, Text, TextField, useToast, Panel } from '@/ui';
 import { colors } from '@/theme';
 import { errMessage } from '@/api/client';
 import { useActivePolicy, useCreatePolicy, usePolicies, usePolicyTemplates } from '@/api/ops';
@@ -62,10 +62,9 @@ export default function PolicyHome() {
         </Card>
       </Async>
 
-      <SectionHeader title="Tools" />
-      <Card padding={0} style={{ paddingHorizontal: 16 }}>
+      <Panel title="Tools"><View style={{ paddingHorizontal: 16 }}>
         <ListRow icon="account-tree" title="Condition builder" subtitle="Build and check nested eligibility conditions for a drive" onPress={() => go('/(officer)/ops/policy/conditions')} last />
-      </Card>
+      </View></Panel>
 
       <Sheet visible={open} onClose={() => setOpen(false)} title="New policy">
         <View style={{ gap: 16, paddingBottom: 16 }}>

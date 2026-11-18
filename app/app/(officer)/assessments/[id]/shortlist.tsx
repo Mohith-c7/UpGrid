@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { View } from 'react-native';
 import { useLocalSearchParams } from 'expo-router';
-import { Badge, Banner, Button, Card, ErrorState, MetricRow, SectionHeader, SegmentedControl, Select, Skeleton, Text, TextField, useIsOnline, useToast } from '@/ui';
+import { Badge, Banner, Button, Card, ErrorState, MetricRow, SegmentedControl, Select, Skeleton, Text, TextField, useIsOnline, useToast, Panel } from '@/ui';
 import { colors } from '@/theme';
 import { ApiError, errMessage } from '@/api/client';
 import { useAssessment, useShortlist, type ShortlistBody, type ShortlistItem, type ShortlistResult } from '@/api/assessments';
@@ -101,14 +101,13 @@ export default function ShortlistScreen() {
 
       {p && !stale ? (
         <>
-          <SectionHeader title="Preview" subtitle="Nothing has been changed yet" />
-          <Card padding={0} style={{ paddingHorizontal: 16 }}>
+          <Panel title="Preview" subtitle="Nothing has been changed yet"><View style={{ paddingHorizontal: 16 }}>
             <MetricRow label="Match the criteria" value={p.matched} />
             <MetricRow label="Will be moved" value={p.willChange ?? 0} tone={(p.willChange ?? 0) > 0 ? 'success' : undefined} />
             <MetricRow label="Already at that status" value={p.unchanged} />
             <MetricRow label="Skipped" value={p.skipped.length} tone={p.skipped.length ? 'warning' : undefined} />
             <MetricRow label="Left out: still evaluating" value={p.pendingEvaluation} tone={p.pendingEvaluation ? 'warning' : undefined} last />
-          </Card>
+          </View></Panel>
           {p.pendingEvaluation > 0 ? <Banner tone="warning" message="Some attempts are still being evaluated and are excluded. You cannot apply until they finish." /> : null}
           {p.items.length === 0 ? <Banner tone="info" message="No student matches these criteria." /> : null}
           {list.map((it) => {

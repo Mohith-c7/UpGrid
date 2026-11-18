@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View } from 'react-native';
 import { useLocalSearchParams, useRouter } from 'expo-router';
-import { Badge, Banner, Button, Card, ErrorState, KeyValueList, ListRow, SectionHeader, Sheet, Skeleton, Text, TextField, SegmentedControl, useToast } from '@/ui';
+import { Badge, Banner, Button, Card, ErrorState, KeyValueList, ListRow, SectionHeader, Sheet, Skeleton, Text, TextField, SegmentedControl, useToast, Panel } from '@/ui';
 import { colors } from '@/theme';
 import { ApiError, errMessage, getServerOffsetMs } from '@/api/client';
 import { useArchiveAssessment, useAssessment, useCloneAssessment, useRefreshAudience, useSaveAssessment, type Assessment } from '@/api/assessments';
@@ -75,8 +75,7 @@ export default function AssessmentDetail() {
         ]} />
       </Card>
 
-      <SectionHeader title="Actions" />
-      <Card padding={0} style={{ paddingHorizontal: 16 }}>
+      <Panel title="Actions"><View style={{ paddingHorizontal: 16 }}>
         {draft ? <ListRow icon="edit" title="Edit draft" subtitle="Details, questions, rules, audience, schedule" onPress={() => r.push(`${ROOT}/builder/${a.id}` as any)} /> : null}
         <ListRow icon="visibility" title="Preview as a student" subtitle="See every question without starting an attempt" onPress={() => r.push(`${ROOT}/${a.id}/preview` as any)} />
         {live || archived ? <ListRow icon="leaderboard" title="Results and leaderboard" onPress={() => r.push(`${ROOT}/${a.id}/results` as any)} /> : null}
@@ -86,7 +85,7 @@ export default function AssessmentDetail() {
         {live && !a.practice ? <ListRow icon="group-add" title="Refresh audience" subtitle={refreshing ? 'Checking for new students...' : 'Add students who now qualify'} onPress={() => { if (!refreshing) void doRefresh(); }} /> : null}
         <ListRow icon="content-copy" title="Clone as new draft" subtitle={cloning ? 'Cloning...' : 'Same questions and settings, no schedule'} onPress={() => { if (!cloning) void doClone(); }} last={archived} />
         {!archived ? <ListRow icon="inventory-2" title="Archive" subtitle="Hides it from students. Running attempts can still be submitted." onPress={() => setConfirmArchive(true)} last /> : null}
-      </Card>
+      </View></Panel>
 
       <SectionHeader title="Questions" subtitle={live || archived ? 'Tap a question to correct its answer key' : undefined} />
       {a.sections.length === 0 || a.questionCount === 0 ? <Banner tone="warning" message="No questions yet. Continue editing to add some." /> : null}

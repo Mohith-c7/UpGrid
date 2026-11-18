@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { View } from 'react-native';
 import { useLocalSearchParams } from 'expo-router';
-import { Badge, Banner, Button, Card, CodeBlock, ErrorState, KeyValueList, SectionHeader, Sheet, Skeleton, Text, TextField, useToast } from '@/ui';
+import { Badge, Banner, Button, Card, CodeBlock, ErrorState, KeyValueList, SectionHeader, Sheet, Skeleton, Text, TextField, useToast, Panel } from '@/ui';
 import { colors } from '@/theme';
 import { ApiError, errMessage } from '@/api/client';
 import { useAnswerSheet, useOverride, type AnswerSheetAnswer } from '@/api/assessments';
@@ -121,15 +121,14 @@ export default function AttemptSheet() {
 
       {d.proctorEvents.length ? (
         <>
-          <SectionHeader title="Proctoring log" subtitle="Counted events become warnings" />
-          <Card padding={0} style={{ paddingHorizontal: 16 }}>
+          <Panel title="Proctoring log" subtitle="Counted events become warnings"><View style={{ paddingHorizontal: 16 }}>
             {d.proctorEvents.map((e, i) => (
               <View key={i} style={{ paddingVertical: 10, borderBottomWidth: i === d.proctorEvents.length - 1 ? 0 : 1, borderBottomColor: colors.border, flexDirection: 'row', justifyContent: 'space-between', gap: 8 }}>
                 <Text variant="caption" style={{ flex: 1 }}>{e.type.replace(/_/g, ' ')}{e.counted ? ' (warning)' : ''}</Text>
                 <Text variant="caption" color={colors.muted} tabular>{formatDateTimeIST(e.createdAt)}</Text>
               </View>
             ))}
-          </Card>
+          </View></Panel>
         </>
       ) : null}
 
