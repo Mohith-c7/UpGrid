@@ -1,7 +1,7 @@
 import React from 'react';
 import { View } from 'react-native';
 import { useLocalSearchParams, useRouter } from 'expo-router';
-import { Badge, Card, CompanyLogo, ErrorState, KeyValueList, ListRow, MetricRow, SectionHeader, Skeleton, StatTile, Text } from '@/ui';
+import { Badge, Card, CompanyLogo, ErrorState, KeyValueList, ListRow, MetricRow, MetricStrip, Panel, Skeleton, Text } from '@/ui';
 import { colors } from '@/theme';
 import { errMessage } from '@/api/client';
 import { useRecruiterDrive } from '@/api/recruiter';
@@ -27,54 +27,27 @@ export default function RecruiterDriveDetail() {
 
   return (
     <Page title={drive.company.name} subtitle={drive.role} onBack={back} onRefresh={() => void q.refetch()} refreshing={q.isRefetching}>
-      <View style={{ flexDirection: 'row', gap: 12, alignItems: 'center' }}>
-        <CompanyLogo name={drive.company.name} logoUrl={drive.company.logoUrl} size={56} />
-        <View style={{ flex: 1, minWidth: 0, gap: 4 }}>
-          <Text variant="title">{drive.role}</Text>
+      <Card style={{ flexDirection: 'row', gap: 12, alignItems: 'center' }}>
+        <CompanyLogo name={drive.company.name} logoUrl={drive.company.logoUrl} size={48} />
+        <View style={{ flex: 1, minWidth: 0, gap: 6 }}>
+          <Text variant="subhead" numberOfLines={2}>{drive.role}</Text>
           <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 6 }}>
             <Badge label={drive.status === 'closed' ? 'Closed' : 'Open'} tone={drive.status === 'closed' ? 'neutral' : 'success'} />
             {drive.company.verified ? <Badge label="Verified company" tone="info" icon="verified" /> : null}
           </View>
         </View>
-      </View>
+      </Card>
 
-      <View style={{ flexDirection: 'row', gap: 12 }}>
-        <View style={{ flex: 1 }}><StatTile label="Candidates" value={funnel.applications.total} icon="people-outline" /></View>
-        <View style={{ flex: 1 }}><StatTile label="Shortlisted" value={decisions.shortlisted} icon="check-circle" /></View>
-      </View>
-      <View style={{ flexDirection: 'row', gap: 12 }}>
-        <View style={{ flex: 1 }}><StatTile label="In rounds" value={inRounds} icon="timeline" /></View>
-        <View style={{ flex: 1 }}><StatTile label="Offers" value={offersTotal} icon="request-quote" /></View>
-      </View>
+      <MetricStrip
+        items={[
+          { label: 'Candidates', value: funnel.applications.total },
+          { label: 'Shortlisted', value: decisions.shortlisted },
+          { label: 'In rounds', value: inRounds },
+          { label: 'Offers', value: offersTotal },
+        ]}
+      />
 
-      <View style={{ gap: 8 }}>
-        <SectionHeader title="Funnel" subtitle="Counts of candidates you can see" />
-        <Card padding={0}>
-          <View style={{ paddingHorizontal: 16 }}>
-            <MetricRow label="Shortlisted" value={decisions.shortlisted} />
-            <MetricRow label="On hold" value={decisions.on_hold} />
-            <MetricRow label="Rejected" value={decisions.rejected} />
-            {Object.entries(funnel.applications.byStatus).filter(([, n]) => n > 0).map(([s, n]) => (
-              <MetricRow key={s} label={`Status: ${statusMeta(s).label}`} value={n} />
-            ))}
-            <MetricRow label="Offers issued or accepted" value={(funnel.offers?.issued ?? 0) + (funnel.offers?.accepted ?? 0)} last />
-          </View>
-        </Card>
-        {funnel.rounds.map((r) => (
-          <Card key={r.roundId} style={{ gap: 8 }}>
-            <Text variant="subhead">{r.seq}. {r.name}</Text>
-            <Text variant="caption" color={colors.muted}>{ROUND_KIND_LABEL[r.kind] ?? r.kind}</Text>
-            <View style={{ flexDirection: 'row', flexWrap: 'wrap', columnGap: 16, rowGap: 4 }}>
-              {([['Invited', r.invited], ['Present', r.attended], ['Absent', r.absent], ['Passed', r.passed], ['Failed', r.failed], ['On hold', r.onHold], ['Waitlisted', r.waitlisted]] as const).map(([l, n]) => (
-                <Text key={l} variant="caption" color={colors.muted} tabular><Text variant="caption" tabular style={{ fontWeight: '700' }}>{n}</Text> {l}</Text>
-              ))}
-            </View>
-          </Card>
-        ))}
-        {!funnel.rounds.length ? <Text variant="caption" color={colors.muted}>No rounds have been set up yet.</Text> : null}
-      </View>
-
-      <Card padding={0}>
+      <Panel title="Actions">
         <View style={{ paddingHorizontal: 16 }}>
           {can(permissions, 'viewCandidates') ? (
             <ListRow title="Candidates" subtitle="Search, shortlist, score" icon="people-outline" onPress={() => { driveSelection.set(drive.id); router.navigate('/(recruiter)/(tabs)/candidates' as never); }} />
@@ -84,11 +57,38 @@ export default function RecruiterDriveDetail() {
           <ListRow title="Offers" icon="request-quote" onPress={() => go('offers')} />
           <ListRow title="Drive messages" icon="chat-bubble-outline" onPress={() => { driveSelection.set(drive.id); router.navigate('/(recruiter)/(tabs)/messages' as never); }} last />
         </View>
-      </Card>
+      </Panel>
 
-      <View style={{ gap: 8 }}>
-        <SectionHeader title="Drive details" />
-        <Card>
+      <Panel title="Funnel" subtitle="Counts of candidates you can see">
+        <View style={{ paddingHorizontal: 16 }}>
+          <MetricRow label="Shortlisted" value={decisions.shortlisted} />
+          <MetricRow label="On hold" value={decisions.on_hold} />
+          <MetricRow label="Rejected" value={decisions.rejected} />
+          {Object.entries(funnel.applications.byStatus).filter(([, n]) => n > 0).map(([s, n]) => (
+            <MetricRow key={s} label={`Status: ${statusMeta(s).label}`} value={n} />
+          ))}
+          <MetricRow label="Offers issued or accepted" value={(funnel.offers?.issued ?? 0) + (funnel.offers?.accepted ?? 0)} last />
+        </View>
+      </Panel>
+
+      <Panel title="Rounds" subtitle={funnel.rounds.length ? undefined : 'No rounds have been set up yet.'}>
+        {funnel.rounds.map((r, i) => (
+          <View key={r.roundId} style={{ paddingHorizontal: 16, paddingVertical: 12, gap: 6, borderBottomWidth: i === funnel.rounds.length - 1 ? 0 : 1, borderBottomColor: colors.border }}>
+            <View style={{ flexDirection: 'row', alignItems: 'baseline', gap: 8 }}>
+              <Text variant="body" style={{ fontWeight: '600', flex: 1 }} numberOfLines={1}>{r.seq}. {r.name}</Text>
+              <Text variant="caption" color={colors.muted}>{ROUND_KIND_LABEL[r.kind] ?? r.kind}</Text>
+            </View>
+            <View style={{ flexDirection: 'row', flexWrap: 'wrap', columnGap: 16, rowGap: 4 }}>
+              {([['Invited', r.invited], ['Present', r.attended], ['Absent', r.absent], ['Passed', r.passed], ['Failed', r.failed], ['On hold', r.onHold], ['Waitlisted', r.waitlisted]] as const).map(([l, n]) => (
+                <Text key={l} variant="caption" color={colors.muted} tabular><Text variant="caption" tabular style={{ fontWeight: '700' }} color={colors.ink}>{n}</Text> {l}</Text>
+              ))}
+            </View>
+          </View>
+        ))}
+      </Panel>
+
+      <View style={{ gap: 12 }}>
+        <Panel title="Drive details" padded>
           <KeyValueList
             items={[
               ...(drive.ctc ? [{ label: 'Package', value: formatCtc(drive.ctc) }] : []),
@@ -98,8 +98,8 @@ export default function RecruiterDriveDetail() {
               { label: 'Scorecards', value: settings.blindScorecards ? 'Blind until you submit' : 'Visible to all recruiters' },
             ]}
           />
-        </Card>
-        {drive.jd ? <Card><Text variant="body" selectable>{drive.jd}</Text></Card> : null}
+        </Panel>
+        {drive.jd ? <Panel title="Job description" padded><Text variant="body" selectable>{drive.jd}</Text></Panel> : null}
       </View>
     </Page>
   );
