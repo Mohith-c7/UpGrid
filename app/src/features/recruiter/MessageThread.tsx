@@ -1,7 +1,7 @@
 import React, { useMemo, useRef, useState } from 'react';
 import { FlatList, KeyboardAvoidingView, RefreshControl, View } from 'react-native';
 import { Banner, Button, EmptyState, ErrorState, Text, TextField } from '@/ui';
-import { colors } from '@/theme';
+import { colors, radius } from '@/theme';
 import { errMessage } from '@/api/client';
 import { flatten, useAuth } from '@/api/hooks';
 import { useMessages, usePostMessage, useRecruiterDrive } from '@/api/recruiter';
@@ -60,7 +60,7 @@ export function MessageThread({ driveId }: { driveId: string }) {
               <View
                 accessible
                 accessibilityLabel={`${mine ? 'You' : item.author.name}, ${formatDateTimeIST(item.createdAt)}: ${item.body}`}
-                style={{ maxWidth: '88%', gap: 4, padding: 12, borderRadius: 12, borderWidth: 1, borderColor: mine ? colors.primaryTint2 : colors.border, backgroundColor: mine ? colors.primaryTint : colors.surface }}
+                style={{ maxWidth: '88%', gap: 4, padding: 12, borderRadius: radius.card, borderWidth: 1, borderColor: mine ? colors.primaryTint2 : colors.border, backgroundColor: mine ? colors.primaryTint : colors.surface }}
               >
                 <Text variant="caption" color={colors.muted} style={{ fontWeight: '600' }}>
                   {mine ? 'You' : item.author.name}{item.author.role === 'officer' ? ' (placement cell)' : ''}

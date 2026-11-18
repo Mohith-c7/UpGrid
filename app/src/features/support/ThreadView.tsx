@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View } from 'react-native';
 import { Badge, Banner, Button, Card, Text, TextField, useIsOnline, useToast } from '@/ui';
-import { colors } from '@/theme';
+import { colors, radius } from '@/theme';
 import { errMessage } from '@/api/client';
 import { useReplyTicket, useSetTicketStatus, useTicket, useAuth } from '@/api/hooks';
 import { Page, QueryBoundary } from '../student/me/kit';
@@ -61,7 +61,7 @@ export default function ThreadView({ id, onBack, officer }: { id: string; onBack
                     style={{
                       alignSelf: mine ? 'flex-end' : 'flex-start', maxWidth: '92%',
                       backgroundColor: mine ? colors.primaryTint : colors.surface, borderWidth: 1, borderColor: mine ? colors.primaryTint2 : colors.border,
-                      borderRadius: 12, padding: 12, gap: 4,
+                      borderRadius: radius.card, padding: 12, gap: 4,
                     }}
                   >
                     <Text variant="caption" color={colors.muted} tabular>

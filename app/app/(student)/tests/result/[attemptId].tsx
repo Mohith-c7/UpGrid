@@ -3,7 +3,7 @@ import { Pressable, ScrollView, View } from 'react-native';
 import { useIsFocused, useLocalSearchParams, useRouter } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { Badge, Banner, Button, Card, CodeBlock, EmptyState, ErrorState, Header, Icon, MetricRow, OfflineBanner, Screen, SectionHeader, Skeleton, Text } from '@/ui';
-import { colors, MIN_TOUCH, SCREEN_PADDING } from '@/theme';
+import { colors, MIN_TOUCH, SCREEN_PADDING, radius } from '@/theme';
 import { ApiError } from '@/api/client';
 import { useResult } from '@/api/tests';
 import type { ReviewItem } from '@/api/testsTypes';
@@ -35,7 +35,7 @@ function ReviewCard({ r }: { r: ReviewItem }) {
         accessibilityRole="button"
         accessibilityState={{ expanded: open }}
         accessibilityLabel={`Question ${r.number}, ${b.label}, ${fmtMarks(r.score)} of ${fmtMarks(r.maxScore)} marks`}
-        style={({ pressed }) => ({ minHeight: MIN_TOUCH + 8, padding: sp.lg, gap: sp.sm, backgroundColor: pressed ? colors.surfaceAlt : 'transparent', borderRadius: 14 })}
+        style={({ pressed }) => ({ minHeight: MIN_TOUCH + 8, padding: sp.lg, gap: sp.sm, backgroundColor: pressed ? colors.surfaceAlt : 'transparent', borderRadius: radius.card })}
       >
         <View style={{ flexDirection: 'row', alignItems: 'center', gap: sp.sm }}>
           <Text variant="subhead" style={{ flex: 1, minWidth: 0 }}>{`${r.number}. ${r.title}`}</Text>

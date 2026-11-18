@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Pressable, View } from 'react-native';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { Badge, Banner, Card, Chip, EmptyState, ErrorState, Icon, Skeleton, Text } from '@/ui';
-import { colors, MIN_TOUCH } from '@/theme';
+import { colors, MIN_TOUCH, radius } from '@/theme';
 import { errMessage } from '@/api/client';
 import { usePlagiarism } from '@/api/assessments';
 import { Frame, ROOT } from '@/features/assessments/kit';
@@ -39,7 +39,7 @@ export default function PlagiarismScreen() {
                 <Text variant="caption" color={colors.muted} numberOfLines={2}>{p.title}</Text>
                 {[p.a, p.b].map((s) => (
                   <Pressable key={s.attemptId} onPress={() => open(s.attemptId)} accessibilityRole="button" accessibilityLabel={`Open ${s.name}'s answer sheet`}
-                    style={({ pressed }) => ({ minHeight: MIN_TOUCH, flexDirection: 'row', alignItems: 'center', gap: 8, backgroundColor: pressed ? colors.pressed : 'transparent', borderRadius: 12 })}>
+                    style={({ pressed }) => ({ minHeight: MIN_TOUCH, flexDirection: 'row', alignItems: 'center', gap: 8, backgroundColor: pressed ? colors.pressed : 'transparent', borderRadius: radius.card })}>
                     <Icon name="person-outline" size={22} color={colors.muted} />
                     <Text variant="body" style={{ flex: 1, fontWeight: '500' }} numberOfLines={2}>{s.name}</Text>
                     <Icon name="chevron-right" size={24} color={colors.subtle} />

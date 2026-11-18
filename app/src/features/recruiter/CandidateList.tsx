@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { FlatList, Pressable, RefreshControl, View } from 'react-native';
 import { Badge, Banner, Button, Card, Chip, EmptyState, ErrorState, Icon, SearchBar, Select, Sheet, Text, TextField, useToast } from '@/ui';
-import { colors, MIN_TOUCH } from '@/theme';
+import { colors, MIN_TOUCH, radius } from '@/theme';
 import { errMessage } from '@/api/client';
 import { flatten } from '@/api/hooks';
 import { useBulkDecision, useCandidates, useRecruiterDrive } from '@/api/recruiter';
@@ -71,7 +71,7 @@ function CandidateItem({ c, selecting, selected, blind, onToggle, onOpen }: { c:
           onPress={selecting ? onToggle : onOpen}
           accessibilityRole="button"
           accessibilityLabel={`${c.candidate.name ?? c.reference}, ${c.reference}`}
-          style={({ pressed }) => ({ flex: 1, minWidth: 0, minHeight: MIN_TOUCH, padding: 14, paddingLeft: selecting ? 0 : 14, gap: 6, backgroundColor: pressed ? colors.pressed : 'transparent', borderRadius: 14 })}
+          style={({ pressed }) => ({ flex: 1, minWidth: 0, minHeight: MIN_TOUCH, padding: 14, paddingLeft: selecting ? 0 : 14, gap: 6, backgroundColor: pressed ? colors.pressed : 'transparent', borderRadius: radius.card })}
         >
           <Text variant="subhead">{c.candidate.name ?? 'Candidate'}</Text>
           <Text variant="caption" color={colors.muted} tabular>

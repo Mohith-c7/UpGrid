@@ -71,7 +71,7 @@ export function EmptyState({
         {title}
       </Text>
       {message ? (
-        <Text variant="body" color={colors.muted} align="center">
+        <Text variant="body" color={colors.muted} align="center" style={{ maxWidth: 360 }}>
           {message}
         </Text>
       ) : null}
@@ -92,7 +92,7 @@ export function ErrorState({ message, onRetry, title = 'Something went wrong' }:
       <Text variant="heading" align="center">
         {title}
       </Text>
-      <Text variant="body" color={colors.muted} align="center">
+      <Text variant="body" color={colors.muted} align="center" style={{ maxWidth: 360 }}>
         {message ?? 'We could not load this. Please try again.'}
       </Text>
       {onRetry ? (

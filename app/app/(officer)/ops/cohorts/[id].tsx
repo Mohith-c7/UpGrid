@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { View } from 'react-native';
 import { useLocalSearchParams } from 'expo-router';
 import { Badge, Banner, Button, ListRow, SectionHeader, Text, TextField, useToast } from '@/ui';
-import { colors } from '@/theme';
+import { colors, radius } from '@/theme';
 import { errMessage, fieldErrors } from '@/api/client';
 import { useCohort, useCohortMembers, useCohortMutations } from '@/api/ops';
 import { DynamicFilterForm, filterErrors, filterToForm, formToFilter } from '@/features/ops/CohortForm';
@@ -67,7 +67,7 @@ export default function CohortDetail() {
             <SectionHeader title="Members" action={c.kind === 'fixed' ? { label: 'Add', onPress: () => setPick(true) } : undefined} />
             <Async isLoading={members.isLoading} isError={members.isError} error={members.error} onRetry={() => void members.refetch()} isEmpty={rows.length === 0}
               empty={{ icon: 'groups', title: 'No members', message: c.kind === 'fixed' ? 'Add students to this cohort.' : 'No student matches these filters right now.', actionLabel: c.kind === 'fixed' ? 'Add students' : undefined, onAction: c.kind === 'fixed' ? () => setPick(true) : undefined }} rows={3} rowHeight={64}>
-              <View style={{ backgroundColor: colors.surface, borderRadius: 14, borderWidth: 1, borderColor: colors.border, paddingHorizontal: 16 }}>
+              <View style={{ backgroundColor: colors.surface, borderRadius: radius.card, borderWidth: 1, borderColor: colors.border, paddingHorizontal: 16 }}>
                 {rows.map((s, i) => (
                   <ListRow key={s.id} title={s.name} subtitle={[s.registrationNumber, s.department, s.batchYear ? `Batch ${s.batchYear}` : null, s.cgpa != null ? `CGPA ${Number(s.cgpa).toFixed(2)}` : null].filter(Boolean).join(' · ')}
                     right={c.kind === 'fixed' ? <Button label="Remove" variant="ghost" size="sm" disabled={removing} onPress={() => removeOne(s.id)} /> : undefined} last={i === rows.length - 1} />

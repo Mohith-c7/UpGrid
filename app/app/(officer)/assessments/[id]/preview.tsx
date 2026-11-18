@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View } from 'react-native';
 import { useLocalSearchParams } from 'expo-router';
 import { Badge, Banner, Button, Card, CodeBlock, ErrorState, SectionHeader, Skeleton, Text } from '@/ui';
-import { colors } from '@/theme';
+import { colors, radius } from '@/theme';
 import { errMessage } from '@/api/client';
 import { useAssessmentPreview } from '@/api/assessments';
 import { Frame, TYPE_LABEL, fmtNum } from '@/features/assessments/kit';
@@ -37,7 +37,7 @@ export default function PreviewScreen() {
                       <Text variant="subhead">{x.title}</Text>
                       {x.body && x.body !== x.title ? <Text variant="body">{x.body}</Text> : null}
                       {x.options?.map((o, i) => (
-                        <View key={o.id} style={{ flexDirection: 'row', gap: 10, borderWidth: 1, borderColor: colors.border, borderRadius: 12, padding: 12, minHeight: 48, alignItems: 'center' }}>
+                        <View key={o.id} style={{ flexDirection: 'row', gap: 10, borderWidth: 1, borderColor: colors.border, borderRadius: radius.card, padding: 12, minHeight: 48, alignItems: 'center' }}>
                           <Text variant="body" style={{ fontWeight: '700', width: 22 }}>{String.fromCharCode(65 + i)}</Text>
                           <Text variant="body" style={{ flex: 1 }}>{o.text}</Text>
                         </View>

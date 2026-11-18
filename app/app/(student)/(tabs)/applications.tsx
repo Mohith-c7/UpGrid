@@ -2,7 +2,7 @@ import React, { useCallback, useMemo, useState } from 'react';
 import { FlatList, View } from 'react-native';
 import { useRouter } from 'expo-router';
 import { Button, Card, CompanyLogo, EmptyState, ErrorState, Icon, SegmentedTabs, Skeleton, Text } from '@/ui';
-import { colors } from '@/theme';
+import { colors, radius } from '@/theme';
 import { useApplications, errMessage, isNetworkError, type AppRow } from '@/features/student/me/data';
 import {
   formatIST, isClosedStatus, NEXT_ACTION, OWNER_LABEL, Page, sp, STATUS_LABEL, STATUS_OWNER, StatusBadge,
@@ -48,7 +48,7 @@ export default function ApplicationsTab() {
               <Text variant="caption" color={colors.muted}>{OWNER_LABEL[STATUS_OWNER[a.status]] ?? ''}</Text>
             </View>
             <Text variant="caption" color={colors.muted} tabular>{`Applied ${formatIST(a.submittedAt, false)}`}</Text>
-            <View style={{ backgroundColor: closed ? colors.surfaceAlt : colors.primaryTint, borderRadius: 12, padding: sp.md, gap: 2 }}>
+            <View style={{ backgroundColor: closed ? colors.surfaceAlt : colors.primaryTint, borderRadius: radius.card, padding: sp.md, gap: 2 }}>
               <Text variant="overline" color={closed ? colors.muted : colors.primaryDark}>{closed ? 'Status' : 'What happens next'}</Text>
               <Text variant="caption" style={{ fontSize: 14, lineHeight: 20 }} numberOfLines={3} ellipsizeMode="tail">{NEXT_ACTION[a.status]}</Text>
             </View>
