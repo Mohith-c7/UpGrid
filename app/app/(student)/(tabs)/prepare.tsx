@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Pressable, View } from 'react-native';
 import { useRouter } from 'expo-router';
 import { Banner, Button, Card, Icon, ProgressBar, Text } from '@/ui';
-import { colors, MIN_TOUCH } from '@/theme';
+import { colors, MIN_TOUCH, radius } from '@/theme';
 import { Page, sp } from '@/features/student/me/kit';
 import { TestsHomeCard } from '@/features/tests/TestsHomeCard';
 
@@ -86,7 +86,7 @@ export default function PrepareTab() {
               accessibilityRole="button"
               accessibilityState={{ expanded: isOpen }}
               accessibilityLabel={`${s.title}, ${n} of ${s.items.length} done`}
-              style={({ pressed }) => ({ minHeight: MIN_TOUCH + 16, padding: sp.lg, gap: sp.sm, borderRadius: 14, backgroundColor: pressed ? colors.surfaceAlt : 'transparent' })}
+              style={({ pressed }) => ({ minHeight: MIN_TOUCH + 16, padding: sp.lg, gap: sp.sm, borderRadius: radius.card, backgroundColor: pressed ? colors.surfaceAlt : 'transparent' })}
             >
               <View style={{ flexDirection: 'row', alignItems: 'center', gap: sp.md }}>
                 <View style={{ flex: 1, minWidth: 0 }}>

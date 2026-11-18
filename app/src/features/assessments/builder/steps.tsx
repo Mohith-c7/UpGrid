@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Pressable, View } from 'react-native';
 import { Badge, Banner, Button, Card, Chip, Icon, KeyValueList, SectionHeader, SegmentedControl, Select, Text, TextField } from '@/ui';
-import { colors, MIN_TOUCH } from '@/theme';
+import { colors, MIN_TOUCH, radius } from '@/theme';
 import type { AssessmentSettings, AudiencePreview, AudienceType, Section, SectionQuestion } from '@/api/assessments';
 import { getServerOffsetMs } from '@/api/client';
 import { dateLabel, describeIST, PickerRow, timeLabel, useISTPicker } from '@/features/officer/components/pickers';
@@ -40,7 +40,7 @@ function move<T>(a: T[], i: number, d: number): T[] {
 }
 const IconBtn = ({ icon, label, onPress, disabled }: { icon: React.ComponentProps<typeof Icon>['name']; label: string; onPress: () => void; disabled?: boolean }) => (
   <Pressable onPress={onPress} disabled={disabled} accessibilityRole="button" accessibilityLabel={label} accessibilityState={{ disabled }}
-    style={({ pressed }) => ({ width: MIN_TOUCH, height: MIN_TOUCH, alignItems: 'center', justifyContent: 'center', opacity: disabled ? 0.35 : 1, backgroundColor: pressed ? colors.pressed : 'transparent', borderRadius: 12 })}>
+    style={({ pressed }) => ({ width: MIN_TOUCH, height: MIN_TOUCH, alignItems: 'center', justifyContent: 'center', opacity: disabled ? 0.35 : 1, backgroundColor: pressed ? colors.pressed : 'transparent', borderRadius: radius.card })}>
     <Icon name={icon} size={22} color={colors.muted} />
   </Pressable>
 );

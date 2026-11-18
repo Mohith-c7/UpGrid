@@ -128,7 +128,7 @@ export default function OpportunitiesScreen() {
         onRefresh={() => void res.refetch()}
         ListEmptyComponent={
           hasNextPage || isFetchingNextPage ? (
-            <Skeleton height={196} radius={14} />
+            <Skeleton height={156} radius={12} />
           ) : hasAnyFilter ? (
             <EmptyState
               icon="search-off"
@@ -143,7 +143,7 @@ export default function OpportunitiesScreen() {
         }
         ListFooterComponent={
           isFetchingNextPage ? (
-            <Skeleton height={196} radius={14} />
+            <Skeleton height={156} radius={12} />
           ) : res.isError && all.length > 0 ? (
             <ErrorState message="Could not load more drives." onRetry={() => void fetchNextPage()} />
           ) : undefined

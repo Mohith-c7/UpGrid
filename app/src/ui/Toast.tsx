@@ -1,7 +1,7 @@
 import React, { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
 import { AccessibilityInfo, Animated, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { colors, radius } from '@/theme';
+import { colors, radius, shadow } from '@/theme';
 import { Text } from './Text';
 import { Icon } from './Icon';
 import { useReduceMotion } from './hooks';
@@ -20,12 +20,13 @@ const ToastViewContext = createContext<ToastView | null>(null);
 function ToastBubble({ view }: { view: ToastView }) {
   const { toast, opacity, bottom } = view;
   if (!toast) return null;
-  const bg = toast.tone === 'error' ? colors.error : toast.tone === 'success' ? colors.success : colors.ink;
+  // One dark neutral surface for every toast; the tone shows through the icon.
+  const iconColor = toast.tone === 'error' ? colors.onInkError : toast.tone === 'success' ? colors.onInkSuccess : colors.onInkInfo;
   const icon = toast.tone === 'error' ? 'error-outline' : toast.tone === 'success' ? 'check-circle-outline' : 'info-outline';
   return (
     <Animated.View pointerEvents="none" accessibilityLiveRegion="polite" style={{ position: 'absolute', left: 16, right: 16, bottom, opacity }}>
-      <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, backgroundColor: bg, borderRadius: radius.button, paddingHorizontal: 16, paddingVertical: 12 }}>
-        <Icon name={icon} size={20} color={colors.onPrimary} />
+      <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, backgroundColor: colors.ink, borderRadius: radius.card, paddingHorizontal: 16, paddingVertical: 12, ...shadow.overlay }}>
+        <Icon name={icon} size={20} color={iconColor} />
         <Text variant="body" color={colors.onPrimary} style={{ flex: 1 }}>{toast.message}</Text>
       </View>
     </Animated.View>

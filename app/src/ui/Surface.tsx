@@ -20,7 +20,7 @@ export function Card({
   style?: StyleProp<ViewStyle>;
   accessibilityLabel?: string;
   padding?: number;
-  /** teal-50 background for a highlighted/summary card (no shadow) */
+  /** indigo-50 background for a highlighted/summary card (no shadow) */
   tinted?: boolean;
 }) {
   const base: ViewStyle = {

@@ -1,12 +1,10 @@
 import React, { useCallback, useMemo, useState } from 'react';
 import { FlatList, View } from 'react-native';
 import { useRouter } from 'expo-router';
-import { Button, Card, CompanyLogo, EmptyState, ErrorState, Icon, SegmentedTabs, Skeleton, Text } from '@/ui';
-import { colors } from '@/theme';
+import { Button, EmptyState, ErrorState, SegmentedTabs, Skeleton } from '@/ui';
 import { useApplications, errMessage, isNetworkError, type AppRow } from '@/features/student/me/data';
-import {
-  formatIST, isClosedStatus, NEXT_ACTION, OWNER_LABEL, Page, sp, STATUS_LABEL, STATUS_OWNER, StatusBadge,
-} from '@/features/student/me/kit';
+import { Page, sp } from '@/features/student/me/kit';
+import { ApplicationCard } from '@/features/student/me/ApplicationCard';
 
 const TABS = [
   { key: 'all', label: 'All', test: (_: AppRow) => true },
@@ -30,38 +28,15 @@ export default function ApplicationsTab() {
   const counts = useMemo(() => Object.fromEntries(TABS.map((t) => [t.key, all.filter(t.test).length])) as Record<TabKey, number>, [all]);
 
   const renderItem = useCallback(
-    ({ item: a }: { item: AppRow }) => {
-      const closed = isClosedStatus(a.status);
-      return (
-        <Card onPress={() => router.push(`/(student)/application/${a.id}` as never)} accessibilityLabel={`${a.drive.company.name}, ${a.drive.role}, ${STATUS_LABEL[a.status] ?? a.status}`}>
-          <View style={{ gap: sp.md }}>
-            <View style={{ flexDirection: 'row', gap: sp.md }}>
-              <CompanyLogo name={a.drive.company.name} logoUrl={a.drive.company.logoUrl ?? undefined} size={44} />
-              <View style={{ flex: 1, minWidth: 0, gap: sp.xs }}>
-                <Text variant="subhead" numberOfLines={1} ellipsizeMode="tail">{a.drive.company.name}</Text>
-                <Text variant="body" numberOfLines={2} ellipsizeMode="tail">{a.drive.role}</Text>
-              </View>
-              <Icon name="chevron-right" size={24} color={colors.subtle} />
-            </View>
-            <View style={{ gap: sp.xs }}>
-              <StatusBadge status={a.status} />
-              <Text variant="caption" color={colors.muted}>{OWNER_LABEL[STATUS_OWNER[a.status]] ?? ''}</Text>
-            </View>
-            <Text variant="caption" color={colors.muted} tabular>{`Applied ${formatIST(a.submittedAt, false)}`}</Text>
-            <View style={{ backgroundColor: closed ? colors.surfaceAlt : colors.primaryTint, borderRadius: 12, padding: sp.md, gap: 2 }}>
-              <Text variant="overline" color={closed ? colors.muted : colors.primaryDark}>{closed ? 'Status' : 'What happens next'}</Text>
-              <Text variant="caption" style={{ fontSize: 14, lineHeight: 20 }} numberOfLines={3} ellipsizeMode="tail">{NEXT_ACTION[a.status]}</Text>
-            </View>
-          </View>
-        </Card>
-      );
-    },
+    ({ item: a }: { item: AppRow }) => (
+      <ApplicationCard app={a} onPress={() => router.push(`/(student)/application/${a.id}` as never)} />
+    ),
     [router],
   );
 
   let body: React.ReactNode;
   if (q.isLoading) {
-    body = <View style={{ padding: sp.lg, gap: sp.md }}>{[0, 1, 2].map((i) => <Skeleton key={i} height={196} radius={14} />)}</View>;
+    body = <View style={{ padding: sp.lg, gap: sp.md }}>{[0, 1, 2].map((i) => <Skeleton key={i} height={168} radius={12} />)}</View>;
   } else if (q.isError && all.length === 0) {
     body = (
       <View style={{ padding: sp.lg }}>

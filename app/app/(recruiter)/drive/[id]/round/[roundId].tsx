@@ -2,7 +2,7 @@ import React, { useMemo, useState } from 'react';
 import { Alert, FlatList, Pressable, RefreshControl, View } from 'react-native';
 import { useLocalSearchParams } from 'expo-router';
 import { Badge, Banner, Button, Card, CodeBlock, EmptyState, ErrorState, Icon, SegmentedTabs, Sheet, Text, TextField, useToast } from '@/ui';
-import { colors, MIN_TOUCH } from '@/theme';
+import { colors, MIN_TOUCH, radius } from '@/theme';
 import { errMessage } from '@/api/client';
 import { flatten } from '@/api/hooks';
 import { useAttendanceToken, useMarkAttendance, useRecruiterDrive, useRoundCandidates, useRoundStatus } from '@/api/recruiter';
@@ -109,7 +109,7 @@ export default function RoundScreen() {
                   onPress={() => (selecting ? toggle(item.applicationId) : (canAttend || canResult) ? (setSheetErr(null), setRemark(item.remark ?? ''), setTarget(item)) : undefined)}
                   accessibilityRole="button"
                   accessibilityLabel={`${item.name}, ${m.label}`}
-                  style={({ pressed }) => ({ flexDirection: 'row', gap: 8, alignItems: 'center', padding: 14, minHeight: MIN_TOUCH, borderRadius: 14, backgroundColor: pressed ? colors.pressed : 'transparent' })}
+                  style={({ pressed }) => ({ flexDirection: 'row', gap: 8, alignItems: 'center', padding: 14, minHeight: MIN_TOUCH, borderRadius: radius.card, backgroundColor: pressed ? colors.pressed : 'transparent' })}
                 >
                   {selecting ? <Icon name={sel ? 'check-box' : 'check-box-outline-blank'} size={24} color={sel ? colors.primary : colors.muted} /> : null}
                   <View style={{ flex: 1, minWidth: 0, gap: 4 }}>

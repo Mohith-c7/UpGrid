@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { Alert, Linking, Pressable, View } from 'react-native';
 import { Badge, Banner, Button, Card, Chip, EmptyState, ErrorState, Icon, SectionHeader, SegmentedControl, Select, Sheet, Skeleton, Text, TextField, TimelineList, useToast } from '@/ui';
-import { colors, MIN_TOUCH } from '@/theme';
+import { colors, MIN_TOUCH, radius } from '@/theme';
 import { errMessage, fieldErrors } from '@/api/client';
 import { useAuth } from '@/api/hooks';
 import {
@@ -319,7 +319,7 @@ export function ScorecardSection({ driveId, d, perms, blind }: { driveId: string
                       accessibilityRole="radio"
                       accessibilityState={{ selected: sel }}
                       accessibilityLabel={`${i.label}: ${n} of 5`}
-                      style={{ flex: 1, minWidth: MIN_TOUCH - 8, minHeight: MIN_TOUCH, borderRadius: 12, alignItems: 'center', justifyContent: 'center', borderWidth: sel ? 2 : 1, borderColor: sel ? colors.primary : colors.borderStrong, backgroundColor: sel ? colors.primary : colors.surface }}
+                      style={{ flex: 1, minWidth: MIN_TOUCH - 8, minHeight: MIN_TOUCH, borderRadius: radius.card, alignItems: 'center', justifyContent: 'center', borderWidth: sel ? 2 : 1, borderColor: sel ? colors.primary : colors.borderStrong, backgroundColor: sel ? colors.primary : colors.surface }}
                     >
                       <Text variant="subhead" tabular color={sel ? colors.surface : colors.ink}>{n}</Text>
                     </Pressable>

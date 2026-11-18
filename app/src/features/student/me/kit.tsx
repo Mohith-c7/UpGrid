@@ -62,7 +62,7 @@ export function confirm(title: string, message: string, confirmLabel: string, on
 /**
  * Standard student screen shell: white `bar` header (handles the status-bar inset), optional sticky footer,
  * scroll body with pull-to-refresh, offline banner, keyboard avoidance. Set `scroll={false}` to render your own list.
- * The dark status-bar icons are only claimed while the screen is focused, so hero screens (teal) keep light icons.
+ * The dark status-bar icons are only claimed while the screen is focused, so blurred tab screens don't override the visible one.
  */
 export function Page({
   title, subtitle, onBack, right, children, footer, onRefresh, refreshing, keyboard, scroll = true, gap = sp.lg, bottomPad = true,

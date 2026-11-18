@@ -100,13 +100,13 @@ export function HeaderAction({
         borderRadius: radius.button,
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: pressed ? (onDark ? 'rgba(255,255,255,0.14)' : colors.pressed) : 'transparent',
+        backgroundColor: pressed ? (onDark ? colors.pressedOnPrimary : colors.pressed) : 'transparent',
       })}
     >
       <Icon name={icon} size={24} color={fg} />
       {badge ? (
-        <View style={{ position: 'absolute', top: 6, right: 4, minWidth: 18, height: 18, paddingHorizontal: 4, borderRadius: 4, backgroundColor: colors.coral, alignItems: 'center', justifyContent: 'center' }}>
-          <Text variant="overline" color={colors.ink} style={{ fontSize: 11, lineHeight: 14 }} maxFontSizeMultiplier={1.1} tabular>
+        <View style={{ position: 'absolute', top: 6, right: 4, minWidth: 18, height: 18, paddingHorizontal: 4, borderRadius: 9, borderWidth: 2, borderColor: colors.surface, backgroundColor: colors.errorSolid, alignItems: 'center', justifyContent: 'center' }}>
+          <Text variant="overline" color={colors.onPrimary} style={{ fontSize: 10, lineHeight: 12, fontWeight: '600' }} maxFontSizeMultiplier={1.1} tabular>
             {badge > 99 ? '99+' : badge}
           </Text>
         </View>
@@ -120,7 +120,8 @@ export type HeaderVariant = 'plain' | 'bar' | 'teal';
 /**
  * plain (default): inline title on the canvas, sits inside a padded Screen (legacy behaviour).
  * bar:  full-width white bar with hairline bottom border; handles the status-bar inset itself.
- * teal: full-width teal-800 large-title band (display type, white text); handles the status-bar inset itself.
+ * teal: full-width white large-title bar (display type) with hairline border; handles the status-bar inset itself.
+ *       The name is legacy: brand colour is reserved for actions, so large-title bands are neutral surfaces.
  * For bar/teal use <Screen padded={false} edges={['bottom']}> and put your padding inside the body.
  */
 export function Header({
@@ -140,8 +141,8 @@ export function Header({
   const focused = useIsFocused();
   const teal = variant === 'teal';
   const band = variant !== 'plain';
-  const fg = teal ? colors.onPrimary : colors.ink;
-  const sub = teal ? colors.onPrimaryMuted : colors.muted;
+  const fg = colors.ink;
+  const sub = colors.muted;
   return (
     <View
       style={
@@ -150,14 +151,14 @@ export function Header({
               paddingTop: insets.top,
               paddingHorizontal: SCREEN_PADDING,
               paddingBottom: teal ? 16 : 0,
-              backgroundColor: teal ? colors.primaryDark : colors.surface,
-              borderBottomWidth: teal ? 0 : 1,
+              backgroundColor: colors.surface,
+              borderBottomWidth: 1,
               borderBottomColor: colors.border,
             }
           : undefined
       }
     >
-      {teal && focused ? <StatusBar style="light" /> : null}
+      {band && focused ? <StatusBar style="dark" /> : null}
       <View style={{ flexDirection: 'row', alignItems: teal ? 'flex-start' : 'center', minHeight: 56, gap: 4, marginBottom: band ? 0 : 8 }}>
         {onBack ? (
           <Pressable
@@ -172,7 +173,7 @@ export function Header({
               borderRadius: radius.button,
               alignItems: 'center',
               justifyContent: 'center',
-              backgroundColor: pressed ? (teal ? 'rgba(255,255,255,0.14)' : colors.pressed) : 'transparent',
+              backgroundColor: pressed ? colors.pressed : 'transparent',
             })}
           >
             <Icon name="arrow-back" size={24} color={fg} />

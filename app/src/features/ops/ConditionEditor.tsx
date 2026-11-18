@@ -5,7 +5,7 @@
 import React from 'react';
 import { View } from 'react-native';
 import { Button, Select, SegmentedControl, Text, TextField } from '@/ui';
-import { colors } from '@/theme';
+import { colors, radius } from '@/theme';
 import type { Condition } from '@/api/opsTypes';
 
 export type Node =
@@ -105,7 +105,7 @@ function NodeView({ n, depth, isRoot, total, update }: { n: Node; depth: number;
     const t = typeOf(n.field);
     const opts = OPS.filter((o) => OPS_BY_TYPE[t].includes(o.value));
     return (
-      <View style={{ gap: 12, padding: 12, backgroundColor: colors.surfaceAlt, borderRadius: 12, borderWidth: 1, borderColor: colors.border }}>
+      <View style={{ gap: 12, padding: 12, backgroundColor: colors.surfaceAlt, borderRadius: radius.card, borderWidth: 1, borderColor: colors.border }}>
         <Select label="Field" value={n.field} onChange={(v) => update(n.id, (x) => ({ ...(x as Extract<Node, { kind: 'leaf' }>), field: v, op: OPS_BY_TYPE[typeOf(v)].includes((x as any).op) ? (x as any).op : OPS_BY_TYPE[typeOf(v)][0], value: '' }))} options={FIELDS} />
         <Select label="Condition" value={n.op} onChange={(v) => update(n.id, (x) => ({ ...(x as Extract<Node, { kind: 'leaf' }>), op: v }))} options={opts} />
         {needsValue(n.op) ? (t === 'bool' ? (

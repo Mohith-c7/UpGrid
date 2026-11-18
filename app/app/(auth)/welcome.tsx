@@ -3,7 +3,7 @@ import { View } from 'react-native';
 import { useRouter } from 'expo-router';
 import { Button, Card, Icon, OfflineBanner, Screen, ScreenHero, Text } from '@/ui';
 import type { IconName } from '@/ui';
-import { colors } from '@/theme';
+import { colors, radius } from '@/theme';
 
 const POINTS: { icon: IconName; title: string; body: string }[] = [
   { icon: 'notifications-active', title: 'Deadline reminders', body: 'Alerts at 60, 30 and 15 minutes before a drive closes.' },
@@ -20,7 +20,7 @@ export default function Welcome() {
           <View style={{ gap: 16 }}>
             {POINTS.map((p) => (
               <View key={p.title} style={{ flexDirection: 'row', gap: 12, alignItems: 'flex-start' }}>
-                <View style={{ width: 40, height: 40, borderRadius: 12, backgroundColor: colors.primaryTint, flexShrink: 0, alignItems: 'center', justifyContent: 'center' }}>
+                <View style={{ width: 40, height: 40, borderRadius: radius.card, backgroundColor: colors.primaryTint, flexShrink: 0, alignItems: 'center', justifyContent: 'center' }}>
                   <Icon name={p.icon} size={22} color={colors.primary} />
                 </View>
                 <View style={{ flex: 1, minWidth: 0 }}>

@@ -8,10 +8,10 @@ import type { DriveSummary } from '@/api/types';
 import { formatCtc, relativeDeadline } from '@/lib/format';
 import { Text } from './Text';
 import { Icon, type IconName } from './Icon';
-import { Badge, Card, Chip, CompanyLogo } from './Surface';
+import { Badge, Card, CompanyLogo } from './Surface';
 
 /* ======================= BrandLogo ======================= */
-/** Flat rounded-square product mark. onDark: white tile with teal check (for teal bands); otherwise teal tile. */
+/** Flat rounded-square product mark. onDark: white tile with indigo check (for indigo fills); otherwise indigo tile. */
 export function BrandLogo({ size = 56, onDark }: { size?: number; onDark?: boolean }) {
   return (
     <View
@@ -26,7 +26,7 @@ export function BrandLogo({ size = 56, onDark }: { size?: number; onDark?: boole
 
 /* ======================= ScreenHero ======================= */
 /**
- * Teal-800 header band (flat). Handles the status-bar inset itself: use inside <Screen padded={false} edges={['bottom']}>.
+ * White header band with a hairline bottom border. Handles the status-bar inset itself: use inside <Screen padded={false} edges={['bottom']}>.
  * `children` = optional summary card that overlaps the band's bottom edge by 24px. Put your own padded content after it.
  */
 export function ScreenHero({
@@ -52,10 +52,12 @@ export function ScreenHero({
   const focused = useIsFocused();
   return (
     <View>
-      {focused ? <StatusBar style="light" /> : null}
+      {focused ? <StatusBar style="dark" /> : null}
       <View
         style={{
-          backgroundColor: colors.primaryDark,
+          backgroundColor: colors.surface,
+          borderBottomWidth: 1,
+          borderBottomColor: colors.border,
           paddingTop: insets.top + 8,
           paddingHorizontal: SCREEN_PADDING,
           paddingBottom: children ? 48 : 24,
@@ -68,9 +70,9 @@ export function ScreenHero({
                 onPress={onBack}
                 accessibilityRole="button"
                 accessibilityLabel="Go back"
-                style={({ pressed }) => ({ width: MIN_TOUCH, height: MIN_TOUCH, borderRadius: radius.button, alignItems: 'center', justifyContent: 'center', backgroundColor: pressed ? 'rgba(255,255,255,0.14)' : 'transparent' })}
+                style={({ pressed }) => ({ width: MIN_TOUCH, height: MIN_TOUCH, borderRadius: radius.button, alignItems: 'center', justifyContent: 'center', backgroundColor: pressed ? colors.pressed : 'transparent' })}
               >
-                <Icon name="arrow-back" size={24} color={colors.onPrimary} />
+                <Icon name="arrow-back" size={24} color={colors.ink} />
               </Pressable>
             ) : (
               <View />
@@ -81,19 +83,19 @@ export function ScreenHero({
         <View style={{ gap: 4, paddingTop: onBack || right ? 4 : 8 }}>
           {brand ? (
             <View style={{ marginBottom: 12 }}>
-              <BrandLogo onDark />
+              <BrandLogo size={48} />
             </View>
           ) : null}
           {eyebrow ? (
-            <Text variant="caption" color={colors.onPrimaryMuted}>
+            <Text variant="caption" color={colors.muted} style={{ fontWeight: '500' }}>
               {eyebrow}
             </Text>
           ) : null}
-          <Text variant="display" color={colors.onPrimary}>
+          <Text variant="display" color={colors.ink}>
             {title}
           </Text>
           {subtitle ? (
-            <Text variant="body" color={colors.onPrimaryMuted}>
+            <Text variant="body" color={colors.muted}>
               {subtitle}
             </Text>
           ) : null}
@@ -187,6 +189,160 @@ export function StatTile({
         ) : null}
       </View>
     </Card>
+  );
+}
+
+/* ======================= MetricStrip ======================= */
+export interface MetricItem {
+  label: string;
+  value: string | number;
+  /** colours the value; use sparingly for states that need attention */
+  tone?: Tone;
+  onPress?: () => void;
+}
+
+/**
+ * One surface, N equal cells split by hairlines. Denser and calmer than a grid of StatTiles; use for 2-4 headline numbers.
+ * Labels wrap to two lines so four cells fit a 320pt screen.
+ */
+export function MetricStrip({ items, loading }: { items: MetricItem[]; loading?: boolean }) {
+  return (
+    <View style={{ flexDirection: 'row', backgroundColor: colors.surface, borderRadius: radius.card, borderWidth: 1, borderColor: colors.border, ...shadow.card }}>
+      {items.map((m, i) => {
+        const fg = m.tone && m.tone !== 'neutral' ? toneColors[m.tone].fg : colors.ink;
+        const body = (
+          <View style={{ gap: 2, paddingVertical: 12, paddingHorizontal: 12 }}>
+            <Text variant="title" tabular color={loading ? colors.disabled : fg} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.7}>
+              {loading ? '–' : m.value}
+            </Text>
+            <Text variant="caption" color={colors.muted} numberOfLines={2}>
+              {m.label}
+            </Text>
+          </View>
+        );
+        const cell: ViewStyle = { flex: 1, minWidth: 0, borderLeftWidth: i === 0 ? 0 : 1, borderLeftColor: colors.border };
+        if (!m.onPress) return <View key={m.label} style={cell}>{body}</View>;
+        return (
+          <Pressable
+            key={m.label}
+            onPress={m.onPress}
+            accessibilityRole="button"
+            accessibilityLabel={`${m.label}: ${loading ? 'loading' : m.value}`}
+            style={({ pressed }) => [
+              cell,
+              { minHeight: MIN_TOUCH, backgroundColor: pressed ? colors.pressed : 'transparent' },
+              i === 0 ? { borderTopLeftRadius: radius.card, borderBottomLeftRadius: radius.card } : null,
+              i === items.length - 1 ? { borderTopRightRadius: radius.card, borderBottomRightRadius: radius.card } : null,
+            ]}
+          >
+            {body}
+          </Pressable>
+        );
+      })}
+    </View>
+  );
+}
+
+/* ======================= Panel ======================= */
+/**
+ * A titled group: one surface with a header and hairline-divided rows. Prefer this over stacking separate Cards for lists of
+ * 2-6 related items (dashboards, settings, summaries). Children are usually PanelRow; pass `padded` for free-form content.
+ */
+export function Panel({
+  title,
+  subtitle,
+  action,
+  children,
+  padded,
+}: {
+  title?: string;
+  subtitle?: string;
+  action?: { label: string; onPress: () => void };
+  children?: React.ReactNode;
+  padded?: boolean;
+}) {
+  return (
+    <View style={{ backgroundColor: colors.surface, borderRadius: radius.card, borderWidth: 1, borderColor: colors.border, overflow: 'hidden', ...shadow.card }}>
+      {title ? (
+        <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12, paddingLeft: 16, paddingRight: action ? 4 : 16, minHeight: 52, borderBottomWidth: 1, borderBottomColor: colors.border }}>
+          <View style={{ flex: 1, minWidth: 0, paddingVertical: 10 }}>
+            <Text variant="subhead" accessibilityRole="header" numberOfLines={1}>
+              {title}
+            </Text>
+            {subtitle ? (
+              <Text variant="caption" color={colors.muted} numberOfLines={2}>
+                {subtitle}
+              </Text>
+            ) : null}
+          </View>
+          {action ? (
+            <Pressable
+              onPress={action.onPress}
+              accessibilityRole="button"
+              accessibilityLabel={action.label}
+              style={({ pressed }) => ({ minHeight: MIN_TOUCH, justifyContent: 'center', paddingHorizontal: 12, borderRadius: radius.button, backgroundColor: pressed ? colors.pressed : 'transparent' })}
+            >
+              <Text variant="button" color={colors.primary}>
+                {action.label}
+              </Text>
+            </Pressable>
+          ) : null}
+        </View>
+      ) : null}
+      {padded ? <View style={{ padding: 16 }}>{children}</View> : children}
+    </View>
+  );
+}
+
+/** A row inside a Panel: optional leading visual, two lines of text, optional trailing meta. Hairline below unless `last`. */
+export function PanelRow({
+  title,
+  subtitle,
+  meta,
+  left,
+  right,
+  onPress,
+  last,
+  accessibilityLabel,
+}: {
+  title: string;
+  subtitle?: string;
+  /** small third line (time, status), rendered under the subtitle */
+  meta?: React.ReactNode;
+  left?: React.ReactNode;
+  right?: React.ReactNode;
+  onPress?: () => void;
+  last?: boolean;
+  accessibilityLabel?: string;
+}) {
+  const body = (
+    <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12, paddingHorizontal: 16, paddingVertical: 12, minHeight: 64 }}>
+      {left}
+      <View style={{ flex: 1, minWidth: 0, gap: 2 }}>
+        <Text variant="body" numberOfLines={1} ellipsizeMode="tail" style={{ fontWeight: '500' }}>
+          {title}
+        </Text>
+        {subtitle ? (
+          <Text variant="caption" color={colors.muted} numberOfLines={2} ellipsizeMode="tail">
+            {subtitle}
+          </Text>
+        ) : null}
+        {meta ? <View style={{ marginTop: 2 }}>{meta}</View> : null}
+      </View>
+      {right ?? (onPress ? <Icon name="chevron-right" size={22} color={colors.subtle} /> : null)}
+    </View>
+  );
+  const rowStyle: ViewStyle = { borderBottomWidth: last ? 0 : 1, borderBottomColor: colors.border };
+  if (!onPress) return <View style={rowStyle}>{body}</View>;
+  return (
+    <Pressable
+      onPress={onPress}
+      accessibilityRole="button"
+      accessibilityLabel={accessibilityLabel ?? (subtitle ? `${title}. ${subtitle}` : title)}
+      style={({ pressed }) => [rowStyle, pressed ? { backgroundColor: colors.pressed } : null]}
+    >
+      {body}
+    </Pressable>
   );
 }
 
@@ -292,7 +448,7 @@ export interface TimelineItem {
   time?: string;
   state?: 'done' | 'current' | 'upcoming' | 'error';
 }
-/** Vertical timeline with square markers (done = filled check, current = filled teal, upcoming = outline, error = red). */
+/** Vertical timeline with square markers (done = filled check, current = filled indigo, upcoming = outline, error = red). */
 export function TimelineList({ items }: { items: TimelineItem[] }) {
   return (
     <View>
@@ -421,9 +577,9 @@ export function SegmentedTabs({
               accessibilityRole="tab"
               accessibilityState={{ selected: sel }}
               accessibilityLabel={o.count !== undefined ? `${o.label}, ${o.count}` : o.label}
-              style={{ minHeight: MIN_TOUCH, minWidth: 64, paddingHorizontal: 14, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 6, borderBottomWidth: 3, borderBottomColor: sel ? colors.primary : 'transparent', marginBottom: -1 }}
+              style={{ minHeight: MIN_TOUCH, minWidth: 64, paddingHorizontal: 14, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 6, borderBottomWidth: 2, borderBottomColor: sel ? colors.primary : 'transparent', marginBottom: -1 }}
             >
-              <Text variant="subhead" color={sel ? colors.primary : colors.muted} numberOfLines={1}>
+              <Text variant="subhead" color={sel ? colors.ink : colors.muted} numberOfLines={1} style={{ fontWeight: sel ? '600' : '500' }}>
                 {o.label}
               </Text>
               {o.count !== undefined ? (
@@ -560,17 +716,22 @@ export function DriveCard({ drive, onPress, onToggleSave, variant = 'full', serv
           </View>
         </View>
 
-        {!compact && (locText || drive.workMode) ? (
-          <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 8 }}>
-            {locText ? <Chip label={locText} icon="place" /> : null}
-            {drive.workMode ? <Chip label={drive.workMode} icon="work-outline" /> : null}
-          </View>
-        ) : null}
-
         <View style={{ flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', columnGap: 12, rowGap: 4 }}>
-          <Text variant={compact ? 'subhead' : 'heading'} tabular numberOfLines={1} style={{ flexShrink: 1 }}>
+          <Text variant="subhead" tabular numberOfLines={1} style={{ flexShrink: 1 }}>
             {pkg}
           </Text>
+          {!compact && locText ? (
+            <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4, flexShrink: 1 }}>
+              <Icon name="place" size={14} color={colors.subtle} />
+              <Text variant="caption" color={colors.muted} numberOfLines={1} style={{ flexShrink: 1 }}>{locText}</Text>
+            </View>
+          ) : null}
+          {!compact && drive.workMode ? (
+            <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }}>
+              <Icon name="work-outline" size={14} color={colors.subtle} />
+              <Text variant="caption" color={colors.muted} numberOfLines={1}>{drive.workMode}</Text>
+            </View>
+          ) : null}
           {compact ? (
             <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }}>
               <Icon name={soon ? 'timer' : 'schedule'} size={16} color={dColor} />

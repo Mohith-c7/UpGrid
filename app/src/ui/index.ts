@@ -22,6 +22,9 @@ export { useTabScreenOptions } from './TabBar';
 export {
   DriveCard,
   StatTile,
+  MetricStrip,
+  Panel,
+  PanelRow,
   MetricRow,
   KeyValueList,
   StepIndicator,
@@ -34,4 +37,4 @@ export {
   CodeBlock,
   TestTimerBar,
 } from './Patterns';
-export type { DriveCardProps, TimelineItem, KeyValueItem } from './Patterns';
+export type { DriveCardProps, TimelineItem, KeyValueItem, MetricItem } from './Patterns';
