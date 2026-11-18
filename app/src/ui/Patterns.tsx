@@ -192,6 +192,160 @@ export function StatTile({
   );
 }
 
+/* ======================= MetricStrip ======================= */
+export interface MetricItem {
+  label: string;
+  value: string | number;
+  /** colours the value; use sparingly for states that need attention */
+  tone?: Tone;
+  onPress?: () => void;
+}
+
+/**
+ * One surface, N equal cells split by hairlines. Denser and calmer than a grid of StatTiles; use for 2-4 headline numbers.
+ * Labels wrap to two lines so four cells fit a 320pt screen.
+ */
+export function MetricStrip({ items, loading }: { items: MetricItem[]; loading?: boolean }) {
+  return (
+    <View style={{ flexDirection: 'row', backgroundColor: colors.surface, borderRadius: radius.card, borderWidth: 1, borderColor: colors.border, ...shadow.card }}>
+      {items.map((m, i) => {
+        const fg = m.tone && m.tone !== 'neutral' ? toneColors[m.tone].fg : colors.ink;
+        const body = (
+          <View style={{ gap: 2, paddingVertical: 12, paddingHorizontal: 12 }}>
+            <Text variant="title" tabular color={loading ? colors.disabled : fg} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.7}>
+              {loading ? '–' : m.value}
+            </Text>
+            <Text variant="caption" color={colors.muted} numberOfLines={2}>
+              {m.label}
+            </Text>
+          </View>
+        );
+        const cell: ViewStyle = { flex: 1, minWidth: 0, borderLeftWidth: i === 0 ? 0 : 1, borderLeftColor: colors.border };
+        if (!m.onPress) return <View key={m.label} style={cell}>{body}</View>;
+        return (
+          <Pressable
+            key={m.label}
+            onPress={m.onPress}
+            accessibilityRole="button"
+            accessibilityLabel={`${m.label}: ${loading ? 'loading' : m.value}`}
+            style={({ pressed }) => [
+              cell,
+              { minHeight: MIN_TOUCH, backgroundColor: pressed ? colors.pressed : 'transparent' },
+              i === 0 ? { borderTopLeftRadius: radius.card, borderBottomLeftRadius: radius.card } : null,
+              i === items.length - 1 ? { borderTopRightRadius: radius.card, borderBottomRightRadius: radius.card } : null,
+            ]}
+          >
+            {body}
+          </Pressable>
+        );
+      })}
+    </View>
+  );
+}
+
+/* ======================= Panel ======================= */
+/**
+ * A titled group: one surface with a header and hairline-divided rows. Prefer this over stacking separate Cards for lists of
+ * 2-6 related items (dashboards, settings, summaries). Children are usually PanelRow; pass `padded` for free-form content.
+ */
+export function Panel({
+  title,
+  subtitle,
+  action,
+  children,
+  padded,
+}: {
+  title?: string;
+  subtitle?: string;
+  action?: { label: string; onPress: () => void };
+  children?: React.ReactNode;
+  padded?: boolean;
+}) {
+  return (
+    <View style={{ backgroundColor: colors.surface, borderRadius: radius.card, borderWidth: 1, borderColor: colors.border, overflow: 'hidden', ...shadow.card }}>
+      {title ? (
+        <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12, paddingLeft: 16, paddingRight: action ? 4 : 16, minHeight: 52, borderBottomWidth: 1, borderBottomColor: colors.border }}>
+          <View style={{ flex: 1, minWidth: 0, paddingVertical: 10 }}>
+            <Text variant="subhead" accessibilityRole="header" numberOfLines={1}>
+              {title}
+            </Text>
+            {subtitle ? (
+              <Text variant="caption" color={colors.muted} numberOfLines={2}>
+                {subtitle}
+              </Text>
+            ) : null}
+          </View>
+          {action ? (
+            <Pressable
+              onPress={action.onPress}
+              accessibilityRole="button"
+              accessibilityLabel={action.label}
+              style={({ pressed }) => ({ minHeight: MIN_TOUCH, justifyContent: 'center', paddingHorizontal: 12, borderRadius: radius.button, backgroundColor: pressed ? colors.pressed : 'transparent' })}
+            >
+              <Text variant="button" color={colors.primary}>
+                {action.label}
+              </Text>
+            </Pressable>
+          ) : null}
+        </View>
+      ) : null}
+      {padded ? <View style={{ padding: 16 }}>{children}</View> : children}
+    </View>
+  );
+}
+
+/** A row inside a Panel: optional leading visual, two lines of text, optional trailing meta. Hairline below unless `last`. */
+export function PanelRow({
+  title,
+  subtitle,
+  meta,
+  left,
+  right,
+  onPress,
+  last,
+  accessibilityLabel,
+}: {
+  title: string;
+  subtitle?: string;
+  /** small third line (time, status), rendered under the subtitle */
+  meta?: React.ReactNode;
+  left?: React.ReactNode;
+  right?: React.ReactNode;
+  onPress?: () => void;
+  last?: boolean;
+  accessibilityLabel?: string;
+}) {
+  const body = (
+    <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12, paddingHorizontal: 16, paddingVertical: 12, minHeight: 64 }}>
+      {left}
+      <View style={{ flex: 1, minWidth: 0, gap: 2 }}>
+        <Text variant="body" numberOfLines={1} ellipsizeMode="tail" style={{ fontWeight: '500' }}>
+          {title}
+        </Text>
+        {subtitle ? (
+          <Text variant="caption" color={colors.muted} numberOfLines={2} ellipsizeMode="tail">
+            {subtitle}
+          </Text>
+        ) : null}
+        {meta ? <View style={{ marginTop: 2 }}>{meta}</View> : null}
+      </View>
+      {right ?? (onPress ? <Icon name="chevron-right" size={22} color={colors.subtle} /> : null)}
+    </View>
+  );
+  const rowStyle: ViewStyle = { borderBottomWidth: last ? 0 : 1, borderBottomColor: colors.border };
+  if (!onPress) return <View style={rowStyle}>{body}</View>;
+  return (
+    <Pressable
+      onPress={onPress}
+      accessibilityRole="button"
+      accessibilityLabel={accessibilityLabel ?? (subtitle ? `${title}. ${subtitle}` : title)}
+      style={({ pressed }) => [rowStyle, pressed ? { backgroundColor: colors.pressed } : null]}
+    >
+      {body}
+    </Pressable>
+  );
+}
+
 /* ======================= MetricRow ======================= */
 /** Label on the left, bold tabular value on the right; wraps cleanly at large font scale. */
 export function MetricRow({ label, value, hint, tone, last }: { label: string; value: string | number; hint?: string; tone?: Tone; last?: boolean }) {
