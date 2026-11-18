@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View } from 'react-native';
 import { useLocalSearchParams, useRouter } from 'expo-router';
-import { Badge, Banner, Button, Card, EmptyState, ErrorState, SectionHeader, SegmentedTabs, Skeleton, Text } from '@/ui';
+import { Badge, Banner, Button, EmptyState, ErrorState, Panel, SectionHeader, SegmentedTabs, Skeleton, Text } from '@/ui';
 import { colors } from '@/theme';
 import { errMessage } from '@/api/client';
 import { formatDateIST } from '@/lib/format';
@@ -82,12 +82,13 @@ export default function CandidateDetail() {
           ) : null}
           <OutcomeCard driveId={id!} d={d} perms={perms} />
           {d.status === 'selected' || d.offer ? (
-            <Card style={{ gap: 8 }}>
-              <Text variant="subhead">Offer</Text>
-              <OfferStatusLine d={d} />
-              {!d.offer && can(perms, 'proposeOffers') ? <Button label="Propose offer" icon="request-quote" full onPress={() => router.push(`/(recruiter)/drive/${id}/offer-new?applicationId=${d.applicationId}` as never)} /> : null}
-              {d.offer ? <Button label="See all offers" variant="secondary" full onPress={() => router.push(`/(recruiter)/drive/${id}/offers` as never)} /> : null}
-            </Card>
+            <Panel title="Offer" padded>
+              <View style={{ gap: 12 }}>
+                <OfferStatusLine d={d} />
+                {!d.offer && can(perms, 'proposeOffers') ? <Button label="Propose offer" icon="request-quote" full onPress={() => router.push(`/(recruiter)/drive/${id}/offer-new?applicationId=${d.applicationId}` as never)} /> : null}
+                {d.offer ? <Button label="See all offers" variant="secondary" full onPress={() => router.push(`/(recruiter)/drive/${id}/offers` as never)} /> : null}
+              </View>
+            </Panel>
           ) : null}
         </>
       ) : null}

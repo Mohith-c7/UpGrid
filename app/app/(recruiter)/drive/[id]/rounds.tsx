@@ -1,7 +1,7 @@
 import React from 'react';
 import { View } from 'react-native';
 import { useLocalSearchParams, useRouter } from 'expo-router';
-import { Badge, Card, EmptyState, ErrorState, Text } from '@/ui';
+import { Badge, Card, EmptyState, ErrorState, Icon, Text } from '@/ui';
 import { colors } from '@/theme';
 import { errMessage } from '@/api/client';
 import { useRounds } from '@/api/recruiter';
@@ -20,16 +20,24 @@ export default function RoundsScreen() {
       {q.isError ? <ErrorState message={errMessage(q.error)} onRetry={() => void q.refetch()} /> : null}
       {q.data && !q.data.length ? <EmptyState icon="timeline" title="No rounds yet" message="The placement cell sets up the rounds for this drive." actionLabel="Refresh" onAction={() => void q.refetch()} /> : null}
       {q.data?.map((r) => (
-        <Card key={r.id} onPress={() => router.push(`/(recruiter)/drive/${id}/round/${r.id}` as never)} accessibilityLabel={`Round ${r.seq}, ${r.name}`} style={{ gap: 8 }}>
-          <Text variant="subhead">{r.seq}. {r.name}</Text>
+        <Card key={r.id} onPress={() => router.push(`/(recruiter)/drive/${id}/round/${r.id}` as never)} accessibilityLabel={`Round ${r.seq}, ${r.name}`} style={{ gap: 10 }}>
+          <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12 }}>
+            <View style={{ width: 32, height: 32, borderRadius: 16, backgroundColor: r.resultsPublishedAt ? colors.successBg : colors.primaryTint, alignItems: 'center', justifyContent: 'center' }}>
+              <Text variant="caption" tabular style={{ fontWeight: '700' }} color={r.resultsPublishedAt ? colors.success : colors.primary}>{r.seq}</Text>
+            </View>
+            <View style={{ flex: 1, minWidth: 0 }}>
+              <Text variant="subhead" numberOfLines={1}>{r.name}</Text>
+              {r.scheduledAt ? <Text variant="caption" color={colors.muted} tabular>{formatDateTimeIST(r.scheduledAt)}</Text> : null}
+            </View>
+            <Icon name="chevron-right" size={22} color={colors.subtle} />
+          </View>
           <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 6 }}>
             <Badge label={ROUND_KIND_LABEL[r.kind] ?? r.kind} tone="neutral" />
             {r.mode ? <Badge label={r.mode === 'online' ? 'Online' : 'In person'} tone="neutral" /> : null}
             {r.resultsPublishedAt ? <Badge label="Results published" tone="success" icon="check" /> : null}
           </View>
-          {r.scheduledAt ? <Text variant="caption" color={colors.muted} tabular>{formatDateTimeIST(r.scheduledAt)}</Text> : null}
           {r.counts ? (
-            <View style={{ flexDirection: 'row', flexWrap: 'wrap', columnGap: 16, rowGap: 4 }}>
+            <View style={{ flexDirection: 'row', flexWrap: 'wrap', columnGap: 16, rowGap: 4, paddingTop: 10, borderTopWidth: 1, borderTopColor: colors.border }}>
               {Object.entries(r.counts).filter(([, n]) => typeof n === 'number').map(([k, n]) => (
                 <Text key={k} variant="caption" color={colors.muted} tabular><Text variant="caption" tabular style={{ fontWeight: '700' }}>{n}</Text> {k.replace(/_/g, ' ')}</Text>
               ))}

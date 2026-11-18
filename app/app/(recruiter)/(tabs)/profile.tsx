@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Alert, View } from 'react-native';
 import { useRouter } from 'expo-router';
-import { Avatar, Banner, Button, Card, ListRow, Text } from '@/ui';
+import { Avatar, Banner, Button, Card, IconBadge, ListRow, Panel, PanelRow, Text } from '@/ui';
 import { colors } from '@/theme';
 import { useAuth } from '@/api/hooks';
 import { flatten } from '@/api/hooks';
@@ -34,30 +34,38 @@ export default function RecruiterProfile() {
         </View>
       </Card>
 
-      <View style={{ gap: 8 }}>
-        <Text variant="subhead">Your access</Text>
-        {drives.isLoading ? <Text variant="caption" color={colors.muted}>Loading</Text> : null}
-        {drives.isError ? <Banner tone="error" message="Could not load your drives." action={{ label: 'Retry', onPress: () => void drives.refetch() }} /> : null}
-        {items.map((d) => {
+      {drives.isError ? <Banner tone="error" message="Could not load your drives." action={{ label: 'Retry', onPress: () => void drives.refetch() }} /> : null}
+      <Panel title="Your access" subtitle={drives.isLoading ? 'Loading' : `${items.length} drive${items.length === 1 ? '' : 's'}`}>
+        {!drives.isLoading && !items.length && !drives.isError ? (
+          <View style={{ padding: 16 }}>
+            <Text variant="caption" color={colors.muted}>You have not been added to any drives yet.</Text>
+          </View>
+        ) : null}
+        {items.map((d, i) => {
           const off = (Object.keys(PERMISSION_LABEL) as RecruiterPermissionKey[]).filter((k) => d.permissions[k] === false);
           return (
-            <Card key={d.driveId} style={{ gap: 4 }}>
-              <Text variant="subhead">{d.company.name}</Text>
-              <Text variant="caption" color={colors.muted}>{d.role}</Text>
-              <Text variant="caption" color={off.length ? colors.textSecondary : colors.muted}>
-                {off.length ? `Not allowed: ${off.map((k) => PERMISSION_LABEL[k].toLowerCase()).join(', ')}` : 'Full recruiter access'}
-              </Text>
-            </Card>
+            <PanelRow
+              key={d.driveId}
+              title={d.company.name}
+              subtitle={d.role}
+              left={<IconBadge name="work-outline" size={36} tone={off.length ? 'warning' : undefined} />}
+              meta={
+                <Text variant="caption" color={off.length ? colors.textSecondary : colors.muted}>
+                  {off.length ? `Not allowed: ${off.map((k) => PERMISSION_LABEL[k].toLowerCase()).join(', ')}` : 'Full recruiter access'}
+                </Text>
+              }
+              last={i === items.length - 1}
+            />
           );
         })}
-      </View>
+      </Panel>
 
-      <Card padding={0}>
+      <Panel title="Legal">
         <View style={{ paddingHorizontal: 16 }}>
           <ListRow title="Terms of use" icon="description" onPress={() => router.push('/(recruiter)/legal/terms' as never)} />
           <ListRow title="Privacy policy" icon="privacy-tip" onPress={() => router.push('/(recruiter)/legal/privacy' as never)} last />
         </View>
-      </Card>
+      </Panel>
       <Button label="Sign out" icon="logout" variant="secondary" full loading={busy} onPress={signOut} />
     </Page>
   );

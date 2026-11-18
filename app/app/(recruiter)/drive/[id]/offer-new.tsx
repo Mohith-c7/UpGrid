@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { View } from 'react-native';
 import { useLocalSearchParams, useRouter } from 'expo-router';
-import { Banner, Button, Card, EmptyState, Icon, Skeleton, Text, TextField, useToast } from '@/ui';
+import { Banner, Button, Card, EmptyState, Icon, Panel, Skeleton, Text, TextField, useToast } from '@/ui';
 import { colors } from '@/theme';
 import { errMessage, fieldErrors, getServerOffsetMs } from '@/api/client';
 import { useCandidate, useCreateOffer, usePolicyCheck, useRecruiterDrive } from '@/api/recruiter';
@@ -130,8 +130,8 @@ export default function OfferNew() {
       footer={<Button label="Send for approval" full loading={create.isPending} disabled={blocked || !ctc} onPress={submit} />}
     >
       <Banner tone="info" message="The placement cell approves every offer before the student can see it." />
-      <Card style={{ gap: 16 }}>
-        <Text variant="subhead">{stipend ? 'Stipend' : 'Compensation (LPA)'}</Text>
+      <Panel title={stipend ? 'Stipend' : 'Compensation'} subtitle={stipend ? 'Monthly amount in rupees' : 'All amounts in LPA'} padded>
+       <View style={{ gap: 16 }}>
         <TextField label={stipend ? 'Monthly stipend (rupees)' : 'Fixed pay (LPA)'} value={fixed} onChangeText={(t) => setFixed(t.replace(/[^\d.]/g, ''))} keyboardType="decimal-pad" error={errors.fixedLpa || null} />
         {!stipend ? (
           <>
@@ -139,10 +139,16 @@ export default function OfferNew() {
             <TextField label="Bonus (LPA, optional)" value={bonus} onChangeText={(t) => setBonus(t.replace(/[^\d.]/g, ''))} keyboardType="decimal-pad" error={errors.bonus || errors.bonusLpa || null} />
             <TextField label="Joining bonus (LPA, optional)" value={joinBonus} onChangeText={(t) => setJoinBonus(t.replace(/[^\d.]/g, ''))} keyboardType="decimal-pad" error={errors.joinBonus || errors.joiningBonusLpa || null} />
             <TextField label="ESOP note (optional)" value={esop} onChangeText={setEsop} maxLength={200} multiline />
-            {total !== null ? <Text variant="body" tabular style={{ fontWeight: '600' }}>Total: {total.toFixed(2)} LPA</Text> : null}
+            {total !== null ? (
+              <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'baseline', paddingTop: 12, borderTopWidth: 1, borderTopColor: colors.border }}>
+                <Text variant="caption" color={colors.muted}>Total package</Text>
+                <Text variant="subhead" tabular>{total.toFixed(2)} LPA</Text>
+              </View>
+            ) : null}
           </>
         ) : null}
-      </Card>
+       </View>
+      </Panel>
 
       {stipend ? <Banner tone="info" message="Policy checks are skipped for stipend offers." /> : null}
       {!stipend && check.isPending ? <Skeleton height={64} radius={14} /> : null}
@@ -150,8 +156,8 @@ export default function OfferNew() {
       {!stipend && policyError ? <Banner tone="warning" title="Could not check policy" message={policyError} /> : null}
       {!stipend && !policy && !policyError && !check.isPending ? <Text variant="caption" color={colors.muted}>Enter the fixed pay to see how this offer fits the placement policy.</Text> : null}
 
-      <Card style={{ gap: 16 }}>
-        <Text variant="subhead">Terms</Text>
+      <Panel title="Terms" padded>
+       <View style={{ gap: 16 }}>
         <TextField label="Work location" value={location} onChangeText={setLocation} maxLength={120} error={errors.location || null} />
         <PickerRow label="Joining date (IST)" icon="event" value={dateLabel(joining)} onPress={() => joinPicker.open('date')} error={errors.joiningDate} />
         {joinPicker.iosPicker}
@@ -161,7 +167,8 @@ export default function OfferNew() {
         {errors.expiresAt ? <View style={{ flexDirection: 'row', gap: 6 }}><Icon name="error-outline" size={20} color={colors.error} /><Text variant="caption" color={colors.error} style={{ flex: 1, fontWeight: '500' }}>{errors.expiresAt}</Text></View> : null}
         <TextField label="Offer letter link (optional)" value={letter} onChangeText={setLetter} autoCapitalize="none" keyboardType="url" error={errors.letterUrl || null} helper="https:// link" />
         <TextField label="Notes for the placement cell (optional)" value={notes} onChangeText={setNotes} maxLength={500} multiline error={errors.notes || null} />
-      </Card>
+       </View>
+      </Panel>
       {formError ? <Banner tone="error" message={formError} /> : null}
     </Page>
   );
