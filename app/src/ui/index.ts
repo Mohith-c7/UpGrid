@@ -25,6 +25,7 @@ export {
   MetricStrip,
   Panel,
   PanelRow,
+  IconBadge,
   MetricRow,
   KeyValueList,
   StepIndicator,

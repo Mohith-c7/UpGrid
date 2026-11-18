@@ -346,6 +346,21 @@ export function PanelRow({
   );
 }
 
+/** Tinted rounded square holding one icon; the standard leading visual for PanelRow. */
+export function IconBadge({ name, tone, size = 40 }: { name: IconName; tone?: Tone; size?: number }) {
+  const fg = tone ? toneColors[tone].fg : colors.primary;
+  const bg = tone ? toneColors[tone].bg : colors.primaryTint;
+  return (
+    <View
+      accessibilityElementsHidden
+      importantForAccessibility="no-hide-descendants"
+      style={{ width: size, height: size, borderRadius: radius.button, backgroundColor: bg, alignItems: 'center', justifyContent: 'center' }}
+    >
+      <Icon name={name} size={Math.round(size * 0.5)} color={fg} />
+    </View>
+  );
+}
+
 /* ======================= MetricRow ======================= */
 /** Label on the left, bold tabular value on the right; wraps cleanly at large font scale. */
 export function MetricRow({ label, value, hint, tone, last }: { label: string; value: string | number; hint?: string; tone?: Tone; last?: boolean }) {

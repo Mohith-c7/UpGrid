@@ -13,26 +13,32 @@ import { Page, SkeletonList } from '@/features/recruiter/kit';
 
 function DriveRow({ d, onPress }: { d: RecruiterDriveItem; onPress: () => void }) {
   const closed = d.status === 'closed';
+  const statusLabel = closed ? 'Closed' : d.status === 'published' || d.status === 'open' ? 'Open' : d.status.replace(/_/g, ' ');
+  const counts: [string, number][] = [
+    ['Candidates', d.counts.candidates], ['Shortlisted', d.counts.shortlisted], ['In rounds', d.counts.inRounds], ['Offers', d.counts.offers],
+  ];
   return (
-    <Card onPress={onPress} accessibilityLabel={`${d.company.name}, ${d.role}`} style={{ gap: 12 }}>
-      <View style={{ flexDirection: 'row', gap: 12, alignItems: 'center' }}>
+    <Card
+      onPress={onPress}
+      padding={0}
+      accessibilityLabel={`${d.role} at ${d.company.name}, ${statusLabel}. ${counts.map(([l, n]) => `${n} ${l.toLowerCase()}`).join(', ')}`}
+    >
+      <View style={{ flexDirection: 'row', gap: 12, alignItems: 'center', padding: 16 }}>
         <CompanyLogo name={d.company.name} logoUrl={d.company.logoUrl} size={44} />
-        <View style={{ flex: 1, minWidth: 0 }}>
+        <View style={{ flex: 1, minWidth: 0, gap: 2 }}>
           <Text variant="subhead" numberOfLines={2}>{d.role}</Text>
-          <Text variant="caption" color={colors.muted} numberOfLines={1}>{d.company.name}</Text>
-        </View>
-      </View>
-      <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 6 }}>
-        <Badge label={closed ? 'Closed' : d.status === 'published' || d.status === 'open' ? 'Open' : d.status.replace(/_/g, ' ')} tone={closed ? 'neutral' : 'success'} />
-        {d.deadline ? <Badge label={`Deadline ${formatDateIST(d.deadline)}`} tone="neutral" icon="event" /> : null}
-      </View>
-      <View style={{ flexDirection: 'row', flexWrap: 'wrap', columnGap: 16, rowGap: 4 }}>
-        {[
-          ['Candidates', d.counts.candidates], ['Shortlisted', d.counts.shortlisted], ['In rounds', d.counts.inRounds], ['Offers', d.counts.offers],
-        ].map(([label, n]) => (
-          <Text key={label as string} variant="caption" color={colors.muted} tabular>
-            <Text variant="caption" tabular style={{ fontWeight: '700' }}>{n as number}</Text> {label as string}
+          <Text variant="caption" color={colors.muted} numberOfLines={1}>
+            {d.company.name}{d.deadline ? ` · Closes ${formatDateIST(d.deadline)}` : ''}
           </Text>
+        </View>
+        <Badge label={statusLabel} tone={closed ? 'neutral' : 'success'} />
+      </View>
+      <View style={{ flexDirection: 'row', borderTopWidth: 1, borderTopColor: colors.border }}>
+        {counts.map(([label, n], i) => (
+          <View key={label} style={{ flex: 1, minWidth: 0, paddingVertical: 10, paddingHorizontal: 8, alignItems: 'center', borderLeftWidth: i === 0 ? 0 : 1, borderLeftColor: colors.border }}>
+            <Text variant="subhead" tabular color={n > 0 ? colors.ink : colors.subtle}>{n}</Text>
+            <Text variant="caption" color={colors.muted} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.8}>{label}</Text>
+          </View>
         ))}
       </View>
     </Card>

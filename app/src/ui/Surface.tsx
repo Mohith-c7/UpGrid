@@ -209,16 +209,20 @@ export function ListRow({
     <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12, minHeight: 56, paddingVertical: 8 }}>
       {left ??
         (icon ? (
-          <View style={{ width: 40, height: 40, borderRadius: radius.chip + 4, backgroundColor: colors.primaryTint, alignItems: 'center', justifyContent: 'center' }}>
-            <Icon name={icon} size={22} color={colors.primary} />
+          <View
+            accessibilityElementsHidden
+            importantForAccessibility="no-hide-descendants"
+            style={{ width: 40, height: 40, borderRadius: radius.button, backgroundColor: colors.primaryTint, alignItems: 'center', justifyContent: 'center' }}
+          >
+            <Icon name={icon} size={20} color={colors.primary} />
           </View>
         ) : null)}
-      <View style={{ flex: 1, minWidth: 0 }}>
+      <View style={{ flex: 1, minWidth: 0, gap: 2 }}>
         <Text variant="body" numberOfLines={2} ellipsizeMode="tail" style={{ fontWeight: '500' }}>
           {title}
         </Text>
         {subtitle ? (
-          <Text variant="caption" color={colors.muted} numberOfLines={3} ellipsizeMode="tail">
+          <Text variant="caption" color={colors.muted} numberOfLines={2} ellipsizeMode="tail">
             {subtitle}
           </Text>
         ) : null}

@@ -1,7 +1,7 @@
 import React from 'react';
 import { View } from 'react-native';
 import { useRouter } from 'expo-router';
-import { Banner, Button, Card, EmptyState, ListRow, OfflineBanner, Screen, ScreenHero, SectionHeader, Skeleton, StatTile, Text } from '@/ui';
+import { Banner, Button, Card, EmptyState, IconBadge, MetricStrip, OfflineBanner, Panel, PanelRow, Screen, ScreenHero, Skeleton, Text } from '@/ui';
 import { colors } from '@/theme';
 import { getServerOffsetMs } from '@/api/client';
 import { useAuth } from '@/api/hooks';
@@ -41,49 +41,70 @@ export default function Dashboard() {
 
       <View style={{ padding: 16, gap: spacing[4] }}>
         <OfflineBanner />
-        {q.isLoading ? (
-          <View style={{ gap: spacing[3] }} accessibilityLabel="Loading">
-            <View style={{ flexDirection: 'row', gap: spacing[3] }}><View style={{ flex: 1 }}><Skeleton height={132} radius={14} /></View><View style={{ flex: 1 }}><Skeleton height={132} radius={14} /></View></View>
-            <View style={{ flexDirection: 'row', gap: spacing[3] }}><View style={{ flex: 1 }}><Skeleton height={132} radius={14} /></View><View style={{ flex: 1 }}><Skeleton height={132} radius={14} /></View></View>
-            <Skeleton height={132} radius={14} />
-          </View>
-        ) : q.isError || !d ? (
+        {q.isError && !d ? (
           <Banner tone="error" title="Dashboard unavailable" message={(q.error as any)?.message ?? 'Could not load. Check your connection and retry.'} action={{ label: 'Try again', onPress: () => { void q.refetch(); } }} />
         ) : (
           <>
-            {d.pendingVerifications > 0 ? (
-              <Banner
-                tone="warning"
-                title={`${d.pendingVerifications} ${d.pendingVerifications === 1 ? 'verification needs' : 'verifications need'} review`}
-                message="Students are waiting for their academic details to be checked."
-                action={{ label: 'Review now', onPress: () => r.push('/(officer)/(tabs)/approvals') }}
-              />
-            ) : null}
-            <View style={{ gap: spacing[3] }}>
-              <View style={{ flexDirection: 'row', gap: spacing[3] }}>
-                <StatTile label="Open drives" value={d.openDrives} icon="work-outline" onPress={() => r.push('/(officer)/(tabs)/drives')} />
-                <StatTile label="Closing today" value={d.closingToday} icon="timer" tone={d.closingToday > 0 ? 'warning' : 'neutral'} onPress={() => r.push('/(officer)/(tabs)/drives')} />
-              </View>
-              <View style={{ flexDirection: 'row', gap: spacing[3] }}>
-                <StatTile label="Applications today" value={d.applicationsToday} icon="assignment" />
-                <StatTile label="Pending verifications" value={d.pendingVerifications} icon="fact-check" tone={d.pendingVerifications > 0 ? 'warning' : 'neutral'} onPress={() => r.push('/(officer)/(tabs)/approvals')} />
-              </View>
-            </View>
+            <MetricStrip
+              loading={q.isLoading}
+              items={[
+                { label: 'Open drives', value: d?.openDrives ?? 0, onPress: () => r.push('/(officer)/(tabs)/drives') },
+                { label: 'Closing today', value: d?.closingToday ?? 0, tone: (d?.closingToday ?? 0) > 0 ? 'warning' : undefined, onPress: () => r.push('/(officer)/(tabs)/drives') },
+                { label: 'Applied today', value: d?.applicationsToday ?? 0 },
+                { label: 'To verify', value: d?.pendingVerifications ?? 0, tone: (d?.pendingVerifications ?? 0) > 0 ? 'warning' : undefined, onPress: () => r.push('/(officer)/(tabs)/approvals') },
+              ]}
+            />
 
-            {testsOn ? (
-              <Card padding={0} style={{ paddingHorizontal: 16 }}>
-                <ListRow icon="quiz" title="Tests and question bank" subtitle="Build online tests, review results, shortlist" onPress={() => r.push('/(officer)/assessments')} last />
-              </Card>
-            ) : null}
-
-            <SectionHeader title="Upcoming deadlines" action={d.upcoming?.length ? { label: 'All drives', onPress: () => r.push('/(officer)/(tabs)/drives') } : undefined} />
-            {d.upcoming?.length ? (
-              <View style={{ gap: spacing[3] }}>
-                {d.upcoming.map((x) => <DriveCard key={x.id} d={x} onPress={() => r.push(`/(officer)/drive/${x.id}`)} />)}
+            {q.isLoading ? (
+              <View style={{ gap: spacing[3] }} accessibilityLabel="Loading">
+                <Skeleton height={120} radius={12} />
+                <Skeleton height={180} radius={12} />
               </View>
-            ) : (
-              <EmptyState icon="event-available" title="No upcoming deadlines" message="Published drives with future deadlines appear here." />
-            )}
+            ) : d ? (
+              <>
+                {d.pendingVerifications > 0 || d.closingToday > 0 ? (
+                  <Panel title="Needs your attention">
+                    {d.pendingVerifications > 0 ? (
+                      <PanelRow
+                        left={<IconBadge name="fact-check" tone="warning" />}
+                        title={`${d.pendingVerifications} ${d.pendingVerifications === 1 ? 'student' : 'students'} waiting for verification`}
+                        subtitle="Check academic details so they can apply"
+                        onPress={() => r.push('/(officer)/(tabs)/approvals')}
+                        last={d.closingToday === 0}
+                      />
+                    ) : null}
+                    {d.closingToday > 0 ? (
+                      <PanelRow
+                        left={<IconBadge name="timer" tone="warning" />}
+                        title={`${d.closingToday} ${d.closingToday === 1 ? 'drive closes' : 'drives close'} today`}
+                        subtitle="Remind students before applications close"
+                        onPress={() => r.push('/(officer)/(tabs)/drives')}
+                        last
+                      />
+                    ) : null}
+                  </Panel>
+                ) : null}
+
+                <Panel
+                  title="Upcoming deadlines"
+                  action={d.upcoming?.length ? { label: 'All drives', onPress: () => r.push('/(officer)/(tabs)/drives') } : undefined}
+                >
+                  {d.upcoming?.length ? (
+                    <View style={{ padding: 12, gap: spacing[3] }}>
+                      {d.upcoming.map((x) => <DriveCard key={x.id} d={x} onPress={() => r.push(`/(officer)/drive/${x.id}`)} />)}
+                    </View>
+                  ) : (
+                    <EmptyState icon="event-available" title="No upcoming deadlines" message="Published drives with future deadlines appear here." />
+                  )}
+                </Panel>
+
+                {testsOn ? (
+                  <Panel>
+                    <PanelRow left={<IconBadge name="quiz" />} title="Tests and question bank" subtitle="Build online tests, review results, shortlist" onPress={() => r.push('/(officer)/assessments')} last />
+                  </Panel>
+                ) : null}
+              </>
+            ) : null}
           </>
         )}
       </View>

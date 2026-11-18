@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { View } from 'react-native';
 import { useRouter } from 'expo-router';
-import { Avatar, Button, Card, CompanyLogo, EmptyState, Header, ListRow, MetricRow, OfflineBanner, Screen, SectionHeader, Sheet, Skeleton, Text, useToast } from '@/ui';
+import { Avatar, Button, Card, CompanyLogo, EmptyState, Header, IconBadge, ListRow, MetricRow, OfflineBanner, Panel, PanelRow, Screen, Sheet, Skeleton, Text, useToast } from '@/ui';
 import { colors } from '@/theme';
 import { useAuth } from '@/api/hooks';
 import { useFeature } from '@/config/features';
@@ -58,49 +58,46 @@ export default function More() {
           </View>
         </Card>
 
-        <SectionHeader title="Communicate" />
-        <Card padding={0} style={{ paddingHorizontal: 16 }}>
-          <ListRow icon="campaign" title="New announcement" subtitle="Send a message to all students or a drive's participants" onPress={() => r.push('/(officer)/announce')} />
-          <ListRow icon="support-agent" title="Support inbox" subtitle="Questions and disputes from students" onPress={() => r.push('/(officer)/support')} last />
-        </Card>
+        <Panel title="Communicate">
+          <PanelRow left={<IconBadge name="campaign" />} title="New announcement" subtitle="Message all students or a drive's participants" onPress={() => r.push('/(officer)/announce')} />
+          <PanelRow left={<IconBadge name="support-agent" />} title="Support inbox" subtitle="Questions and disputes from students" onPress={() => r.push('/(officer)/support')} last />
+        </Panel>
 
-        <SectionHeader title="Recent announcements" />
-        <QueryBoundary isLoading={ann.isLoading} isError={ann.isError} error={ann.error} onRetry={() => { void ann.refetch(); }}
-          isEmpty={(ann.data?.length ?? 0) === 0} empty={{ icon: 'campaign', title: 'No announcements yet', message: 'Messages you send to students are listed here.' }} skeletonRows={2} skeletonHeight={72}>
-          <Card padding={0} style={{ paddingHorizontal: 16 }}>
+        <Panel title="Manage">
+          <PanelRow left={<IconBadge name="admin-panel-settings" />} title="Operations" subtitle="Analytics, policy, restrictions, cohorts, calendar, audit" onPress={() => r.push('/(officer)/ops')} />
+          {testsOn ? <PanelRow left={<IconBadge name="quiz" />} title="Tests and question bank" subtitle="Build tests, review results, shortlist" onPress={() => r.push('/(officer)/assessments')} /> : null}
+          <PanelRow left={<IconBadge name="upload-file" />} title="Import academic data" subtitle="Update CGPA, backlogs and more from CSV" onPress={() => r.push('/(officer)/import-students')} />
+          <PanelRow left={<IconBadge name="business" />} title="Companies" subtitle={drives.isLoading ? 'Loading…' : `${companies.length} from your drives`} onPress={() => setCompaniesOpen(true)} last />
+        </Panel>
+
+        <Panel title="Recent announcements">
+          <QueryBoundary isLoading={ann.isLoading} isError={ann.isError} error={ann.error} onRetry={() => { void ann.refetch(); }}
+            isEmpty={(ann.data?.length ?? 0) === 0} empty={{ icon: 'campaign', title: 'No announcements yet', message: 'Messages you send to students are listed here.' }} skeletonRows={2} skeletonHeight={64}>
             {ann.data?.slice(0, 5).map((a, i, arr) => (
-              <ListRow key={a.id} title={a.title} subtitle={[a.createdAt ? timeAgo(a.createdAt) : null, a.body].filter(Boolean).join(' · ')} last={i === arr.length - 1} />
+              <PanelRow key={a.id} title={a.title} subtitle={a.body} meta={a.createdAt ? <Text variant="caption" color={colors.subtle}>{timeAgo(a.createdAt)}</Text> : undefined} last={i === arr.length - 1} />
             ))}
-          </Card>
-        </QueryBoundary>
+          </QueryBoundary>
+        </Panel>
 
-        <SectionHeader title="Manage" />
-        <Card padding={0} style={{ paddingHorizontal: 16 }}>
-          <ListRow icon="admin-panel-settings" title="Operations" subtitle="Analytics, policy, restrictions, cohorts, calendar, CRM, audit" onPress={() => r.push('/(officer)/ops')} />
-          {testsOn ? <ListRow icon="quiz" title="Tests and question bank" subtitle="Build online tests, review results, shortlist" onPress={() => r.push('/(officer)/assessments')} /> : null}
-          <ListRow icon="upload-file" title="Import academic data" subtitle="Update CGPA, backlogs and more from a CSV file" onPress={() => r.push('/(officer)/import-students')} />
-          <ListRow icon="business" title="Companies" subtitle={drives.isLoading ? 'Loading…' : `${companies.length} from your drives`} onPress={() => setCompaniesOpen(true)} last />
-        </Card>
+        <Panel title="Reports summary" subtitle="Based on the drives loaded on this device">
+          {drives.isLoading || dash.isLoading ? <View style={{ padding: 16 }}><Skeleton height={200} radius={12} /></View> : drives.isError || dash.isError ? (
+            <QueryBoundary isLoading={false} isError error={drives.error ?? dash.error} onRetry={refresh}>{null}</QueryBoundary>
+          ) : (
+            <View style={{ paddingHorizontal: 16 }}>
+              <MetricRow label="Total drives" value={items.length} />
+              <MetricRow label="Open or closing" value={count('open') + count('closing')} />
+              <MetricRow label="Closed" value={count('closed')} />
+              <MetricRow label="Drafts" value={count('draft')} />
+              <MetricRow label="Applications today" value={dash.data?.applicationsToday ?? 0} />
+              <MetricRow label="Pending verifications" value={dash.data?.pendingVerifications ?? 0} last />
+            </View>
+          )}
+        </Panel>
 
-        <SectionHeader title="Reports summary" subtitle="Based on the drives loaded on this device" />
-        {drives.isLoading || dash.isLoading ? <Skeleton height={232} radius={14} /> : drives.isError || dash.isError ? (
-          <QueryBoundary isLoading={false} isError error={drives.error ?? dash.error} onRetry={refresh}>{null}</QueryBoundary>
-        ) : (
-          <Card padding={0} style={{ paddingHorizontal: 16 }}>
-            <MetricRow label="Total drives" value={items.length} />
-            <MetricRow label="Open or closing" value={count('open') + count('closing')} />
-            <MetricRow label="Closed" value={count('closed')} />
-            <MetricRow label="Drafts" value={count('draft')} />
-            <MetricRow label="Applications today" value={dash.data?.applicationsToday ?? 0} />
-            <MetricRow label="Pending verifications" value={dash.data?.pendingVerifications ?? 0} last />
-          </Card>
-        )}
-
-        <SectionHeader title="Legal" />
-        <Card padding={0} style={{ paddingHorizontal: 16 }}>
-          <ListRow icon="description" title="Terms of use" subtitle="Draft" onPress={() => r.push('/(officer)/legal/terms')} />
-          <ListRow icon="privacy-tip" title="Privacy policy" subtitle="Draft" onPress={() => r.push('/(officer)/legal/privacy')} last />
-        </Card>
+        <Panel title="Legal">
+          <PanelRow title="Terms of use" subtitle="Draft" onPress={() => r.push('/(officer)/legal/terms')} />
+          <PanelRow title="Privacy policy" subtitle="Draft" onPress={() => r.push('/(officer)/legal/privacy')} last />
+        </Panel>
 
         <Button label="Log out" icon="logout" variant="secondary" full onPress={() => setConfirmOut(true)} />
       </View>
