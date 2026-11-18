@@ -8,7 +8,7 @@ import type { DriveSummary } from '@/api/types';
 import { formatCtc, relativeDeadline } from '@/lib/format';
 import { Text } from './Text';
 import { Icon, type IconName } from './Icon';
-import { Badge, Card, Chip, CompanyLogo } from './Surface';
+import { Badge, Card, CompanyLogo } from './Surface';
 
 /* ======================= BrandLogo ======================= */
 /** Flat rounded-square product mark. onDark: white tile with indigo check (for indigo fills); otherwise indigo tile. */
@@ -716,17 +716,22 @@ export function DriveCard({ drive, onPress, onToggleSave, variant = 'full', serv
           </View>
         </View>
 
-        {!compact && (locText || drive.workMode) ? (
-          <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 8 }}>
-            {locText ? <Chip label={locText} icon="place" /> : null}
-            {drive.workMode ? <Chip label={drive.workMode} icon="work-outline" /> : null}
-          </View>
-        ) : null}
-
         <View style={{ flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', columnGap: 12, rowGap: 4 }}>
-          <Text variant={compact ? 'subhead' : 'heading'} tabular numberOfLines={1} style={{ flexShrink: 1 }}>
+          <Text variant="subhead" tabular numberOfLines={1} style={{ flexShrink: 1 }}>
             {pkg}
           </Text>
+          {!compact && locText ? (
+            <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4, flexShrink: 1 }}>
+              <Icon name="place" size={14} color={colors.subtle} />
+              <Text variant="caption" color={colors.muted} numberOfLines={1} style={{ flexShrink: 1 }}>{locText}</Text>
+            </View>
+          ) : null}
+          {!compact && drive.workMode ? (
+            <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }}>
+              <Icon name="work-outline" size={14} color={colors.subtle} />
+              <Text variant="caption" color={colors.muted} numberOfLines={1}>{drive.workMode}</Text>
+            </View>
+          ) : null}
           {compact ? (
             <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }}>
               <Icon name={soon ? 'timer' : 'schedule'} size={16} color={dColor} />
