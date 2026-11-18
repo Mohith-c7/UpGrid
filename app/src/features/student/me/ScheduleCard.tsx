@@ -71,7 +71,7 @@ export function ScheduleCard({ schedule, company, role }: { schedule: Schedule; 
           <View style={{ flex: 1, minWidth: 0 }}>
             <Text variant="caption" color={colors.muted}>{schedule.mode === 'online' ? 'Online' : 'In person'}</Text>
             {isLink ? (
-              <Pressable onPress={openLink} accessibilityRole="link" accessibilityLabel="Open meeting link" style={{ minHeight: MIN_TOUCH, justifyContent: 'center' }}>
+              <Pressable onPress={openLink} accessibilityRole="link" accessibilityLabel="Open meeting link" style={({ pressed }) => ({ minHeight: MIN_TOUCH, justifyContent: 'center', opacity: pressed ? 0.6 : 1 })}>
                 <Text variant="body" color={colors.info} style={{ textDecorationLine: 'underline' }} numberOfLines={3} ellipsizeMode="middle">{schedule.venueOrLink}</Text>
               </Pressable>
             ) : (

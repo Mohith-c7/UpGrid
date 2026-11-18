@@ -345,7 +345,7 @@ function DriveBody({ d, offset, nowMs, expired, onExpire, refreshing, onRefresh,
                   onPress={() => void Linking.openURL(`mailto:${contactObj.email}`).catch(() => undefined)}
                   accessibilityRole="link"
                   accessibilityLabel={`Email ${contactObj.email}`}
-                  style={{ minHeight: MIN_TOUCH, flexDirection: 'row', gap: spacing.sm, alignItems: 'center' }}
+                  style={({ pressed }) => ({ minHeight: MIN_TOUCH, flexDirection: 'row', gap: spacing.sm, alignItems: 'center', opacity: pressed ? 0.6 : 1 })}
                 >
                   <Icon name="mail-outline" size={20} color={colors.info} />
                   <Text variant="body" color={colors.info} numberOfLines={1} ellipsizeMode="middle" style={{ flex: 1 }}>{contactObj.email}</Text>
@@ -356,7 +356,7 @@ function DriveBody({ d, offset, nowMs, expired, onExpire, refreshing, onRefresh,
                   onPress={() => void Linking.openURL(`tel:${contactObj.phone}`).catch(() => undefined)}
                   accessibilityRole="link"
                   accessibilityLabel={`Call ${contactObj.phone}`}
-                  style={{ minHeight: MIN_TOUCH, flexDirection: 'row', gap: spacing.sm, alignItems: 'center' }}
+                  style={({ pressed }) => ({ minHeight: MIN_TOUCH, flexDirection: 'row', gap: spacing.sm, alignItems: 'center', opacity: pressed ? 0.6 : 1 })}
                 >
                   <Icon name="call" size={20} color={colors.info} />
                   <Text variant="body" tabular color={colors.info} style={{ flex: 1 }}>{contactObj.phone}</Text>

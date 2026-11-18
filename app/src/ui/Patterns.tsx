@@ -137,7 +137,7 @@ export function Banner({
           {message}
         </Text>
         {action ? (
-          <Pressable onPress={action.onPress} accessibilityRole="button" accessibilityLabel={action.label} style={{ minHeight: MIN_TOUCH, justifyContent: 'center', alignSelf: 'flex-start' }}>
+          <Pressable onPress={action.onPress} accessibilityRole="button" accessibilityLabel={action.label} style={({ pressed }) => ({ minHeight: MIN_TOUCH, justifyContent: 'center', alignSelf: 'flex-start', opacity: pressed ? 0.6 : 1 })}>
             <Text variant="button" color={t.fg} style={{ textDecorationLine: 'underline' }}>
               {action.label}
             </Text>

@@ -109,7 +109,7 @@ export default function CalendarScreen() {
           const k = KIND[i.kind] ?? { label: i.kind, tone: 'neutral' as const };
           return (
             <Pressable key={`${i.kind}-${i.id}`} onPress={i.driveId ? () => open(i) : undefined} accessibilityRole={i.driveId ? 'button' : undefined}
-              style={{ backgroundColor: colors.surface, borderRadius: radius.card, borderWidth: 1, borderColor: colors.border, padding: 14, gap: 6, minHeight: MIN_TOUCH }}>
+                  style={({ pressed }) => ({ backgroundColor: pressed && i.driveId ? colors.pressed : colors.surface, borderRadius: radius.card, borderWidth: 1, borderColor: colors.border, padding: 14, gap: 6, minHeight: MIN_TOUCH })}>
               <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 8, justifyContent: 'space-between', alignItems: 'center' }}>
                 <Text variant="subhead" style={{ flexShrink: 1 }}>{i.title}</Text>
                 <Badge label={k.label} tone={k.tone} />

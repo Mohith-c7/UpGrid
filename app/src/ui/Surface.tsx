@@ -106,7 +106,7 @@ export function Chip({
       accessibilityRole="button"
       accessibilityLabel={label}
       accessibilityState={{ selected: !!selected }}
-      style={{ minHeight: MIN_TOUCH, justifyContent: 'center', maxWidth: '100%' }}
+      style={({ pressed }) => ({ minHeight: MIN_TOUCH, justifyContent: 'center', maxWidth: '100%', opacity: pressed ? 0.6 : 1 })}
     >
       {pill}
     </Pressable>
@@ -273,7 +273,7 @@ export function SectionHeader({
           onPress={action.onPress}
           accessibilityRole="button"
           accessibilityLabel={action.label}
-          style={{ minHeight: MIN_TOUCH, minWidth: MIN_TOUCH, justifyContent: 'center', alignItems: 'flex-end', paddingLeft: 12 }}
+          style={({ pressed }) => ({ minHeight: MIN_TOUCH, minWidth: MIN_TOUCH, justifyContent: 'center', alignItems: 'flex-end', paddingLeft: 12, opacity: pressed ? 0.6 : 1 })}
         >
           <Text variant="button" color={colors.primary}>
             {action.label}
