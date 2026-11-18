@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Pressable, View } from 'react-native';
 import { useLocalSearchParams, useRouter } from 'expo-router';
-import { Banner, Button, Card, Chip, EmptyState, ErrorState, Icon, SectionHeader, SegmentedControl, Select, Skeleton, Text, TextField, useToast } from '@/ui';
+import { Banner, Button, Card, Chip, EmptyState, ErrorState, Icon, SectionHeader, SegmentedControl, Select, Skeleton, Text, TextField, useToast, Panel } from '@/ui';
 import { colors, MIN_TOUCH } from '@/theme';
 import { ApiError, errMessage } from '@/api/client';
 import { CODE_LANGUAGES, useQuestion, useSaveQuestion, type CodeLanguage } from '@/api/assessments';
@@ -94,8 +94,7 @@ export default function QuestionEditor() {
 
       {isMcq ? (
         <>
-          <SectionHeader title="Options" subtitle={f.type === 'mcq_single' ? 'Mark the one correct option' : 'Mark every correct option'} />
-          <Card style={{ gap: 12 }}>
+          <Panel title="Options" subtitle={f.type === 'mcq_single' ? 'Mark the one correct option' : 'Mark every correct option'} padded><View style={{ gap: 12 }}>
             {f.options.map((o, i) => (
               <View key={i} style={{ gap: 6 }}>
                 <View style={{ flexDirection: 'row', alignItems: 'flex-end', gap: 4 }}>
@@ -121,7 +120,7 @@ export default function QuestionEditor() {
             {e('options') ? <Text variant="caption" color={colors.error}>{e('options')}</Text> : null}
             {e('answer.correct') ? <View style={{ flexDirection: 'row', gap: 6 }}><Icon name="error-outline" size={20} color={colors.error} /><Text variant="caption" color={colors.error} style={{ flex: 1, fontWeight: '500' }}>{e('answer.correct')}</Text></View> : null}
             <Button label="Add option" icon="add" variant="secondary" size="sm" disabled={f.options.length >= 8} onPress={addOption} />
-          </Card>
+          </View></Panel>
         </>
       ) : null}
 
@@ -142,8 +141,7 @@ export default function QuestionEditor() {
 
       {f.type === 'coding' ? (
         <>
-          <SectionHeader title="Coding settings" />
-          <Card style={{ gap: 14 }}>
+          <Panel title="Coding settings" padded><View style={{ gap: 14 }}>
             <TextField label="Constraints and input format (markdown)" value={f.constraints} onChangeText={(t) => set('constraints', t)} multiline />
             <View style={{ gap: 8 }}>
               <Text variant="caption" color={colors.textSecondary} style={{ fontWeight: '600' }}>Languages allowed</Text>
@@ -159,7 +157,7 @@ export default function QuestionEditor() {
               <SegmentedControl value={f.compareMode} onChange={(v) => set('compareMode', v as any)} options={[{ value: 'tokens', label: 'Ignore whitespace' }, { value: 'lines', label: 'Line by line' }]} />
             </View>
             <NumberField label="Float tolerance (optional)" value={f.floatTol} onChange={(t) => set('floatTol', t)} error={e('coding.compare.floatTolerance')} helper="For problems with decimal output, for example 0.000001" />
-          </Card>
+          </View></Panel>
 
           <SectionHeader title="Test cases" subtitle={`${f.tests.filter((t) => t.kind === 'sample').length} sample, ${f.tests.filter((t) => t.kind === 'hidden').length} hidden. Students see samples only.`} />
           {e('coding.testCases') ? <Banner tone="error" message={e('coding.testCases')!} /> : null}
@@ -183,27 +181,24 @@ export default function QuestionEditor() {
             <Button label="Add hidden" icon="add" variant="secondary" size="sm" onPress={() => addTest('hidden')} />
           </View>
 
-          <SectionHeader title="Starter code" subtitle="Optional, per language. Java must declare public class Main." />
-          <Card style={{ gap: 14 }}>
+          <Panel title="Starter code" subtitle="Optional, per language. Java must declare public class Main." padded><View style={{ gap: 14 }}>
             {f.languages.length === 0 ? <Text variant="caption" color={colors.muted}>Choose a language above first.</Text> : null}
             {f.languages.map((l) => (
               <TextField key={l} label={`${LANG_LABEL[l]} starter`} value={f.starter[l] ?? ''} onChangeText={(v) => setF((p) => ({ ...p, starter: { ...p.starter, [l]: v } }))} multiline autoCapitalize="none" error={e(`coding.starterCode.${l}`)} />
             ))}
-          </Card>
+          </View></Panel>
 
-          <SectionHeader title="Reference solution" subtitle="Optional. Only officers can see it." />
-          <Card style={{ gap: 14 }}>
+          <Panel title="Reference solution" subtitle="Optional. Only officers can see it." padded><View style={{ gap: 14 }}>
             <Select label="Language" value={f.refLang || null} onChange={(v) => set('refLang', v as CodeLanguage)} placeholder="None" options={f.languages.map((l) => ({ value: l, label: LANG_LABEL[l] }))} error={e('coding.referenceSolution')} />
             <TextField label="Code" value={f.refCode} onChangeText={(v) => set('refCode', v)} multiline autoCapitalize="none" />
-          </Card>
+          </View></Panel>
         </>
       ) : null}
 
-      <SectionHeader title="Explanation and practice" />
-      <Card style={{ gap: 10 }}>
+      <Panel title="Explanation and practice" padded><View style={{ gap: 10 }}>
         <TextField label="Explanation (optional)" value={f.explanation} onChangeText={(t) => set('explanation', t)} multiline error={e('explanation')} helper="Students see it in the review when the test allows review." />
         <ToggleRow label="Available as a practice question" hint={f.type === 'coding' ? 'Coding practice needs 1 sample and 2 hidden tests.' : 'Students can practise it outside tests.'} value={f.practice} onChange={(v) => set('practice', v)} />
-      </Card>
+      </View></Panel>
     </Frame>
   );
 }

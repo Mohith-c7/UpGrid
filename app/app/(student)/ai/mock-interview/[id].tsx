@@ -1,7 +1,7 @@
 import React from 'react';
 import { View } from 'react-native';
 import { useLocalSearchParams, useRouter } from 'expo-router';
-import { Badge, Banner, Button, Card, EmptyState, ErrorState, MetricRow, ProgressBar, SectionHeader, Skeleton, Text, TextField } from '@/ui';
+import { Badge, Banner, Button, Card, EmptyState, ErrorState, MetricRow, ProgressBar, SectionHeader, Skeleton, Text, TextField, Panel } from '@/ui';
 import { Icon } from '@/ui';
 import { colors } from '@/theme';
 import { Page, sp } from '@/features/student/me/kit';
@@ -193,8 +193,7 @@ function ReportView({ role, report, turns, onDone }: { role: string; report: Moc
       </Card>
 
       <View style={{ gap: sp.md }}>
-        <SectionHeader title="How you did" />
-        <Card>
+        <Panel title="How you did" padded>
           <View style={{ gap: sp.lg }}>
             {parts.map((p) => (
               <View key={p.label} style={{ gap: sp.xs }}>
@@ -203,13 +202,12 @@ function ReportView({ role, report, turns, onDone }: { role: string; report: Moc
               </View>
             ))}
           </View>
-        </Card>
+        </Panel>
       </View>
 
       {(report.top_tips ?? []).length ? (
         <View style={{ gap: sp.md }}>
-          <SectionHeader title="Top tips" />
-          <Card><Bullets title="" items={report.top_tips ?? []} icon="trending-up" color={colors.primary} /></Card>
+          <Panel title="Top tips" padded><Bullets title="" items={report.top_tips ?? []} icon="trending-up" color={colors.primary} /></Panel>
         </View>
       ) : null}
 

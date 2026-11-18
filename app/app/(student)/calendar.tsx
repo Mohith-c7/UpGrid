@@ -2,7 +2,7 @@ import { useCopy } from '@/lib/copy';
 import React, { useCallback, useMemo, useState } from 'react';
 import { Linking, Share, View } from 'react-native';
 import { useRouter } from 'expo-router';
-import { Badge, Banner, Button, Card, CodeBlock, EmptyState, Icon, SectionHeader, SegmentedControl, Text, useToast, type IconName } from '@/ui';
+import { Badge, Banner, Button, Card, CodeBlock, EmptyState, Icon, SectionHeader, SegmentedControl, Text, useToast, type IconName, Panel } from '@/ui';
 import { colors } from '@/theme';
 import { Page, QueryBoundary, confirm, sp } from '@/features/student/me/kit';
 import { useFeature } from '@/config/features';
@@ -61,8 +61,7 @@ function SubscribeCard() {
   const active = status.data?.active === true;
   return (
     <View style={{ gap: sp.md }}>
-      <SectionHeader title="Subscribe in your calendar app" subtitle="Google Calendar, Outlook or Apple Calendar" />
-      <Card>
+      <Panel title="Subscribe in your calendar app" subtitle="Google Calendar, Outlook or Apple Calendar" padded>
         <View style={{ gap: sp.md }}>
           {status.isLoading ? (
             <Text variant="body" color={colors.muted}>Checking your calendar link...</Text>
@@ -93,7 +92,7 @@ function SubscribeCard() {
             </>
           )}
         </View>
-      </Card>
+      </Panel>
     </View>
   );
 }

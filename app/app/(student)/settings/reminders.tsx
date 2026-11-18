@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { AppState, Linking, Pressable, Switch, View } from 'react-native';
 import * as Notifications from 'expo-notifications';
-import { Badge, Banner, Button, Card, SectionHeader, Text, TextField, useToast } from '@/ui';
+import { Badge, Banner, Button, Text, TextField, useToast, Panel } from '@/ui';
 import { colors } from '@/theme';
 import type { ReminderSettings } from '@/api/types';
 import { errMessage, useReminderMutations, useReminderSettings } from '@/features/student/me/data';
@@ -93,27 +93,24 @@ export default function RemindersScreen() {
             <Text variant="body" color={colors.muted}>Get a nudge before a drive you can apply to closes. Reminders stop once you apply or the deadline passes. Changes save as you switch.</Text>
 
             <View style={{ gap: sp.md }}>
-              <SectionHeader title="When" />
-              <Card>
+              <Panel title="When" padded>
                 <SwitchRow title="60 minutes before" value={s.t60} disabled={toggling} onChange={(v) => toggle({ t60: v })} />
                 <SwitchRow title="30 minutes before" value={s.t30} disabled={toggling} onChange={(v) => toggle({ t30: v })} />
                 <SwitchRow title="15 minutes before" value={s.t15} disabled={toggling} onChange={(v) => toggle({ t15: v })} last />
-              </Card>
+              </Panel>
               {noTimes ? <Banner tone="warning" message="All three are off, so you will get no deadline reminders. You can still see deadlines in each drive." /> : null}
             </View>
 
             <View style={{ gap: sp.md }}>
-              <SectionHeader title="How" />
-              <Card>
+              <Panel title="How" padded>
                 <SwitchRow title="Push notifications" subtitle="Alerts on this phone" value={s.push} disabled={toggling} onChange={(v) => toggle({ push: v })} />
                 <SwitchRow title="In-app notifications" subtitle="Listed under Notifications" value={s.inApp} disabled={toggling} onChange={(v) => toggle({ inApp: v })} last />
-              </Card>
+              </Panel>
               {noChannel ? <Banner tone="warning" message="Push and in-app are both off, so reminders will not reach you anywhere." /> : null}
             </View>
 
             <View style={{ gap: sp.md }}>
-              <SectionHeader title="Phone permission" />
-              <Card>
+              <Panel title="Phone permission" padded>
                 <View style={{ gap: sp.md }}>
                   <View style={{ gap: sp.xs }}>
                     <Text variant="body" style={{ fontWeight: '500' }}>Notifications on this phone</Text>
@@ -130,12 +127,11 @@ export default function RemindersScreen() {
                   {perm === 'undetermined' ? <Button label="Allow notifications" variant="secondary" full loading={asking} onPress={() => askPerm()} /> : null}
                   {perm !== 'granted' ? <Button label="Open phone settings" variant="secondary" full onPress={async () => { try { await Linking.openSettings(); } catch { toast.show('Could not open settings', 'error'); } }} /> : null}
                 </View>
-              </Card>
+              </Panel>
             </View>
 
             <View style={{ gap: sp.md }}>
-              <SectionHeader title="Quiet hours" subtitle="India Standard Time" />
-              <Card>
+              <Panel title="Quiet hours" subtitle="India Standard Time" padded>
                 <SwitchRow title="Pause push during quiet hours" subtitle="In-app reminders are still delivered" value={s.quietHours.enabled} disabled={toggling} onChange={(v) => toggle({ quietHours: { ...s.quietHours, enabled: v } })} last />
                 <View style={{ gap: sp.lg, marginTop: sp.md }}>
                   <View style={{ flexDirection: 'row', gap: sp.md }}>
@@ -149,7 +145,7 @@ export default function RemindersScreen() {
                   <Text variant="caption" color={colors.muted}>24-hour times. A window like 22:00 to 07:00 runs overnight. A reminder that falls inside it arrives in the app only.</Text>
                   <Button label="Save quiet hours" full loading={savingQuiet} disabled={!quietDirty} onPress={() => saveQuiet()} />
                 </View>
-              </Card>
+              </Panel>
             </View>
 
             <Button label="Restore defaults" variant="ghost" icon="restore" full loading={resetting}

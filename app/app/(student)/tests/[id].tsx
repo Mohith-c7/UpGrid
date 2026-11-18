@@ -2,7 +2,7 @@ import React, { useMemo, useState } from 'react';
 import { ScrollView, View } from 'react-native';
 import { useIsFocused, useLocalSearchParams, useRouter } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
-import { Badge, Banner, Button, Card, Checkbox, EmptyState, ErrorState, Header, KeyValueList, OfflineBanner, Screen, SectionHeader, Skeleton, Text } from '@/ui';
+import { Badge, Banner, Button, Card, Checkbox, EmptyState, ErrorState, Header, KeyValueList, OfflineBanner, Screen, SectionHeader, Skeleton, Text, Panel } from '@/ui';
 import { colors, SCREEN_PADDING } from '@/theme';
 import { ApiError } from '@/api/client';
 import { useMyAssessment, useStartAttempt } from '@/api/tests';
@@ -141,8 +141,7 @@ function Detail({ id }: { id: string }) {
 
         {a.instructions?.trim() ? (
           <View style={{ gap: sp.md }}>
-            <SectionHeader title="Instructions" />
-            <Card><MarkdownLite text={a.instructions} /></Card>
+            <Panel title="Instructions" padded><MarkdownLite text={a.instructions} /></Panel>
           </View>
         ) : null}
 

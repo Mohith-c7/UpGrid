@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Pressable, View } from 'react-native';
-import { Badge, Banner, Button, Card, Chip, Icon, KeyValueList, SectionHeader, SegmentedControl, Select, Text, TextField } from '@/ui';
+import { Badge, Banner, Button, Card, Chip, Icon, KeyValueList, SegmentedControl, Select, Text, TextField, Panel } from '@/ui';
 import { colors, MIN_TOUCH, radius } from '@/theme';
 import type { AssessmentSettings, AudiencePreview, AudienceType, Section, SectionQuestion } from '@/api/assessments';
 import { getServerOffsetMs } from '@/api/client';
@@ -211,8 +211,7 @@ export function StepAudience({ f, patch, drives, preview, previewBusy, previewEr
         {a.type === 'cohort' ? <TextField label="Cohort ID" value={a.cohortId ?? ''} onChangeText={(t) => setA({ cohortId: t })} autoCapitalize="none" helper="Publishing fails if cohorts are not set up on the server." /> : null}
       </Card>
 
-      <SectionHeader title="Audience preview" />
-      <Card style={{ gap: 10 }}>
+      <Panel title="Audience preview" padded><View style={{ gap: 10 }}>
         <Text variant="caption" color={colors.muted}>Resolves who would receive this test right now. Saves your draft first.</Text>
         <Button label={preview ? 'Refresh preview' : 'Preview audience'} icon="groups" variant="secondary" full loading={previewBusy} onPress={onPreview} />
         {previewError ? <Banner tone="error" message={previewError} /> : null}
@@ -225,7 +224,7 @@ export function StepAudience({ f, patch, drives, preview, previewBusy, previewEr
             {preview.sample?.length ? <Text variant="caption" color={colors.muted}>For example: {preview.sample.map((s) => s.name).join(', ')}</Text> : null}
           </View>
         ) : null}
-      </Card>
+      </View></Panel>
       <StudentPickerSheet visible={pickOpen} onClose={() => setPickOpen(false)}
         selected={Object.fromEntries(ids.map((id) => [id, f.studentNames[id] ?? id]))}
         onDone={(m) => patch({ audience: { ...a, studentIds: Object.keys(m) }, studentNames: { ...f.studentNames, ...m } })} />

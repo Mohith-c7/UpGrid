@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { View } from 'react-native';
 import * as DocumentPicker from 'expo-document-picker';
-import { Badge, Banner, Button, Card, Header, Icon, MetricRow, OfflineBanner, Screen, SectionHeader, Sheet, Text, useIsOnline, useToast, Panel } from '@/ui';
+import { Badge, Banner, Button, Card, Header, Icon, MetricRow, OfflineBanner, Screen, Sheet, Text, useIsOnline, useToast, Panel } from '@/ui';
 import { colors } from '@/theme';
 import { errMessage } from '@/api/client';
 import { useImportStudents } from '@/api/hooks';
@@ -177,8 +177,7 @@ export default function ImportStudents() {
               <Banner tone="error" title="Cannot read this file" message={parsed.fileError} />
             ) : parsed ? (
               <>
-                <SectionHeader title="Preview" />
-                <Card style={{ gap: 10 }}>
+                <Panel title="Preview" padded><View style={{ gap: 10 }}>
                   <View style={{ flexDirection: 'row', gap: 8, alignItems: 'center' }}>
                     <Icon name="description" size={22} color={colors.primary} />
                     <Text variant="subhead" numberOfLines={2} style={{ flex: 1 }}>{fileName}</Text>
@@ -190,7 +189,7 @@ export default function ImportStudents() {
                   </View>
                   <Text variant="caption" color={colors.muted}>Columns used: {parsed.columns.map((c) => COLUMN_LABEL[c] ?? c).join(', ')}</Text>
                   {parsed.ignoredHeaders.length > 0 ? <Text variant="caption" color={colors.warning}>Ignored columns: {parsed.ignoredHeaders.join(', ')}</Text> : null}
-                </Card>
+                </View></Panel>
                 {sample.length > 0 ? (
                   <Card style={{ gap: 10 }}>
                     <Text variant="subhead">First rows</Text>

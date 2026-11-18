@@ -1,7 +1,7 @@
 import React from 'react';
 import { View } from 'react-native';
 import { useRouter } from 'expo-router';
-import { Banner, Button, Card, SectionHeader, Text, useToast } from '@/ui';
+import { Banner, Button, Card, Text, useToast, Panel } from '@/ui';
 import { colors } from '@/theme';
 import { confirm, Page, sp, QueryBoundary } from '@/features/student/me/kit';
 import { errMessage } from '@/api/client';
@@ -50,14 +50,13 @@ export default function AiConsent() {
               </Card>
               <ConsentPanel granted={granted} />
               <View style={{ gap: sp.md }}>
-                <SectionHeader title="Your AI data" subtitle="Conversations and mock interviews are saved so you can reopen them." />
-                <Card>
+                <Panel title="Your AI data" subtitle="Conversations and mock interviews are saved so you can reopen them." padded>
                   <View style={{ gap: sp.md }}>
                     <Text variant="body" color={colors.textSecondary}>Delete everything the AI tools stored about you. This cannot be undone.</Text>
                     {error ? <Banner tone="error" message={error} /> : null}
                     <Button label="Delete my AI data" variant="danger" icon="delete-outline" full loading={del.isPending || revoke.isPending} onPress={deleteData} />
                   </View>
-                </Card>
+                </Panel>
               </View>
             </View>
           ) : null}

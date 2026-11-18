@@ -1,7 +1,7 @@
 import React from 'react';
 import { Pressable, View } from 'react-native';
 import { useRouter } from 'expo-router';
-import { Badge, Banner, Button, Card, Chip, EmptyState, SectionHeader, Select, SegmentedControl, Skeleton, Text, TextField } from '@/ui';
+import { Badge, Banner, Button, Card, Chip, EmptyState, SectionHeader, Select, SegmentedControl, Skeleton, Text, TextField, Panel } from '@/ui';
 import { Icon } from '@/ui';
 import { colors, MIN_TOUCH, radius, toneColors } from '@/theme';
 import { Page, sp } from '@/features/student/me/kit';
@@ -199,8 +199,7 @@ function ListBlock({ title, items, icon }: { title: string; items: string[]; ico
   if (!items.length) return null;
   return (
     <View style={{ gap: sp.sm }}>
-      <SectionHeader title={title} />
-      <Card>
+      <Panel title={title} padded>
         <View style={{ gap: sp.md }}>
           {items.map((t, i) => (
             <View key={i} style={{ flexDirection: 'row', gap: sp.sm }}>
@@ -209,7 +208,7 @@ function ListBlock({ title, items, icon }: { title: string; items: string[]; ico
             </View>
           ))}
         </View>
-      </Card>
+      </Panel>
     </View>
   );
 }
@@ -245,8 +244,7 @@ function ReviewResult({ data, onAgain }: { data: ResumeReviewResult; onAgain: ()
 
       {r.jd_match ? (
         <View style={{ gap: sp.sm }}>
-          <SectionHeader title="Match with the drive" />
-          <Card>
+          <Panel title="Match with the drive" padded>
             <View style={{ gap: sp.md }}>
               <Text variant="heading" tabular>{`${Math.round(r.jd_match.percent)}% skills match`}</Text>
               {(r.jd_match.matched_skills ?? []).length ? (
@@ -262,7 +260,7 @@ function ReviewResult({ data, onAgain }: { data: ResumeReviewResult; onAgain: ()
                 </View>
               ) : null}
             </View>
-          </Card>
+          </Panel>
         </View>
       ) : null}
 

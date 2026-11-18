@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View } from 'react-native';
 import { useRouter } from 'expo-router';
 import { Controller, useForm } from 'react-hook-form';
-import { Avatar, Banner, Button, Card, PasswordField, SectionHeader, Text, TextField, useToast } from '@/ui';
+import { Avatar, Banner, Button, Card, PasswordField, SectionHeader, Text, TextField, useToast, Panel } from '@/ui';
 import { colors } from '@/theme';
 import { validatePassword } from '@/lib/validation';
 import { errCode, errFields, errMessage, useAuth, useChangePassword, useDeleteAccount, useProfileFull } from '@/features/student/me/data';
@@ -72,8 +72,7 @@ export default function AccountScreen() {
       </Card>
 
       <View style={{ gap: sp.md }}>
-        <SectionHeader title="Change password" />
-        <Card>
+        <Panel title="Change password" padded>
           <View style={{ gap: sp.lg }}>
             <Controller control={control} name="currentPassword" render={({ field, fieldState }) => (
               <PasswordField label="Current password" value={field.value} onChangeText={field.onChange} onBlur={field.onBlur} error={fieldState.error?.message ?? serverErr.currentPassword} />
@@ -87,7 +86,7 @@ export default function AccountScreen() {
             <Text variant="caption" color={colors.muted}>8-64 characters with at least one letter and one number. Changing it signs out your other devices. If you forget it, use Forgot password on the log in screen.</Text>
             <Button label="Change password" full loading={changing} onPress={handleSubmit(submit, () => toast.show('Fix the highlighted fields', 'error'))} />
           </View>
-        </Card>
+        </Panel>
       </View>
 
       <View style={{ gap: sp.md }}>

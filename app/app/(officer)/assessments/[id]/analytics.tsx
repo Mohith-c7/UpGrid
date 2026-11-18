@@ -1,7 +1,7 @@
 import React from 'react';
 import { View } from 'react-native';
 import { useLocalSearchParams } from 'expo-router';
-import { Badge, Banner, Card, EmptyState, ErrorState, KeyValueList, SectionHeader, Skeleton, StatTile, Text } from '@/ui';
+import { Badge, Banner, Card, EmptyState, ErrorState, KeyValueList, SectionHeader, Skeleton, StatTile, Text, Panel } from '@/ui';
 import { colors } from '@/theme';
 import { errMessage } from '@/api/client';
 import { useAnalytics } from '@/api/assessments';
@@ -43,19 +43,17 @@ export default function AnalyticsScreen() {
             </Card>
             {d.summary.pendingEvaluation > 0 ? <Banner tone="warning" message={`${d.summary.pendingEvaluation} attempts are still being evaluated and are not in these numbers yet.`} /> : null}
 
-            <SectionHeader title="Score distribution" subtitle="Students per score band (percent of total marks)" />
-            <Card style={{ gap: 10 }}>
+            <Panel title="Score distribution" subtitle="Students per score band (percent of total marks)" padded><View style={{ gap: 10 }}>
               {d.distribution.buckets.map((b) => (
                 <FlatBar key={b.fromPercent} label={`${b.fromPercent} to ${b.toPercent}%`} value={b.count} max={maxBucket} text={`${b.count} student${b.count === 1 ? '' : 's'}`} />
               ))}
-            </Card>
+            </View></Panel>
 
             {d.sections.length > 1 ? (
               <>
-                <SectionHeader title="Sections" subtitle="Average score against section maximum" />
-                <Card style={{ gap: 10 }}>
+                <Panel title="Sections" subtitle="Average score against section maximum" padded><View style={{ gap: 10 }}>
                   {d.sections.map((s) => <FlatBar key={s.id} label={s.title} value={s.avgScore ?? 0} max={s.maxScore} text={`${fmtNum(s.avgScore, 1)} / ${fmtNum(s.maxScore)}`} />)}
-                </Card>
+                </View></Panel>
               </>
             ) : null}
 

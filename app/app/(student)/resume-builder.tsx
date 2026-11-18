@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { View } from 'react-native';
 import { WebView } from 'react-native-webview';
 import { useRouter } from 'expo-router';
-import { Banner, Button, Card, ErrorState, SectionHeader, SegmentedControl, Skeleton, Text, TextField, useToast } from '@/ui';
+import { Banner, Button, Card, ErrorState, SectionHeader, SegmentedControl, Skeleton, Text, TextField, useToast, Panel } from '@/ui';
 import { colors, radius } from '@/theme';
 import { Page, confirm, sp } from '@/features/student/me/kit';
 import { useAuth, useProfile, useResumes } from '@/api/hooks';
@@ -174,8 +174,7 @@ export default function ResumeBuilderScreen() {
       {showErrors && errCount > 0 ? <Banner tone="error" title={`Fix ${errCount} ${errCount === 1 ? 'item' : 'items'}`} message={errors.content ?? 'The highlighted fields need your attention before you can preview.'} /> : null}
 
       <View style={{ gap: sp.md }}>
-        <SectionHeader title="Contact" />
-        <Card><View style={{ gap: sp.lg }}>
+        <Panel title="Contact" padded><View style={{ gap: sp.lg }}>
           <TextField label="Full name" value={draft.name} onChangeText={(v) => set({ name: v })} error={e('name')} maxLength={80} />
           <TextField label="Email" value={draft.email} onChangeText={(v) => set({ email: v })} error={e('email')} keyboardType="email-address" autoCapitalize="none" maxLength={254} />
           <TextField label="Mobile" value={draft.phone} onChangeText={(v) => set({ phone: v })} error={e('phone')} keyboardType="phone-pad" maxLength={20} />
@@ -183,12 +182,11 @@ export default function ResumeBuilderScreen() {
           <TextField label="LinkedIn (https)" value={draft.linkedin} onChangeText={(v) => set({ linkedin: v })} error={e('linkedin')} keyboardType="url" autoCapitalize="none" maxLength={300} />
           <TextField label="GitHub (https)" value={draft.github} onChangeText={(v) => set({ github: v })} error={e('github')} keyboardType="url" autoCapitalize="none" maxLength={300} />
           <TextField label="Portfolio (https)" value={draft.portfolio} onChangeText={(v) => set({ portfolio: v })} error={e('portfolio')} keyboardType="url" autoCapitalize="none" maxLength={300} />
-        </View></Card>
+        </View></Panel>
       </View>
 
       <View style={{ gap: sp.md }}>
-        <SectionHeader title="Summary" subtitle="Optional. One or two lines in your own words" />
-        <Card><TextField label="Summary" value={draft.summary} onChangeText={(v) => set({ summary: v })} error={e('summary')} multiline maxLength={600} /></Card>
+        <Panel title="Summary" subtitle="Optional. One or two lines in your own words" padded><TextField label="Summary" value={draft.summary} onChangeText={(v) => set({ summary: v })} error={e('summary')} multiline maxLength={600} /></Panel>
       </View>
 
       <View style={{ gap: sp.md }}>
@@ -207,8 +205,7 @@ export default function ResumeBuilderScreen() {
       </View>
 
       <View style={{ gap: sp.md }}>
-        <SectionHeader title="Skills" subtitle="Separate with commas" />
-        <Card><TextField label="Skills" value={draft.skills} onChangeText={(v) => set({ skills: v })} error={e('skills')} multiline maxLength={800} helper="For example: Java, SQL, React" /></Card>
+        <Panel title="Skills" subtitle="Separate with commas" padded><TextField label="Skills" value={draft.skills} onChangeText={(v) => set({ skills: v })} error={e('skills')} multiline maxLength={800} helper="For example: Java, SQL, React" /></Panel>
       </View>
 
       <View style={{ gap: sp.md }}>
@@ -240,8 +237,7 @@ export default function ResumeBuilderScreen() {
       </View>
 
       <View style={{ gap: sp.md }}>
-        <SectionHeader title="Achievements" subtitle="Certifications, awards, positions. One per line" />
-        <Card><TextField label="Achievements" value={draft.achievements} onChangeText={(v) => set({ achievements: v })} error={e('achievements')} multiline maxLength={1200} /></Card>
+        <Panel title="Achievements" subtitle="Certifications, awards, positions. One per line" padded><TextField label="Achievements" value={draft.achievements} onChangeText={(v) => set({ achievements: v })} error={e('achievements')} multiline maxLength={1200} /></Panel>
       </View>
 
     </Page>

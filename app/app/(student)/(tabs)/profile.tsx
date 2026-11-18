@@ -1,7 +1,7 @@
 import React from 'react';
 import { View } from 'react-native';
 import { useRouter } from 'expo-router';
-import { Avatar, Badge, Button, Card, ListRow, ProgressBar, SectionHeader, Text, useToast } from '@/ui';
+import { Avatar, Badge, Button, Card, ListRow, ProgressBar, SectionHeader, Text, useToast, Panel } from '@/ui';
 import { colors } from '@/theme';
 import { formatPhone } from '@/lib/validation';
 import { useAuth, useProfileFull } from '@/features/student/me/data';
@@ -82,8 +82,7 @@ export default function ProfileTab() {
             </Card>
 
             <View style={{ gap: sp.md }}>
-              <SectionHeader title="Checklist" />
-              <Card padding={0}>
+              <Panel title="Checklist">
                 {(p.completion?.items ?? []).length === 0 ? (
                   <View style={{ padding: sp.lg }}><Text variant="body" color={colors.muted}>No checklist items.</Text></View>
                 ) : null}
@@ -101,12 +100,11 @@ export default function ProfileTab() {
                     </View>
                   );
                 })}
-              </Card>
+              </Panel>
             </View>
 
             <View style={{ gap: sp.md }}>
-              <SectionHeader title="Verification" subtitle="Checked manually by the placement cell" />
-              <Card>
+              <Panel title="Verification" subtitle="Checked manually by the placement cell" padded>
                 <View style={{ gap: sp.lg }}>
                   {VERIFIED_ROWS.map((r) => {
                     const val = r.value(p.academics ?? {}, p.identity ?? {});
@@ -123,7 +121,7 @@ export default function ProfileTab() {
                     Nothing is pulled from a university system. Editing a verified value makes it unverified again.
                   </Text>
                 </View>
-              </Card>
+              </Panel>
             </View>
 
             <View style={{ gap: sp.md }}>

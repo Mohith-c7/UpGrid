@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { Pressable, View } from 'react-native';
 import { useLocalSearchParams, useRouter } from 'expo-router';
-import { Avatar, Badge, Button, Card, Chip, EmptyState, ErrorState, Header, Icon, OfflineBanner, ProgressBar, Screen, SectionHeader, Sheet, Skeleton, Text, useToast } from '@/ui';
+import { Avatar, Badge, Button, Card, Chip, EmptyState, ErrorState, Header, Icon, OfflineBanner, ProgressBar, Screen, SectionHeader, Sheet, Skeleton, Text, useToast, Panel } from '@/ui';
 import { colors, MIN_TOUCH } from '@/theme';
 import { errMessage, useInvalidateOfficer, useStudent, verifyStudent } from '@/features/officer/data';
 import { AppStatusBadge, useOnce, VERIF_BADGE } from '@/features/officer/components/common';
@@ -152,8 +152,7 @@ export default function StudentDetail() {
 
             {(s.links?.linkedin || s.links?.github || s.skills?.length) ? (
               <>
-                <SectionHeader title="Profile" />
-                <Card style={{ gap: 12 }}>
+                <Panel title="Profile" padded><View style={{ gap: 12 }}>
                   {s.skills?.length ? (
                     <View style={{ gap: 6 }}>
                       <Text variant="caption" color={colors.muted}>Skills</Text>
@@ -162,7 +161,7 @@ export default function StudentDetail() {
                   ) : null}
                   {s.links?.linkedin ? <View><Text variant="caption" color={colors.muted}>LinkedIn</Text><Text variant="body" selectable>{s.links.linkedin}</Text></View> : null}
                   {s.links?.github ? <View><Text variant="caption" color={colors.muted}>GitHub</Text><Text variant="body" selectable>{s.links.github}</Text></View> : null}
-                </Card>
+                </View></Panel>
               </>
             ) : null}
           </>

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Pressable, ScrollView, View } from 'react-native';
 import { useIsFocused, useLocalSearchParams, useRouter } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
-import { Badge, Banner, Button, Card, CodeBlock, EmptyState, ErrorState, Header, Icon, MetricRow, OfflineBanner, Screen, SectionHeader, Skeleton, Text } from '@/ui';
+import { Badge, Banner, Button, Card, CodeBlock, EmptyState, ErrorState, Header, Icon, MetricRow, OfflineBanner, Screen, SectionHeader, Skeleton, Text, Panel } from '@/ui';
 import { colors, MIN_TOUCH, SCREEN_PADDING, radius } from '@/theme';
 import { ApiError } from '@/api/client';
 import { useResult } from '@/api/tests';
@@ -136,8 +136,7 @@ function Body({ attemptId }: { attemptId: string }) {
 
       {(r.sections ?? []).length > 0 ? (
         <View style={{ gap: sp.md }}>
-          <SectionHeader title="Section scores" />
-          <Card>
+          <Panel title="Section scores" padded>
             {(r.sections ?? []).map((s, i) => (
               <View key={s.id} style={{ borderBottomWidth: i === (r.sections ?? []).length - 1 ? 0 : 1, borderBottomColor: colors.border, paddingVertical: sp.sm, gap: sp.xs }}>
                 <MetricRow label={s.title} value={`${fmtMarks(s.score)} / ${fmtMarks(s.maxScore)}`} last />
@@ -146,7 +145,7 @@ function Body({ attemptId }: { attemptId: string }) {
                 ) : null}
               </View>
             ))}
-          </Card>
+          </Panel>
         </View>
       ) : null}
 

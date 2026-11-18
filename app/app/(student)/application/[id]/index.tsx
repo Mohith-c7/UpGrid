@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { Share, View } from 'react-native';
 import { useLocalSearchParams, useRouter } from 'expo-router';
-import { Banner, Button, Card, CodeBlock, CompanyLogo, EmptyState, ErrorState, KeyValueList, SectionHeader, Sheet, Skeleton, Text, TextField, TimelineList, useToast, type TimelineItem } from '@/ui';
+import { Banner, Button, Card, CodeBlock, CompanyLogo, EmptyState, ErrorState, KeyValueList, Sheet, Skeleton, Text, TextField, TimelineList, useToast, type TimelineItem, Panel } from '@/ui';
 import { colors } from '@/theme';
 import { ScheduleCard } from '@/features/student/me/ScheduleCard';
 import { useAppOffer } from '@/api/pipeline';
@@ -152,15 +152,13 @@ export default function ApplicationDetail() {
         ) : null}
 
         <View style={{ gap: sp.md }}>
-          <SectionHeader title="Timeline" />
-          <Card>
+          <Panel title="Timeline" padded>
             {timeline.length === 0 ? <Text variant="body" color={colors.muted}>No updates yet.</Text> : <TimelineList items={timeline} />}
-          </Card>
+          </Panel>
         </View>
 
         <View style={{ gap: sp.md }}>
-          <SectionHeader title="Receipt" />
-          <Card>
+          <Panel title="Receipt" padded>
             <View style={{ gap: sp.md }}>
               <CodeBlock label="Reference" code={a.reference} />
               <KeyValueList
@@ -180,7 +178,7 @@ export default function ApplicationDetail() {
                 }}
               />
             </View>
-          </Card>
+          </Panel>
         </View>
 
         {canWithdraw ? (
